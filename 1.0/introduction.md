@@ -4,11 +4,13 @@
 
 ## What Is Vapor?
 
-Laravel Vapor is a serverless deployment platform for Laravel, powered by AWS. Manage your Laravel infrastructure on Vapor and fall in love with the scalability and simplicity of serverless. Vapor abstracts the complexity of managing Laravel applications on AWS Lambda, as well as interfacing those applications with SQS queues, databases, Redis clusters, networks, CloudFront CDN, and more.
+Laravel Vapor is an auto-scaling, serverless deployment platform for Laravel, powered by AWS Lambda. Manage your Laravel infrastructure on Vapor and fall in love with the scalability and simplicity of serverless. Vapor abstracts the complexity of managing Laravel applications on AWS Lambda, as well as interfacing those applications with SQS queues, databases, Redis clusters, networks, CloudFront CDN, and more.
+
+In short, you can think of Vapor as [Laravel Forge](https://forge.laravel.com) for serverless technology.
 
 ## Account Creation
 
-Before integrating Vapor into your application, you should create a Vapor account. If you are just collaborating with others on their projects, you are not required to have a Vapor subscription. To create and manage your own projects, you will need a paid Vapor subscription.
+Before integrating Vapor into your application, you should create a Vapor account. If you are just collaborating with others on their projects, you are not required to have a Vapor subscription. To create and manage your own projects, you will need a Vapor subscription.
 
 ## Installing The Vapor CLI
 

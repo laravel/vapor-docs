@@ -18,7 +18,7 @@ composer require laravel/vapor-cli
 
 ## Installing The Vapor Core
 
-The "Vapor Core" must be installed as a depedency of every Laravel application that is deployed using Vapor. This package contains various Vapor runtime files and a service provider to allow your application to run on Vapor. You may install the Vapor Core into your project using Composer:
+The `laravel/vapor-core` package must be installed as a dependency of every Laravel application that is deployed using Vapor. This package contains various Vapor runtime files and a service provider to allow your application to run on Vapor. You may install the Vapor Core into your project using Composer:
 
 ```bash
 composer require laravel/vapor-core

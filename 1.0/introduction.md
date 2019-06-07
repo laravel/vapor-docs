@@ -10,7 +10,7 @@ Before integrating Vapor into your application, you should create a Vapor accoun
 
 ## Installing The Vapor CLI
 
-You will deploy your Laravel Vapor applications using the Vapor CLI. This CLI may be installed globally or on a per-project basis. To install the CLI globally, you should download the latest release of the Vapor CLI "Phar" archive. To install the CLI for a single project, you may use Composer:
+You will deploy your Laravel Vapor applications using the [Vapor CLI](https://github.com/laravel/vapor-cli). This CLI may be installed globally or on a per-project basis. To install the CLI globally, you should download the latest release of the Vapor CLI "Phar" archive. To install the CLI for a single project, you may use Composer:
 
 ```bash
 composer require laravel/vapor-cli
@@ -18,7 +18,7 @@ composer require laravel/vapor-cli
 
 ## Installing The Vapor Core
 
-The `laravel/vapor-core` package must be installed as a dependency of every Laravel application that is deployed using Vapor. This package contains various Vapor runtime files and a service provider to allow your application to run on Vapor. You may install the Vapor Core into your project using Composer:
+The `laravel/vapor-core` [package](https://github.com/laravel/vapor-core) must be installed as a dependency of every Laravel application that is deployed using Vapor. This package contains various Vapor runtime files and a service provider to allow your application to run on Vapor. You may install the Vapor Core into your project using Composer:
 
 ```bash
 composer require laravel/vapor-core

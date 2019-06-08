@@ -27,3 +27,7 @@ The `laravel/vapor-core` [package](https://github.com/laravel/vapor-core) must b
 ```bash
 composer require laravel/vapor-core
 ```
+
+## Linking With AWS
+
+The `laravel/vapor-core` [package](https://github.com/laravel/vapor-core) must be installed as a dependency of every Laravel application that is deployed using Vapor. This package contains various Vapor runtime files and a service provider to allow your application to run on Vapor. You may install the Vapor Core into your project using Composer:

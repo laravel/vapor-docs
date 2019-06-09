@@ -108,7 +108,7 @@ Since Vapor manages many types of resources across more than a dozen AWS service
 
 #### Granting Granular Permissions
 
-To white-list all operations for all services required by Vapor, you should grant the following permissions to a policy:
+If you would like to white-list all operations for only the services required by Vapor, you should grant the following permissions to a policy:
 
 - acm:*
 - apigateway:*

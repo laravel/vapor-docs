@@ -30,7 +30,7 @@ You may update an environment's variables via the Vapor UI or using the `env:pul
 vapor env:pull production
 ```
 
-Once this command has been executed, a `.env.{environment}` while will be placed in your application's root directory. To update the environment's variables, simply open and edit this file. When you are done editing the variables, use the `env:push` command to push the variables back to Vapor:
+Once this command has been executed, a `.env.{environment}` file will be placed in your application's root directory. To update the environment's variables, simply open and edit this file. When you are done editing the variables, use the `env:push` command to push the variables back to Vapor:
 
 ```bash
 vapor env:push production

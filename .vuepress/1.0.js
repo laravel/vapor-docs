@@ -19,6 +19,7 @@ module.exports = [
     children: prefix('resources', [
       'networks',
       'databases',
+      'caches',
     ]),
   },
 ]

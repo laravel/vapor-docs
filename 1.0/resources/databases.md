@@ -63,17 +63,11 @@ environments:
 
 ### Connecting To Private Databases Locally
 
-If you would like to connect to your private database from your local machine, you can either use a Vapor "jumpbox" in combination with a GUI database management tool or the `database:shell` CLI command. Jumpboxes are very small, SSH accessible servers that are placed within your private network.
+If you would like to connect to your private database from your local machine, you can either use a Vapor [jumpbox](./networks.md#jumpboxes) in combination with a GUI database management tool or the `database:shell` CLI command. Jumpboxes are very small, SSH accessible servers that are placed within your private network.
 
 #### Jumpboxes + GUI Tool
 
-Once a jumpbox has been created, you may configure your database management tool to connect to your database through the jumpbox SSH connection. You may create a jumpbox via the Vapor UI's network detail screen or using the `jump` CLI command:
-
-```bash
-vapor jump my-jumpbox
-```
-
-Once the jumpbox has been created, Vapor will provide you with the private SSH key needed to access the jumpbox. You should connect to the jumpbox via SSH as the `ec2-user` user and the private SSH key. For example, TablePlus may be configured in this way:
+Once a jumpbox has been created, you may configure your database management tool to connect to your database through the jumpbox SSH connection:
 
 TODO: Screenshot
 

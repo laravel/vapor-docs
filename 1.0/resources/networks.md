@@ -6,6 +6,23 @@
 
 Networks house your databases, caches, jumpboxes, and occasionally applications within AWS. In general, although they are displayed in the Vapor UI for you to review, you are not required to interact with networks directly when using Vapor. When you create a project in a region that does not contain any previous Vapor projects, Vapor automatically begins provisioning a network for you.
 
+## Jumpboxes
+
+Some Vapor resources, such as private databases or cache clusters, may not be accessed from the public Internet. Instead, they can only be accessed by a machine with their network. This can make it cumbersome to inspect and manipulate these resources during development. To mitigate this inconvenience, Vapor allows you to create jumpboxes. Jumpboxes are very small, SSH accessible servers that are placed within your private network.
+
+You may create a jumpbox via the Vapor UI's network detail screen or using the `jump` CLI command:
+
+```bash
+vapor jump my-jumpbox
+```
+
+Once the jumpbox has been created, Vapor will provide you with the private SSH key needed to access the jumpbox. You should connect to the jumpbox via SSH as the `ec2-user` user and the private SSH key.
+
+:::tip Using Jumpboxes
+
+For practical examples of using jumpboxes to make your serverless life easier, check out the [database](./databases.md#using-databases) and [cache](./caches.md#using-caches) documentation.
+:::
+
 ## NAT Gateways
 
 ### What Are They?

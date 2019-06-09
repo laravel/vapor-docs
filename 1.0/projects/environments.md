@@ -12,12 +12,6 @@ Typically, you will have an environment for "production", and a "staging" enviro
 
 Environments are "created" by adding a new environment entry to your project's `vapor.yml` file and deploying the environment.
 
-## Vanity URLs
-
-Each environment is assigned a unique "vanity URL" which you may use to access the application immediately after it is deployed. When serving these URLs, Vapor automatically adds "no-index" headers to the response so they are not indexed by search engines.
-
-In addition, these secret URLs will continue to work even when an application is in maintenance mode, allowing you to test your application before disabling maintenance mode and restoring general access.
-
 ## Environment Variables
 
 Each environment contains a set of environment variables that provide crucial information to your application during execution, just like the variables present in your application's local `.env` file.
@@ -69,6 +63,37 @@ vapor secret:passport production
 :::tip Secrets & Deployments
 
 After updating an environment's secrets, the new secrets will not be utilized until the application is deployed again. In addition, when rolling back to a previous deployment, Vapor will use the secrets as they existed at the time the deployment you're rolling back to was originally deployed.
+:::
+
+## Vanity URLs
+
+Each environment is assigned a unique "vanity URL" which you may use to access the application immediately after it is deployed. When serving these URLs, Vapor automatically adds "no-index" headers to the response so they are not indexed by search engines.
+
+In addition, these secret URLs will continue to work even when an application is in maintenance mode, allowing you to test your application before disabling maintenance mode and restoring general access.
+
+## Custom Domains
+
+Of course, as cool as they are, you don't want to share your vanity URL with the world. You likely want to attach your own custom domain to an environment. To do so, you'll first need to create a [certificate](./../domains/certificates.md) for the domain. All Vapor applications are required to utilize SSL. Don't worry, Vapor's certificates are free and automatically renew.
+
+After creating a certificate, you may attach the domain to your environment using the `domain` configuration option in your `vapor.yml` file. When attaching a domain to an environment, it is not necessary to provide the `www` sub-domain:
+
+```yaml
+id: 2
+name: vapor-laravel-app
+environments:
+    production:
+        domain: example.com
+        build:
+            - 'composer install --no-dev --classmap-authoritative'
+```
+
+During deployment, Vapor will configure the environment to handle requests on this domain. After the deployment is completed, Vapor will provide you with CNAME records for the domain. These records will point the domain to your Lambda application.
+
+**Of course, Vapor will automatically add these records to a [Vapor DNS zone](./../domains/dns.md) for you. So, if you are using Vapor to manage your DNS records, you are not required to manually add these CNAME records to your DNS configuration.** If you are not using Vapor to manage your DNS, you should manually add these CNAME records to your domain's DNS provider.
+
+:::warning Custom Domain Provisioning Time
+
+Due to the nature of AWS CloudFront, custom domains often take 30-45 minutes to become fully active. So, do not worry if your custom domain is not immediately accessible after deployment.
 :::
 
 ## Maintenance Mode

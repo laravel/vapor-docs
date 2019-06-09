@@ -4,7 +4,20 @@
 
 ## What Is Vapor?
 
-Laravel Vapor is an auto-scaling, serverless deployment platform for Laravel, powered by AWS Lambda. Manage your Laravel infrastructure on Vapor and fall in love with the scalability and simplicity of serverless. Vapor abstracts the complexity of managing Laravel applications on AWS Lambda, as well as interfacing those applications with SQS queues, databases, Redis clusters, networks, CloudFront CDN, and more.
+Laravel Vapor is an auto-scaling, serverless deployment platform for Laravel, powered by AWS Lambda. Manage your Laravel infrastructure on Vapor and fall in love with the scalability and simplicity of serverless. Vapor abstracts the complexity of managing Laravel applications on AWS Lambda, as well as interfacing those applications with SQS queues, databases, Redis clusters, networks, CloudFront CDN, and more. Some highlights of Vapor's features include:
+
+- Auto-scaling web / queue infrastructure fine tuned for Laravel
+- Zero-downtime deployments and rollbacks
+- Environment variable / secret management
+- Database management, including point-in-time restores and scaling
+- Redis Cache management, including cluster scaling
+- Database and cache tunnels, allowing for easy local inspection
+- Automatic uploading of assets to Cloudfront CDN during deployment
+- Unique, Vapor assigned vanity URLs for each environment, allowing immediate inspection
+- Custom application domains
+- DNS management
+- Certificate management and renewal
+- Application, database, and cache metrics
 
 In short, you can think of Vapor as [Laravel Forge](https://forge.laravel.com) for serverless technology.
 

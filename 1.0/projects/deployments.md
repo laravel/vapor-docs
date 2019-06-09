@@ -61,3 +61,17 @@ vapor redeploy production
 ```
 
 ## Rollbacks
+
+To rollback to a previous deployment, you may select the deployment in the Vapor UI and click the "Rollback To" button, or you may use the `rollback` CLI command. The `rollback` command's "--select" option will allow you to select which deployment to rollback to from a list of recent deployments. If the `rollback` command is executed without this option, it will simply rollback to the most previous successful deployment:
+
+```bash
+vapor rollback production
+
+vapor rollback production --select
+```
+
+:::warning Variables, Secrets, & Rollbacks
+
+When rolling back to a previous deployment, Vapor will use the environment's variables and secrets as they existed at the time the deployment you're rolling back to was originally deployed.
+:::
+

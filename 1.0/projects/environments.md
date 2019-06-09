@@ -36,6 +36,10 @@ Once this command has been executed, a `.env.{environment}` file will be placed 
 vapor env:push production
 ```
 
+### Vapor Environment Variables
+
+Vapor automatically injects a variety of environment variables based on your environment's configured database, cache, etc. You will not see these environment variables when you manage your environment, and any variables you manually define will override Vapor's automatically injected variables.
+
 :::tip Variables & Deployments
 
 After updating an environment's variables, the new variables will not be utilized until the application is deployed again. In addition, when rolling back to a previous deployment, Vapor will use the variables as they existed at the time the deployment you're rolling back to was originally deployed.

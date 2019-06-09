@@ -51,7 +51,6 @@ environments:
             - 'composer install --no-dev --classmap-authoritative'
         deploy:
             - 'php artisan migrate --force'
-
 ```
 
 When the environment is deployed, Vapor will automatically inject the necessary Laravel environment variables for connecting to the database, allowing your application to start using it immediately!
@@ -81,6 +80,32 @@ vapor database:shell my-application-db
 ```
 
 ## Database Users
+
+When a database is created, Vapor creates a "vapor" master user. You may create additional database users, which will automatically be assigned a secure, random password, using the Vapor UI or the `database:user` CLI command:
+
+```bash
+vapor database:user user-2
+```
+
+You may instruct an environment to connect to a database as a given user using the `databse-user` configuration option within your `vapor.yml` file:
+
+```yaml
+id: 3
+name: vapor-app
+environments:
+    production:
+        database: my-application-db
+        database-user: user-2
+        build:
+            - 'composer install --no-dev --classmap-authoritative'
+        deploy:
+            - 'php artisan migrate --force'
+```
+
+:::tip Database Password Rotation
+
+You may leverage users to "rotate" the password of a database without downtime by creating a new user, updating the environment to use that user, deploying the environment, and then deleting the old database user.
+:::
 
 ## Scaling Databases
 

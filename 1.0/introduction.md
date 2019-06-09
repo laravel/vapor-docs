@@ -51,7 +51,7 @@ composer require laravel/vapor-core
 
 ## Teams
 
-When you create your Vapor account, a "Personal" team is automatically created for you. You can rename this team in your team settings. All projects, databases, caches, and other Vapor resources belong to a team. You are free to create as many teams as you wish via the Vapor UI or the `team` CLI command. There is no additional charge for creating teams, and they serve as a great way to organize your projects by client or topic.
+When you create your Vapor account, a "Personal" team is automatically created for you. You can rename this team in your team settings. All projects, databases, caches, and other Vapor resources belong to a team. You are free to create as many teams as you wish via the Vapor UI or using the `team` CLI command. There is no additional charge for creating teams, and they serve as a great way to organize your projects by client or topic.
 
 ### Collaborators
 

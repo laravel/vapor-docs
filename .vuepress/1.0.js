@@ -10,6 +10,7 @@ module.exports = [
     children: prefix('projects', [
       'the-basics',
       'environments',
+      'deployments',
     ]),
   },
 ]

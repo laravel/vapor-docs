@@ -13,6 +13,14 @@ module.exports = [
       'deployments',
     ]),
   },
+  {
+    title: 'Resources',
+    collapsable: false,
+    children: prefix('resources', [
+      'networks',
+      'databases',
+    ]),
+  },
 ]
 
 function prefix(prefix, children) {

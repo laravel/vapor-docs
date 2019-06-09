@@ -133,6 +133,22 @@ Database restoration may be initiated via the Vapor UI or the `database:restore`
 vapor database:restore current-database-name new-database-name
 ```
 
+## Metrics
+
+A variety of database performance metrics are available via the Vapor UI's database detail screen or using the `database:metrics` CLI command:
+
+```bash
+vapor database:metrics my-application-db
+vapor database:metrics my-application-db 5m
+vapor database:metrics my-application-db 30m
+vapor database:metrics my-application-db 1h
+vapor database:metrics my-application-db 8h
+vapor database:metrics my-application-db 1d
+vapor database:metrics my-application-db 3d
+vapor database:metrics my-application-db 7d
+vapor database:metrics my-application-db 1M
+```
+
 ## Deleting Databases
 
 Databases may be deleted via the Vapor UI or using the `database:delete` CLI command. Once a database has been deleted, it can not be recovered, so take extra caution before deleting a database:

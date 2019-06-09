@@ -109,6 +109,28 @@ You may leverage users to "rotate" the password of a database without downtime b
 
 ## Scaling Databases
 
+You may scale fixed size databases via the Vapor UI's database detail screen or the `database:scale` CLI command. When scaling a fixed size database, the database will be unavailable, and the amount of time it takes to scale the database could vary based on the size of the database. Therefore, you should place your application in maintenance mode before beginning the scaling operation:
+
+```bash
+vapor database:scale my-application-db
+```
+
 ## Restoring Databases
 
+Vapor database backups are performed automatically and you may restore databases to any point in time within the database backup retention period, which is currently three days.
+
+WHen restoring a database, a new database is created with the same configuration as the previous database. Then, the previous database's contents are restored to the new database as they existed at the exact point in time you choose. Once you are satisfied with the database restoration, you may delete the old database.
+
+Database restoration may be initiated via the Vapor UI or the `database:restore` CLI command:
+
+```bash
+vapor database:restore current-database-name new-database-name
+```
+
 ## Deleting Databases
+
+Databases may be deleted via the Vapor UI or using the `database:delete` CLI command. Once a database has been deleted, it can not be recovered, so take extra caution before deleting a database:
+
+```bash
+vapor database:delete my-application-db
+```

@@ -91,7 +91,7 @@ You may remove collaborators from your team using the Vapor UI or `team:remove` 
 
 In order to deploy projects or create other resources using Vapor, you will need to link an active AWS account on your team's settings management page.
 
-### IAM Permissions
+### Creating An IAM User
 
 #### Administrator Access
 

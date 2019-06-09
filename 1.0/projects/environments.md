@@ -64,6 +64,11 @@ Due to AWS Lambda limitations, your environment variables may only be 4kb in tot
 vapor secret production
 ```
 
+:::tip Secrets & Deployments
+
+After updating an environment's secrets, the new secrets will not be utilized until the application is deployed again. In addition, when rolling back to a previous deployment, Vapor will use the secrets as they existed at the time the deployment you're rolling back to was originally deployed.
+:::
+
 ### Passport Keys
 
 Since storing Laravel Passport keys is a common use-case for secrets. You may easily add your project's Passport keys as secrets using the `secret:passport` CLI command:
@@ -71,11 +76,6 @@ Since storing Laravel Passport keys is a common use-case for secrets. You may ea
 ```bash
 vapor secret:passport production
 ```
-
-:::tip Secrets & Deployments
-
-After updating an environment's secrets, the new secrets will not be utilized until the application is deployed again. In addition, when rolling back to a previous deployment, Vapor will use the secrets as they existed at the time the deployment you're rolling back to was originally deployed.
-:::
 
 ## Vanity URLs
 

@@ -110,7 +110,7 @@ Once the user is created, AWS will display the access key ID and secret access k
 
 #### Granting Granular Permissions
 
-If you would like to white-list all operations for only the services required by Vapor, you should grant the following permissions to a policy. **Please note that Vapor's required permissions could change in the future:**
+If you would like to white-list all operations for only the services required by Vapor, you should grant the following permissions to a policy attached to the IAM user. **Please note that Vapor's required permissions could change in the future:**
 
 - acm:*
 - apigateway:*

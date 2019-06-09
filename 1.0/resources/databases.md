@@ -39,7 +39,7 @@ AWS requires all serverless databases to be private, meaning Vapor will place an
 
 ## Using Databases
 
-To attach a database to an environment, add a `database` key to the environment's configuration in your `vapor.yml` file. The value of this key should be the name of the database:
+To attach a database to an environment, add a `database` key to the environment's configuration in your `vapor.yml` file. The value of this key should be the name of the database. **When the environment is deployed, Vapor will automatically inject the necessary Laravel environment variables for connecting to the database, allowing your application to start using it immediately:**
 
 ```yaml
 id: 3
@@ -52,8 +52,6 @@ environments:
         deploy:
             - 'php artisan migrate --force'
 ```
-
-When the environment is deployed, Vapor will automatically inject the necessary Laravel environment variables for connecting to the database, allowing your application to start using it immediately!
 
 ### Connecting To Private Databases Locally
 

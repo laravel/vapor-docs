@@ -17,9 +17,18 @@ module.exports = [
     title: 'Resources',
     collapsable: false,
     children: prefix('resources', [
+      'storage',
       'networks',
       'databases',
       'caches',
+    ]),
+  },
+  {
+    title: 'Domains',
+    collapsable: false,
+    children: prefix('domains', [
+      'dns',
+      'certificates',
     ]),
   },
 ]

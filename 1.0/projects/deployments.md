@@ -52,6 +52,46 @@ environments:
             - 'php artisan migrate --force'
 ```
 
+## Assets
+
+During deployment, Vapor will automatically extract all of the assets in your Laravel project's `public` directory and upload them to S3. In addition, Vapor will create a AWS CloudFront (CDN) distribution to distribute these assets efficiently around the world.
+
+Because all of your assets will be served via S3 / CloudFront, you should always generate URLs to these assets using Laravel's `asset` helper. Vapor injects an `ASSET_URL` environment variable which Laravel's `asset` helper will use when constructing your URLs:
+
+```php
+<img src="{{ asset('img.jpg') }}">
+```
+
+On subsequent deployments, only the assets that have changed will be uploaded to S3, while unchanged assets will be copied over from the previous deployment.
+
+### URLs Within CSS
+
+Sometimes, your CSS may need to reference asset URLs, such as a `background-image` property that references an image via URL. Obviously, you are not able to use the PHP `asset` helper within your CSS. For this reason, you may use Vapor's PostCSS hook to inject the proper asset base URL into your CSS.
+
+To get started, install the Vapor's NPM package:
+
+```bash
+npm install --save-dev laravel-vapor
+```
+
+Next, modify your application's `webpack.config.js` file to call the `vapor` Mix plugin:
+
+```js
+const mix = require('laravel-mix');
+
+require('laravel-vapor/mix');
+
+mix.js('resources/js/app.js', 'public/js')
+   .sass('resources/sass/app.scss', 'public/css')
+   .vapor();
+```
+
+Then, within your CSS, you may use the `{{ ASSET_URL }}` place-holder value. This place-holder will be replaced with the proper asset base URL when your project is being built for deployment. When building your assets for local development, the place-holder will be replaced with the contents of the `ASSET_URL` environment variable, which will typically be an empty string:
+
+```css
+background-image: url('{{ ASSET_URL }}/img.jpg');
+```
+
 ## Redeploying
 
 Sometimes you may need to simply redeploy a given environment without rebuilding or redeploying it. For example, you may wish to do this after updating an environment variable. To accomplish this, you may use the Vapor UI or the `redeploy` CLI command:
@@ -74,4 +114,3 @@ vapor rollback production --select
 
 When rolling back to a previous deployment, Vapor will use the environment's variables and secrets as they existed at the time the deployment you're rolling back to was originally deployed.
 :::
-

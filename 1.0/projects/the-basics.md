@@ -8,6 +8,19 @@ Vapor projects are created via the Vapor UI or the `vapor init` CLI command. Thi
 
 The `init` command will generate a `vapor.yml` file within the root of your project. This is the primary configuration file for your Vapor project and contains things like build steps, deployment hooks, linked databases / caches, and other project settings. Each time you deploy, Vapor reads this configuration file and deploys your project appropriately.
 
+:::tip Project Networks
+
+When creating a project in a region that you have not created previous projects in, Vapor will automatically begin building a "network" (AWS VPC) in that region. This network may take several minutes to finish provisioning. You can review its status in the "Networks" tab of the Vapor UI.
+:::
+
+### Projects & Teams
+
+Before creating a project via the Vapor CLI, ensure your current team is the team you intend to create the project for. You may view your current team using the `team:current` command. You may switch your active team using the `team:switch` command.
+
+```bash
+vapor team:switch
+```
+
 ## Project Settings
 
 ### GitHub Repository

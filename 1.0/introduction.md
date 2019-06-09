@@ -99,14 +99,14 @@ Next, click the "Add user" button and choose a user name. When selecting an "Acc
 
 #### Administrator Access
 
-On the permissions management screen, you may grant full administrator access to the IAM user by selecting the "Attach existing policies directly" option and and "AdministratorAccess" policy. Once the policy has been attached, you may click "Next".
-
-Once the user is created, AWS will display the access key ID and secret access key for the user. These credentials may then be provided to Vapor so that AWS resources may be managed on your behalf. Your linked AWS accounts may be managed via the "Team Settings" screen of the Vapor UI.
-
 :::tip IAM Access
 
 Since Vapor manages many types of resources across more than a dozen AWS services, it may be convenient to create a user with the `AdministratorAccess` policy. If desired, you may create a separate AWS account to house this user and contain all of your Vapor resources.
 :::
+
+On the permissions management screen, you may grant full administrator access to the IAM user by selecting the "Attach existing policies directly" option and and "AdministratorAccess" policy. Once the policy has been attached, you may click "Next".
+
+Once the user is created, AWS will display the access key ID and secret access key for the user. These credentials may then be provided to Vapor so that AWS resources may be managed on your behalf. Your linked AWS accounts may be managed via the "Team Settings" screen of the Vapor UI.
 
 #### Granting Granular Permissions
 

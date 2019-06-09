@@ -10,7 +10,19 @@ Typically, you will have an environment for "production", and a "staging" enviro
 
 ## Creating Environments
 
-Environments are "created" by adding a new environment entry to your project's `vapor.yml` file and deploying the environment.
+Environments are "created" by simply adding a new environment entry to your project's `vapor.yml` file and deploying the environment:
+
+```yaml
+id: 2
+name: vapor-laravel-app
+environments:
+    production:
+        build:
+            - 'composer install --no-dev --classmap-authoritative'
+    my-environment:
+        build:
+            - 'composer install --no-dev --classmap-authoritative'
+```
 
 ## Environment Variables
 

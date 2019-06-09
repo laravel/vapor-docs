@@ -93,11 +93,11 @@ In order to deploy projects or create other resources using Vapor, you will need
 
 ### Creating An IAM User
 
-#### Administrator Access
-
 To create the AWS access key and secret required by Vapor to manage resources on your AWS account, you will need to create a new IAM user within AWS. To create a new IAM user, navigate to the IAM service on your AWS dashboard. Once you are in the IAM dashboard, you may select "Users" from the left-side navigation panel.
 
 Next, click the "Add user" button and choose a user name. When selecting an "Access type", select "Programmatic access". This instructs AWS IAM to issue a access key ID and secret access key for the IAM user. Then, click "Next".
+
+#### Administrator Access
 
 On the permissions management screen, you may grant full administrator access to the IAM user by selecting the "Attach existing policies directly" option and and "AdministratorAccess" policy. Once the policy has been attached, you may click "Next".
 

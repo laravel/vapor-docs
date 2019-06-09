@@ -18,6 +18,7 @@ Laravel Vapor is an auto-scaling, serverless deployment platform for Laravel, po
 - DNS management
 - Certificate management and renewal
 - Application, database, and cache metrics
+- CI friendly
 
 In short, you can think of Vapor as [Laravel Forge](https://forge.laravel.com) for serverless technology.
 

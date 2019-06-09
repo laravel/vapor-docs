@@ -35,7 +35,7 @@ environments:
 
 ## Deploy Hooks
 
-You may define deployment hooks for an environment using the `deploy` key within your `vapor.yml` file. These commands are executed against the deployed environment **before it is activated for general availability**. If any of these commands fail, the deployment will not be activated:
+You may define deployment hooks for an environment using the `deploy` key within your `vapor.yml` file. These commands are executed against the deployed environment **before it is activated for general availability**. If any of these commands fail, the deployment will not be activated. You may review the output / logs from your deployment hooks via the Vapor UI's deployment detail screen:
 
 ```yaml
 id: 3

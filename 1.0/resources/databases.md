@@ -37,6 +37,14 @@ Serverless databases are auto-scaling Aurora MySQL 5.6 databases which do not ha
 AWS requires all serverless databases to be private, meaning Vapor will place any application that uses them in a network with a [NAT Gateway](./networks.md#nat-gateways).
 :::
 
+### Quick Development Databases
+
+To quickly create a public accessible database of the smallest performance class, you may use the `--dev` flag when creating your database. These small, affordable databases are perfect for testing or staging environments:
+
+```bash
+vapor database my-test-database --dev
+```
+
 ## Using Databases
 
 To attach a database to an environment, add a `database` key to the environment's configuration in your `vapor.yml` file. The value of this key should be the name of the database. **When the environment is deployed, Vapor will automatically inject the necessary Laravel environment variables for connecting to the database, allowing your application to start using it immediately:**

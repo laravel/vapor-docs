@@ -17,6 +17,7 @@ module.exports = [
     title: 'Resources',
     collapsable: false,
     children: prefix('resources', [
+      'queues',
       'storage',
       'networks',
       'databases',

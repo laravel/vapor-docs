@@ -1,5 +1,7 @@
 # Storage
 
+[[toc]]
+
 ## Introduction
 
 When running an application in a serverless environment, you may not store files permanently on the local filesystem, since you can never be sure that the same serverless "container" will be used on a subsequent request. All files should be stored in a cloud storage system, such as AWS S3.

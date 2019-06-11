@@ -66,31 +66,7 @@ On subsequent deployments, only the assets that have changed will be uploaded to
 
 ### URLs Within CSS
 
-Sometimes, your CSS may need to reference asset URLs, such as a `background-image` property that references an image via URL. Obviously, you are not able to use the PHP `asset` helper within your CSS. For this reason, you may use Vapor's PostCSS hook to inject the proper asset base URL into your CSS.
-
-To get started, install the Vapor's NPM package:
-
-```bash
-npm install --save-dev laravel-vapor
-```
-
-Next, modify your application's `webpack.config.js` file to call the `vapor` Mix plugin:
-
-```js
-const mix = require('laravel-mix');
-
-require('laravel-vapor/mix');
-
-mix.js('resources/js/app.js', 'public/js')
-   .sass('resources/sass/app.scss', 'public/css')
-   .vapor();
-```
-
-Then, within your CSS, you may use the `{{ ASSET_URL }}` place-holder value. This place-holder will be replaced with the proper asset base URL when your project is being built for deployment. When building your assets for local development, the place-holder will be replaced with the contents of the `ASSET_URL` environment variable, which will typically be an empty string:
-
-```css
-background-image: url('{{ ASSET_URL }}/img.jpg');
-```
+Sometimes, your CSS may need to reference asset URLs, such as a `background-image` property that references an image via URL. Obviously, you are not able to use the PHP `asset` helper within your CSS. For this reason, Vapor will automatically prepend the correct asset base URL to all relative URLs in your CSS during the build process. After your build steps have executed, Vapor performs this action against any CSS files in your application's `public` directory.
 
 ## Redeploying
 

@@ -189,6 +189,10 @@ vapor metrics production 7d
 vapor metrics production 1M
 ```
 
+### Alarms
+
+You may configure alarms for all environment metrics using the Vapor UI. These alarms will notify you via the notification method of your choice when an alarm's configured threshold is broken and when an alarm recovers.
+
 ## Deleting Environments
 
 Environments may be deleted via the Vapor UI or using the `env:delete` CLI command:

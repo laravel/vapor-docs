@@ -143,6 +143,10 @@ vapor database:metrics my-application-db 7d
 vapor database:metrics my-application-db 1M
 ```
 
+### Alarms
+
+You may configure alarms for all database metrics using the Vapor UI. These alarms will notify you via the notification method of your choice when an alarm's configured threshold is broken and when an alarm recovers.
+
 ## Deleting Databases
 
 Databases may be deleted via the Vapor UI or using the `database:delete` CLI command. Once a database has been deleted, it can not be recovered, so take extra caution before deleting a database:

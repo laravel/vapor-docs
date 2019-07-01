@@ -8,7 +8,9 @@ Vapor provides free, auto-renewing SSL certificates to your application using AW
 
 ## Creating Certificates
 
-You may create SSL certificates via the Vapor UI or using the `cert` CLI command. When generating a certificate for a naked root domain, Vapor will automatically also add the `www` subdomain to the certificate. When creating a certificate, there are two types of certificate domain validation you may choose from: DNS and email. **In almost all cases, you should use DNS validation, as email validated certificates expires after two years and do not automatically renew.**
+You may create SSL certificates via the Vapor UI or using the `cert` CLI command. When creating a certificate, there are two types of certificate domain validation you may choose from: DNS and email. **In almost all cases, you should use DNS validation, as email validated certificates expires after two years and do not automatically renew.**
+
+When generating a certificate, Vapor will automatically generate a wildcard certificate if you are using DNS validation. If you are using email validation, Vapor will generate a certificate for the root domain and the "www" subdomain.
 
 ### DNS Validation
 

@@ -36,3 +36,49 @@ Anytime you deploy an application that lists a private database or cache cluster
 To totally avoid using NAT Gateways, you can use publicly accessible RDS databases (Vapor automatically assigns a long, random password) and a [DynamoDB cache table](./caches.md#dynamodb-caches), which Vapor automatically creates for each of your projects.
 
 When you delete a private database or cache cluster, and that resource is the last private resource on a given network, Vapor will automatically schedule a job to remove the NAT Gateway from the associated network, thus removing it from your AWS bill. However, you may also manually add or remove NAT Gateways from your networks using the Vapor UI or using the `network:nat` and `network:delete-nat` CLI commands.
+
+## Load Balancers
+
+By default, Vapor routes HTTP traffic to your serverless applications using AWS API Gateway. When using this service, AWS only bills you based on the amount of requests your application receives. However, at very high scale, API Gateway can become more expensive then your Lambda functions themselves.
+
+As an alternative to API Gateway, you may route traffic to your application using an Application Load Balancer, which provides large cost savings at scale. For example, if an application receives about 1 billion requests per month, using an Application Load Balancer will save about $4,000 on the application's monthly Amazon bill.
+
+### Creating Load Balancers
+
+You may create load balancers using the Vapor UI or using the `balancer` CLI command. When using the CLI command:
+
+```bash
+vapor balancer my-balancer
+```
+
+### Using Load Balancers
+
+To attach a load balancer to an environment, add a `balancer` key to the environment's configuration in your `vapor.yml` file and deploy your application. The value of this key should be the name of the load balancer.
+
+```yaml
+id: 3
+name: vapor-app
+environments:
+    production:
+        balancer: my-balancer
+        build:
+            - 'composer install --no-dev --classmap-authoritative'
+        deploy:
+            - 'php artisan migrate --force'
+```
+
+
+:::tip Load Balancer Certificates
+
+By default, Vapor creates all SSL certificates in the `us-east-1` region, regardless of the region of your project. When your application is using API Gateway, AWS will automatically replicate your certificate to all regions behind the scenes.
+
+However, when using an Application Load Balancer to route traffic to your application, you will need to create a certificate in the region that the project is actually deployed to. If you are creating a certificate in the Vapor UI, you can do this by checking the "For Load Balancer" checkbox when creating the certificate.
+:::
+
+### Deleting Load Balancers
+
+Load balancers may be deleted via the Vapor UI or using the `balancer:delete` CLI command:
+
+```bash
+vapor balancer:delete my-balancer
+```

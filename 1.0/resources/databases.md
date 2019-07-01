@@ -47,7 +47,7 @@ vapor database my-test-database --dev
 
 ## Using Databases
 
-To attach a database to an environment, add a `database` key to the environment's configuration in your `vapor.yml` file. The value of this key should be the name of the database. **When the environment is deployed, Vapor will automatically inject the necessary Laravel environment variables for connecting to the database, allowing your application to start using it immediately:**
+To attach a database to an environment, add a `database` key to the environment's configuration in your `vapor.yml` file and deploy your application. The value of this key should be the name of the database. **When the environment is deployed, Vapor will automatically inject the necessary Laravel environment variables for connecting to the database, allowing your application to start using it immediately:**
 
 ```yaml
 id: 3

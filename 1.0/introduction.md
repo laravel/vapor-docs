@@ -208,3 +208,10 @@ If you would like to create a user with the specific permissions required by Vap
 - ssm:putParameter
 
 
+## Managing Notification Channels
+
+In order to receive notifications on Slack, you'll need to create an App by visiting https://api.slack.com/apps and selecting the workspace you wish to install the app on.
+
+Once the app is created, check the Incoming Webhooks section of the app settings screen and click on "Activate Incoming Webhooks" to turn this feature on.
+
+At the bottom of the same Webhooks Screen, click on "Add New Webhook to Workspace", this will prompt you to select the channel where you want to receive notifications.

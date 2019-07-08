@@ -21,14 +21,14 @@ Currently, serverless applications on AWS may only process a single request (web
 
 ## Queue Concurrency
 
-By default, Vapor will allow your queue to process jobs at max concurrency, which is typically 1,000 concurrent jobs executing at the same time. If you would like to reduce the maximum queue concurrency, you may define the `queue-concurrency` option in the environment's `vapor.yml` configuration:
+By default, Vapor will allow your queue to process jobs at max concurrency, which is typically 1,000 concurrent jobs executing at the same time. If you would like to reduce the maximum queue concurrency, you may define the `cli-concurrency` option in the environment's `vapor.yml` configuration:
 
 ```yaml
 id: 2
 name: vapor-laravel-app
 environments:
     production:
-        queue-concurrency: 50
+        cli-concurrency: 50
         build:
             - 'composer install --no-dev --classmap-authoritative'
 ```

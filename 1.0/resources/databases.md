@@ -28,13 +28,15 @@ Fixed sized databases are RDS MySQL 8.0 databases that have a fixed amount of RA
 
 In addition, these databases may be publicly accessible (with a long, random password automatically assigned by Vapor) or private. Private databases may not typically be accessed from the public Internet. To access them from your local machine, you will need to create a Vapor jumpbox.
 
+Vapor will place any application that uses a private database in a network with a [NAT Gateway](./networks.md#nat-gateways). Later, if you no longer plan to use the database and are using no other private resources from your application, you may remove the NAT Gateway from your network via the network's management screen.
+
 #### Serverless Databases
 
 Serverless databases are auto-scaling Aurora MySQL 5.6 databases which do not have a fixed amount of RAM or disk space. Instead, these databases automatically scale based on the needs of your application. At their smallest scale, they are allocated 1GB of RAM.
 
 :::warning Serverless Databases
 
-AWS requires all serverless databases to be private, meaning Vapor will place any application that uses them in a network with a [NAT Gateway](./networks.md#nat-gateways).
+AWS requires all serverless databases to be private, meaning Vapor will place any application that uses them in a network with a [NAT Gateway](./networks.md#nat-gateways). If you no longer plan to use a serverless database and are using no other private resources from your application, you may remove the NAT Gateway from your network via the network's management screen.
 :::
 
 ### Quick Development Databases

@@ -8,7 +8,7 @@ Vapor allows you to easily create and manage RDS and Aurora Serverless databases
 
 ## Creating Databases
 
-You may create databases using the Vapor UI or using the `database` CLI command. When using the CLI command, the command will prompt you for more details about the database such as its desired performance class and storage space.
+You may create databases using the Vapor UI or using the `database` CLI command. When using the CLI command, the command will prompt you for more details about the database such as its desired performance class and maximum storage space.
 
 ```bash
 vapor database my-application-db
@@ -69,7 +69,7 @@ If you would like to connect to your private database from your local machine, y
 
 Once a jumpbox has been created, you may configure your database management tool to connect to your database through the jumpbox SSH connection:
 
-TODO: Screenshot
+![Database GUI Connection Settings](./img/jumpbox-db-connection-settings.png)
 
 #### Shell Command
 

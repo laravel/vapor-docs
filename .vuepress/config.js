@@ -1,7 +1,6 @@
 module.exports = {
   title: 'Laravel Vapor',
   description: 'Laravel at Infinite Scale',
-  base: '/',
 
   head: [
     [

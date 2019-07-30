@@ -89,7 +89,7 @@ When a database is created, Vapor creates a "vapor" master user. You may create 
 vapor database:user user-2
 ```
 
-You may instruct an environment to connect to a database as a given user using the `databse-user` configuration option within your `vapor.yml` file:
+You may instruct an environment to connect to a database as a given user using the `database-user` configuration option within your `vapor.yml` file:
 
 ```yaml
 id: 3

@@ -209,4 +209,12 @@ If you would like to create a user with the specific permissions required by Vap
 - ssm:getParametersByPath
 - ssm:putParameter
 
+## Notification Methods
 
+### Slack
+
+In order to receive notifications via Slack, you will need to [create a Slack App](https://api.slack.com/apps) and select the workspace to which the Slack App should be installed.
+
+Once the Slack App has been created, visit the **Incoming Webhooks** settings pane of your App under the "Features" sidebar. Then, activate the Incoming Webhooks feature using the activation switch.
+
+Once activated, you can create a new Incoming Webhook using the **Add New Webhook to Workspace** button. Finally, you should copy the webhook URL provided by Slack and insert into Vapor's notification method creation form.

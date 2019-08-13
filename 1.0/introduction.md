@@ -55,6 +55,14 @@ To learn more about a command and its arguments, execute the `help` command whic
 php vendor/bin/vapor help deploy
 ```
 
+### Logging In
+
+After you have installed the Vapor CLI, you should authenticate with your Vapor account using the `login` command:
+
+```bash
+vapor login
+```
+
 ## Installing The Vapor Core
 
 The `laravel/vapor-core` [package](https://github.com/laravel/vapor-core) must be installed as a dependency of every Laravel application that is deployed using Vapor. This package contains various Vapor runtime files and a service provider to allow your application to run on Vapor. You may install the Vapor Core into your project using Composer:

@@ -30,10 +30,12 @@ Before integrating Vapor into your application, you should create a Vapor accoun
 
 ## Installing The Vapor CLI
 
-You will deploy your Laravel Vapor applications using the [Vapor CLI](https://github.com/laravel/vapor-cli). This CLI may be installed globally or on a per-project basis. To install the CLI globally, you should download the latest release of the Vapor CLI "Phar" archive. To install the CLI for a single project, you may use Composer:
+You will deploy your Laravel Vapor applications using the [Vapor CLI](https://github.com/laravel/vapor-cli). This CLI may be installed globally or on a per-project basis using Composer:
 
 ```bash
 composer require laravel/vapor-cli
+
+composer global require laravel/vapor-cli
 ```
 
 When the CLI is installed per project, you will likely need to execute it via the `vendor/bin` directory of your project, which is where Composer installs executables. For example, to view all of the available Vapor CLI commands, you may use the `list` command:
@@ -52,10 +54,6 @@ To learn more about a command and its arguments, execute the `help` command whic
 ```bash
 php vendor/bin/vapor help deploy
 ```
-
-### Updating The CLI
-
-If the Vapor CLI is installed for a specific project, you may update the CLI using Composer. If the Vapor CLI is globally installed via the Phar distribution, you should download a fresh copy of the Phar to update your installation.
 
 ## Installing The Vapor Core
 

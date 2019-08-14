@@ -8,7 +8,7 @@ Networks house your databases, caches, jumpboxes, and occasionally applications 
 
 ## Jumpboxes
 
-Some Vapor resources, such as private databases or cache clusters, may not be accessed from the public Internet. Instead, they can only be accessed by a machine with their network. This can make it cumbersome to inspect and manipulate these resources during development. To mitigate this inconvenience, Vapor allows you to create jumpboxes. Jumpboxes are very small, SSH accessible servers that are placed within your private network.
+Some Vapor resources, such as private databases or cache clusters, may not be accessed from the public Internet. Instead, they can only be accessed by a machine within their network. This can make it cumbersome to inspect and manipulate these resources during development. To mitigate this inconvenience, Vapor allows you to create jumpboxes. Jumpboxes are very small, SSH accessible servers that are placed within your private network.
 
 You may create a jumpbox via the Vapor UI's network detail screen or using the `jump` CLI command:
 
@@ -39,7 +39,7 @@ When you delete a private database or cache cluster, and that resource is the la
 
 ## Load Balancers
 
-By default, Vapor routes HTTP traffic to your serverless applications using AWS API Gateway. When using this service, AWS only bills you based on the amount of requests your application receives. However, at very high scale, API Gateway can become more expensive then your Lambda functions themselves.
+By default, Vapor routes HTTP traffic to your serverless applications using AWS API Gateway. When using this service, AWS only bills you based on the amount of requests your application receives. However, at very high scale, API Gateway can become more expensive than your Lambda functions themselves.
 
 As an alternative to API Gateway, you may route traffic to your application using an Application Load Balancer, which provides large cost savings at scale. For example, if an application receives about 1 billion requests per month, using an Application Load Balancer will save about $4,000 on the application's monthly Amazon bill.
 

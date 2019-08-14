@@ -24,6 +24,10 @@ Vapor abstracts the complexity of managing Laravel applications on AWS Lambda, a
 
 **In short, you can think of Vapor as [Laravel Forge](https://forge.laravel.com) for serverless technology.**
 
+## Requirements
+
+Vapor requires that your application be compatible with PHP 7.3+ and Laravel 6.0+.
+
 ## Account Creation
 
 Before integrating Vapor into your application, you should create a Vapor account. If you are just collaborating with others on their projects, you are not required to have a Vapor subscription. To create and manage your own projects, you will need a Vapor subscription.

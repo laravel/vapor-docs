@@ -90,3 +90,17 @@ vapor rollback production --select
 
 When rolling back to a previous deployment, Vapor will use the environment's variables and secrets as they existed at the time the deployment you're rolling back to was originally deployed.
 :::
+
+## Deploying From CI
+
+So far, we have discussed deploying Vapor projects from your local command line. However, you may also deploy them from a CI platform of your choice. Since the Vapor CLI client is part of your Composer dependencies, you may simply execute the `vapor deploy` command in your CI platform's deployment pipeline.
+
+In order to authenticate with Vapor from your CI platform, you will need to add a `VAPOR_API_TOKEN` environment variable to your CI build environment. You may generate an API token in your [Vapor API settings dashboard](https://vapor.laravel.com/app/account/api-tokens).
+
+### Git Commit Information
+
+Some CI platforms expose the Git commit information as environment variables during your build. You may pass this information to the `vapor deploy` command. For example, if using CodeShip:
+
+```sh
+vapor deploy production --commit="${CI_COMMIT_ID}" --message="${CI_MESSAGE}"
+```

@@ -70,7 +70,7 @@ Sometimes, your CSS may need to reference asset URLs, such as a `background-imag
 
 ## Redeploying
 
-Sometimes you may need to simply redeploy a given environment without rebuilding or redeploying it. For example, you may wish to do this after updating an environment variable. To accomplish this, you may use the Vapor UI or the `redeploy` CLI command:
+Sometimes you may need to simply redeploy a given environment without rebuilding it. For example, you may wish to do this after updating an environment variable. To accomplish this, you may use the Vapor UI or the `redeploy` CLI command:
 
 ```bash
 vapor redeploy production

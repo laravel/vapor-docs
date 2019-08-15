@@ -10,7 +10,11 @@ Typically, you will have an environment for "production", and a "staging" enviro
 
 ## Creating Environments
 
-Environments are "created" by simply adding a new environment entry to your project's `vapor.yml` file and deploying the environment:
+Environments may be created using the `env` Vapor CLI command:
+
+    vapor env my-environment
+
+This command will add a new environment entry to your project's `vapor.yml` file that you may deploy when ready:
 
 ```yaml
 id: 2

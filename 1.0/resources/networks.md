@@ -27,7 +27,7 @@ For practical examples of using jumpboxes to make your serverless life easier, c
 
 ### What Are They?
 
-If you application interacts with a private database or a cache cluster, your network will require a NAT Gateway. It sounds complicated, but don't worry, Vapor takes care of the heavy lifting. In summary, when a serverless application needs to interact with one of these resources, AWS requires us to place that application within that region's network. By default, this network has no access to the outside Internet, meaning any outgoing API calls from your application will fail. Not good.
+If your application interacts with a private database or a cache cluster, your network will require a NAT Gateway. It sounds complicated, but don't worry, Vapor takes care of the heavy lifting. In summary, when a serverless application needs to interact with one of these resources, AWS requires us to place that application within that region's network. By default, this network has no access to the outside Internet, meaning any outgoing API calls from your application will fail. Not good.
 
 ### Managing NAT Gateways
 

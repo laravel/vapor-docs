@@ -27,7 +27,7 @@ environments:
 
 ### Installing The Vapor NPM Package
 
-If your application accepts file uploads from end-users, these files should be streamed directly to S3 from your application's frontend. To assist you with, Vapor's NPM package includes a `Vapor.store` helper which will take care of generating a pre-signed storage URL for the file and uploading the file to S3. To get started, install the `laravel-vapor` NPM package:
+If your application accepts file uploads from end-users, these files should be streamed directly to S3 from your application's frontend. To assist you, Vapor's NPM package includes a `Vapor.store` helper which will take care of generating a pre-signed storage URL for the file and uploading the file to S3. To get started, install the `laravel-vapor` NPM package:
 
 ```bash
 npm install --save-dev laravel-vapor

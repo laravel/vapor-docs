@@ -12,7 +12,9 @@ Typically, you will have an environment for "production", and a "staging" enviro
 
 Environments may be created using the `env` Vapor CLI command:
 
-    vapor env my-environment
+```bash
+vapor env my-environment
+```
 
 This command will add a new environment entry to your project's `vapor.yml` file that you may deploy when ready:
 

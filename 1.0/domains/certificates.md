@@ -8,43 +8,19 @@ Vapor provides free, auto-renewing SSL certificates to your application using AW
 
 ## Creating Certificates
 
-You may create SSL certificates via the Vapor UI or using the `cert` CLI command. When creating a certificate, there are two types of certificate domain validation you may choose from: DNS and email. **In almost all cases, you should use DNS validation, as email validated certificates expires after two years and do not automatically renew.**
-
-Vapor will automatically generate a wildcard certificate if you are using DNS validation. If you are using email validation, Vapor will generate a certificate for the root domain and the "www" subdomain.
+You may create SSL certificates via the Vapor UI or using the `cert` CLI command. Vapor will automatically generate a wildcard certificate for the domain.
 
 ### DNS Validation
 
 You may create a certificate using DNS validation via the Vapor UI or using the `cert` CLI command:
 
 ```bash
-vapor cert dns example.com
+vapor cert example.com
 ```
 
 Shortly after the certificate is requested, you may obtain two CNAME records from the certificate detail screen of the Vapor UI. If a [Vapor DNS zone](./dns.md) exists for the domain the certificate belongs to, these CNAME records will automatically be added to the zone. Therefore, if you using Vapor to manage your DNS, no further action is required and your certificate will be validated and issued within minutes.
 
 If you are not using Vapor to manage your DNS, you should add the two CNAME records to your domain's DNS provider manually.
-
-### Email Validation
-
-You may create a certificate using email validation via the Vapor UI or using the `cert` CLI command:
-
-```bash
-vapor cert email example.com
-```
-
-When using email validation, you will receive a certificate approval email from AWS. These emails will contain a link that navigates to a page containing an "Approve" button". This button must be clicked before AWS will validate and issue the certificate. The validation email will be sent to several "administrator" email addresses for the domain, including:
-
-- administrator@domain.com
-- hostmaster@domain.com
-- postmaster@domain.com
-- webmaster@domain.com
-- admin@domain.com
-
-If you do not receive this email, you may request that the validation email be resent to these addresses using the Vapor UI's certificate detail screen or using the `cert:validate` CLI command:
-
-```bash
-vapor cert:validate
-```
 
 ## Deleting Certificates
 

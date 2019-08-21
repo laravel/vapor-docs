@@ -14,6 +14,11 @@ ProcessPodcast::dispatch($pocast);
 
 When using Vapor, your application will use the AWS SQS service, which is already a first-party queue driver within Laravel. Vapor will automatically configure your deployed application's to use this queue driver by injecting the proper Laravel environment variables. You do not need to perform any additional configuration.
 
+:::tip Check your config/queue.php file for compatibility
+
+If your queues do not seem to be working, please check that your config/queue.php file reads the correct .env variable for the connection.  Vapor will inject the variable `QUEUE_CONNECTION` which has become the default name since Laravel version 5.7.  Older projects may still use the `QUEUE_DRIVER` value.
+:::
+
 :::danger Queued Job Time Limits
 
 Currently, serverless applications on AWS may only process a single request (web or queue) for a maximum of 15 minutes. If your queued jobs take longer than 15 minutes, you will need to either chunk your job's work into smaller pieces or consider another deployment solution for your application.

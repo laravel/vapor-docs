@@ -11,6 +11,7 @@ module.exports = [
       'the-basics',
       'environments',
       'deployments',
+      'development',
     ]),
   },
   {

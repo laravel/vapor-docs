@@ -39,6 +39,25 @@ Next, within your application's `app.js` file, initialize the global Vapor JavaS
 window.Vapor = require('laravel-vapor');
 ```
 
+### Authorization
+
+Before initiating an upload directly to S3, Vapor's internal signed storage URL generator will perform an authorization check against the currently authenticated user. If you do not already have one, you should create a `UserPolicy` for your application using the following command:
+
+    php artisan make:policy UserPolicy --model=User
+
+Next, you should add an `uploadFiles` method to this policy. This method should return `true` if the given authenticated user is allowed to upload files. Otherwise, you should return `false`:
+
+    /**
+     * Determine whether the user can upload files.
+     *
+     * @param  \App\User  $user
+     * @return mixed
+     */
+    public function uploadFiles(User $user)
+    {
+        return true;
+    }
+
 ### Streaming Files To S3
 
 You may use the `Vapor.store` method within your frontend code to upload a file directly to the S3 bucket attached to your environment. The following example demonstrates this functionality using Vue:

@@ -16,7 +16,28 @@ You may create a jumpbox via the Vapor UI's network detail screen or using the `
 vapor jump my-jumpbox
 ```
 
-Once the jumpbox has been created, Vapor will provide you with the private SSH key needed to access the jumpbox. You should connect to the jumpbox via SSH as the `ec2-user` user and the private SSH key.
+
+Once the jumpbox has been created, Vapor will provide you with the private SSH key needed to access the jumpbox. 
+
+Save the key to a file in your .ssh folder for example my-jumpbox.key. Then in the terminal add the key to your ssh agent
+
+```bash
+ssh-add my-jumpbox.key
+```
+ 
+You can find the connection string for your Jumpbox at the bottom of the jumpbox details card
+ 
+ ![JumpBox Connection Settings](./img/jumpbox-ssh-string.png)
+ 
+ 
+ 
+You should connect to the jumpbox via SSH as the `ec2-user` user and the private SSH key. 
+
+
+```bash
+ssh ec2-user@ec2-38-229-133-139.eu-west-2.compute.amazonaws.com
+```
+ 
 
 :::tip Using Jumpboxes
 
@@ -82,3 +103,4 @@ Load balancers may be deleted via the Vapor UI or using the `balancer:delete` CL
 ```bash
 vapor balancer:delete my-balancer
 ```
+

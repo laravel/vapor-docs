@@ -103,4 +103,3 @@ Load balancers may be deleted via the Vapor UI or using the `balancer:delete` CL
 ```bash
 vapor balancer:delete my-balancer
 ```
-

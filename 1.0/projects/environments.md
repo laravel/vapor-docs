@@ -179,6 +179,20 @@ environments:
             - 'composer install --no-dev --classmap-authoritative'
 ```
 
+## Timeout
+
+By default, Vapor will set your application's timeout for processing web requests to 10 seconds. Currently, AWS enforces a maximum execution time of 15 minutes. If you would like to change the timeout, you may define the `timeout` option in the environment's `vapor.yml` configuration. For example, we may set this timeout to 1 minute:
+
+```yaml
+id: 2
+name: vapor-laravel-app
+environments:
+    production:
+        timeout: 60
+        build:
+            - 'composer install --no-dev --classmap-authoritative'
+```
+
 ## Metrics
 
 A variety of environment performance metrics may be found in the Vapor UI or using the `metrics` CLI command:

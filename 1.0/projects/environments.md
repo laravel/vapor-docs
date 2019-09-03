@@ -114,6 +114,20 @@ During deployment, Vapor will configure the environment to handle requests on th
 Due to the nature of AWS CloudFront, custom domains often take 30-45 minutes to become fully active. So, do not worry if your custom domain is not immediately accessible after deployment.
 :::
 
+### Wildcard Subdomains
+
+You may attach a domain that supports wildcard subdomains to a Vapor environment if that environment is also using an [application load balancer](./../resources/networks.md#load-balancers) and you have a valid certificate for the domain. To attach a wildcard domain to your environment, specify a `*` as the subdomain:
+
+```yaml
+id: 2
+name: vapor-laravel-app
+environments:
+    production:
+        domain: *.example.com
+        build:
+            - 'composer install --no-dev --classmap-authoritative'
+```
+
 ## Maintenance Mode
 
 When deploying a Laravel application using a traditional VPS like those managed by [Laravel Forge](https://forge.laravel.com), you may have used the `php artisan down` command to place your application in "maintenance mode". To place a Vapor environment in maintenance mode, you may use the Vapor UI or the `down` CLI command:

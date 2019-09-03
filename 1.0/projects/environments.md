@@ -181,14 +181,14 @@ environments:
 
 ## Timeout
 
-By default, Vapor will set your application's timeout for processing web requests to 10 seconds. Currently, AWS enforces a maximum execution time of 15 minutes. If you would like to change the timeout, you may define the `timeout` option in the environment's `vapor.yml` configuration. For example, we may set this timeout to 1 minute:
+By default, Vapor will limit web request execution time to 10 seconds. If you would like to change the timeout value, you may add a `timeout` value to the environment's configuration. Note that AWS does not allow Lambda executions to process for more than 15 minutes:
 
 ```yaml
 id: 2
 name: vapor-laravel-app
 environments:
     production:
-        timeout: 60
+        timeout: 20
         build:
             - 'composer install --no-dev --classmap-authoritative'
 ```

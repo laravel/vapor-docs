@@ -73,7 +73,7 @@ vapor cache:metrics my-application-cache 1M
 
 When you create a project, Vapor will ensure that an auto-scaling DynamoDB cache table is created in that project's region. Then, during deployment, Vapor will automatically populate the environment variables required to interact with this cache using Laravel's built-in `dynamodb` cache driver. All you need to do is start using it within your Laravel application!
 
-If no Redis cache is attached to the environment, the DynamoDB cache will automatically be set as the default cache driver. These caches, while not as performant as Redis clusters, provide a very low-cost alternative for application's with light caching requirements.
+If no Redis cache is attached to the environment, the DynamoDB cache will automatically be set as the default cache driver. These caches, while not as performant as Redis clusters, provide a very low-cost alternative for applications with light caching requirements.
 
 :::tip Task Scheduler
 

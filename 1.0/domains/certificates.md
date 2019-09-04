@@ -18,7 +18,7 @@ You may create a certificate using DNS validation via the Vapor UI or using the 
 vapor cert example.com
 ```
 
-Shortly after the certificate is requested, you may obtain two CNAME records from the certificate detail screen of the Vapor UI. If a [Vapor DNS zone](./dns.md) exists for the domain the certificate belongs to, these CNAME records will automatically be added to the zone. Therefore, if you using Vapor to manage your DNS, no further action is required and your certificate will be validated and issued within minutes.
+Shortly after the certificate is requested, you may obtain two CNAME records from the certificate detail screen of the Vapor UI. If a [Vapor DNS zone](./dns.md) exists for the domain the certificate belongs to, these CNAME records will automatically be added to the zone. Therefore, if you are using Vapor to manage your DNS, no further action is required and your certificate will be validated and issued within minutes.
 
 If you are not using Vapor to manage your DNS, you should add the two CNAME records to your domain's DNS provider manually.
 

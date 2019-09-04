@@ -6,7 +6,7 @@
 
 As you may have noticed, projects do not contain much information or resources themselves. All of your deployments and invoked commands are stored within environments. Each project may have as many environments as needed.
 
-Typically, you will have an environment for "production", and a "staging" environment for testing your application. However, don't be afraid to create more environment for testing new features without interrupting your main staging environment.
+Typically, you will have an environment for "production", and a "staging" environment for testing your application. However, don't be afraid to create more environments for testing new features without interrupting your main staging environment.
 
 ## Creating Environments
 
@@ -77,7 +77,7 @@ After updating an environment's secrets, the new secrets will not be utilized un
 
 ### Passport Keys
 
-Since storing Laravel Passport keys is a common use-case for secrets. You may easily add your project's Passport keys as secrets using the `secret:passport` CLI command:
+Storing Laravel Passport keys is a common use-case for secrets. You may easily add your project's Passport keys as secrets using the `secret:passport` CLI command:
 
 ```bash
 vapor secret:passport production
@@ -163,7 +163,7 @@ vapor command production --command="php artisan inspire"
 
 ## Prewarming
 
-By default, when an environment is deployed, the first request it receives may encounter "cold starts". This requests typically incur a penalty of a few seconds while AWS loads a serverless container to serve the request. Once a request has been served by that container, it is typically kept warm to serve further request with no delay.
+By default, when an environment is deployed, the first request it receives may encounter "cold starts". These requests typically incur a penalty of a few seconds while AWS loads a serverless container to serve the request. Once a request has been served by that container, it is typically kept warm to serve further requests with no delay.
 
 To mitigate "cold starts" after a fresh deployment, Vapor allows you to define a `warm` configuration value for an environment in your `vapor.yml` file. The `warm` value represents how many serverless containers Vapor will "pre-warm" by making concurrent requests to the newly deployed application **before it is activated for public accessibility**. Vapor will continue to pre-warm this many containers every 10 minutes while the application is deployed so the specified number of containers are always ready to serve requests:
 
@@ -195,7 +195,7 @@ environments:
 
 ## Timeout
 
-By default, Vapor will limit web request execution time to 10 seconds. If you would like to change the timeout value, you may add a `timeout` value to the environment's configuration. Note that AWS does not allow Lambda executions to process for more than 15 minutes:
+By default, Vapor will limit web request execution time to 10 seconds. If you would like to change the timeout value, you may add a `timeout` value (in seconds) to the environment's configuration. Note that AWS does not allow Lambda executions to process for more than 15 minutes:
 
 ```yaml
 id: 2

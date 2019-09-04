@@ -9,10 +9,10 @@ Laravel's queues are one of the framework's most powerful features. With Vapor, 
 ```php
 use App\Jobs\ProcessPodcast;
 
-ProcessPodcast::dispatch($pocast);
+ProcessPodcast::dispatch($podcast);
 ```
 
-When using Vapor, your application will use the AWS SQS service, which is already a first-party queue driver within Laravel. Vapor will automatically configure your deployed application's to use this queue driver by injecting the proper Laravel environment variables. You do not need to perform any additional configuration.
+When using Vapor, your application will use the AWS SQS service, which is already a first-party queue driver within Laravel. Vapor will automatically configure your deployed application to use this queue driver by injecting the proper Laravel environment variables. You do not need to perform any additional configuration.
 
 :::danger Queued Job Time Limits
 

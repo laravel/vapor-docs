@@ -80,7 +80,7 @@ Vapor.store(this.$refs.file.files[0], {
 });
 ````
 
-All uploaded files will be placed in a `tmp` directory within the bucket. **This directory is automatically configured to purge any files older than 24 hours.** This feature serves to conveniently clean up file uploads actions that are initiated and store files but are not completed, such as a user that begins updating their profile photo but does not save the change.
+All uploaded files will be placed in a `tmp` directory within the bucket. **This directory is automatically configured to purge any files older than 24 hours.** This feature serves to conveniently clean up file uploads that are initiated but not completed, such as a user that begins updating their profile photo but does not save the change.
 
 ### Acknowledge File Uploads & Permanent Storage
 
@@ -97,5 +97,5 @@ Storage::copy(
 
 :::tip Local Development
 
-When developing locally, `Vapor.store` will upload to the bucket specified by the `AWS_BUCKET` environment variable:
+When developing locally, `Vapor.store` will upload to the bucket specified by the `AWS_BUCKET` environment variable.
 :::

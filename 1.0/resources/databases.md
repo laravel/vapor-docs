@@ -89,7 +89,7 @@ vapor database:shell my-application-db
 When a database is created, Vapor creates a "vapor" master user. You may create additional database users, which will automatically be assigned a secure, random password, using the Vapor UI or the `database:user` CLI command:
 
 ```bash
-vapor database:user user-2
+vapor database:user my-application-db user-2
 ```
 
 You may instruct an environment to connect to a database as a given user using the `database-user` configuration option within your `vapor.yml` file:

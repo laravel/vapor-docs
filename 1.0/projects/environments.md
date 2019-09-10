@@ -62,6 +62,26 @@ After updating an environment's variables, the new variables will not be utilize
 Due to AWS Lambda limitations, your environment variables may only be 4kb in total. You should use "secrets" to store very large environment variables.
 :::
 
+### Reserved Environment Variables
+
+The following environment variables are reserved and may not be added to your environment:
+
+- _HANDLER
+- AWS_ACCESS_KEY_ID
+- AWS_EXECUTION_ENV
+- AWS_LAMBDA_FUNCTION_MEMORY_SIZE
+- AWS_LAMBDA_FUNCTION_NAME
+- AWS_LAMBDA_FUNCTION_VERSION
+- AWS_LAMBDA_LOG_GROUP_NAME
+- AWS_LAMBDA_LOG_STREAM_NAME
+- AWS_LAMBDA_RUNTIME_API
+- AWS_REGION
+- AWS_SECRET_ACCESS_KEY
+- AWS_SESSION_TOKEN
+- LAMBDA_RUNTIME_DIR
+- LAMBDA_TASK_ROOT
+- TZ
+
 ## Secrets
 
 Due to AWS Lambda limitations, your environment variables may only be 4kb in total. However, "secrets" may be much larger, making them a perfect way to store large environment variables such as Laravel Passport keys. You may create secrets via the Vapor UI or the `secret` CLI command:

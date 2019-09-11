@@ -64,6 +64,59 @@ Because all of your assets will be served via S3 / CloudFront, you should always
 
 On subsequent deployments, only the assets that have changed will be uploaded to S3, while unchanged assets will be copied over from the previous deployment.
 
+### Code splitting and dynamic imports
+
+If you are taking advantage of dynamic imports and code splitting in your project, you'll need to update your Laravel Mix build. This change is required to let Webpack know where the child chunks will be loaded from as this URL will change with each deploy. To do so you can take advantage of the same `ASSET_URL` variable that Laravel Vapor injects into your environment during deployment in your build step.
+
+```javascript
+const mix = require("laravel-mix");
+/*
+ |--------------------------------------------------------------------------
+ | Mix Asset Management
+ |--------------------------------------------------------------------------
+ |
+ | Mix provides a clean, fluent API for defining some Webpack build steps
+ | for your Laravel application. By default, we are compiling the Sass
+ | file for the application as well as bundling up all the JS files.
+ |
+ */
+
+mix
+  .js("resources/js/app.js", "public/js")
+  .sass("resources/sass/app.scss", "public/css");
+
+if (mix.inProduction()) {
+    const ASSET_URL = process.env.ASSET_URL + "/";
+    mix.webpackConfig(webpack => {
+        return {
+            plugins: [
+                new webpack.DefinePlugin({
+                    "process.env.ASSET_PATH": JSON.stringify(ASSET_URL)
+                })
+            ],
+            output: {
+                publicPath: ASSET_URL
+            }
+        };
+    });
+```
+
+The above config can be used for your production builds to set the path where your child chunks will be loaded.
+
+### Hot module replacement
+
+As you know, during development if you're using Hot module replacement `npm run hot` you can use `mix('css/admin/app.js')`, as we mentioned before, using the `asset` helper is recommended. A quick tip to handle both situations is to add a conditional check in your blade view where you import your CSS and JavaScript.
+
+```php
+ @if (app()->environment('local'))
+<link href="{{ mix('css/admin/app.css') }}" rel="stylesheet">
+<script src="{{ mix('js/admin/app.js') }}"></script>
+@else
+<link href="{{ asset('css/admin/app.css') }}" rel="stylesheet">
+<script src="{{ asset('js/admin/app.js') }}" defer></script>
+@endif
+```
+
 ### URLs Within CSS
 
 Sometimes, your CSS may need to reference asset URLs, such as a `background-image` property that references an image via URL. Obviously, you are not able to use the PHP `asset` helper within your CSS. For this reason, Vapor will automatically prepend the correct asset base URL to all relative URLs in your CSS during the build process. After your build steps have executed, Vapor performs this action against any CSS files in your application's `public` directory (including directories nested under `public`).

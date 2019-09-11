@@ -64,12 +64,13 @@ Because all of your assets will be served via S3 / CloudFront, you should always
 
 On subsequent deployments, only the assets that have changed will be uploaded to S3, while unchanged assets will be copied over from the previous deployment.
 
-### Code splitting and dynamic imports
+### Code Splitting / Dynamic Imports
 
-If you are taking advantage of dynamic imports and code splitting in your project, you'll need to update your Laravel Mix build. This change is required to let Webpack know where the child chunks will be loaded from as this URL will change with each deploy. To do so you can take advantage of the same `ASSET_URL` variable that Laravel Vapor injects into your environment during deployment in your build step.
+If you are taking advantage of dynamic imports and code splitting in your project, you will need to let Webpack know where the child chunks will be loaded from for each deployment. To accomplish this, you can take advantage of the `ASSET_URL` variable that Laravel Vapor injects into your environment during your build step:
 
 ```javascript
 const mix = require("laravel-mix");
+
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -87,6 +88,7 @@ mix
 
 if (mix.inProduction()) {
     const ASSET_URL = process.env.ASSET_URL + "/";
+
     mix.webpackConfig(webpack => {
         return {
             plugins: [
@@ -101,19 +103,17 @@ if (mix.inProduction()) {
     });
 ```
 
-The above config can be used for your production builds to set the path where your child chunks will be loaded.
+#### Hot Module Replacement
 
-### Hot module replacement
-
-As you know, during development if you're using Hot module replacement `npm run hot` you can use `mix('css/admin/app.js')`, as we mentioned before, using the `asset` helper is recommended. A quick tip to handle both situations is to add a conditional check in your blade view where you import your CSS and JavaScript.
+If you are using code splitting and "hot module replacement" during local development, you will need to use the `mix` helper locally and the `asset` helper when deploying to Vapor:
 
 ```php
  @if (app()->environment('local'))
-<link href="{{ mix('css/admin/app.css') }}" rel="stylesheet">
-<script src="{{ mix('js/admin/app.js') }}"></script>
+    <link href="{{ mix('css/admin/app.css') }}" rel="stylesheet">
+    <script src="{{ mix('js/admin/app.js') }}"></script>
 @else
-<link href="{{ asset('css/admin/app.css') }}" rel="stylesheet">
-<script src="{{ asset('js/admin/app.js') }}" defer></script>
+    <link href="{{ asset('css/admin/app.css') }}" rel="stylesheet">
+    <script src="{{ asset('js/admin/app.js') }}" defer></script>
 @endif
 ```
 

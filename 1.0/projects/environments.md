@@ -143,7 +143,7 @@ id: 2
 name: vapor-laravel-app
 environments:
     production:
-        domain: *.example.com
+        domain: \*.example.com
         build:
             - 'composer install --no-dev --classmap-authoritative'
 ```

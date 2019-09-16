@@ -101,6 +101,7 @@ if (mix.inProduction()) {
             }
         };
     });
+}
 ```
 
 #### Hot Module Replacement

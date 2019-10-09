@@ -11,3 +11,6 @@ return $response->withHeaders([
     'X-Vapor-Base64-Encode' => 'True',
 ]);
 ```
+:::warning Lambda Response Size
+
+Lambda currently limits responses to 6MB. If you need to return a file larger than this you should return a signed url from S3 instead. :::

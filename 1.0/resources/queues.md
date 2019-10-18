@@ -35,14 +35,14 @@ environments:
 
 ## Queue Visibility Timeout
 
-By default, if your queued job is not deleted or released within one minute of beginning to process, SQS will retry the job. To configure this "visibility timeout", you may define the `queue-timeout` option in the environment's `vapor.yml` configuration. For example, we may set this timeout to five minutes:
+By default, if your queued job is not deleted or released within one minute of beginning to process, SQS will retry the job. To configure this "visibility timeout", you may define the `cli-timeout` option in the environment's `vapor.yml` configuration. For example, we may set this timeout to five minutes:
 
 ```yaml
 id: 2
 name: vapor-laravel-app
 environments:
     production:
-        queue-timeout: 300
+        cli-timeout: 300
         build:
             - 'composer install --no-dev --classmap-authoritative'
 ```

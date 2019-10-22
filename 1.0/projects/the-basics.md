@@ -27,6 +27,20 @@ vapor team:switch
 
 Within Vapor's "Project Settings" screen, you may provide the GitHub repository information for a project. Providing this information simply allows Vapor to provide links to GitHub for each deployment's commit hash. You are not required to provide repository information for Vapor to function.
 
+## Managing Vendors
+
+AWS Lambda has strict limitations on the size of applications running within the environment. Typically, the size of your application should not be a problem. However, if you have a large `vendor` directory, you may receive an error indicating that your project is too large.
+
+In order to mitigate this, Vapor offers a `separate-vendor` deployment option which will upload and store your vendor directory separately from the rest of your application. When fresh application containers are booting, your `vendor` directory will be downloaded and unzipped so that your application can access it. This process only takes 1-2 milliseconds. In addition, this option will dramatically reduce the size of your deployment artifact.
+
+To enable this feature, add the `separate-vendor` directive to the project level of your `Vapor.yml` file:
+
+```yaml
+id: 3
+name: vapor-app
+separate-vendor: true
+```
+
 ## Deleting Projects
 
 You may delete a project using the Vapor UI or the `project:delete` CLI command. The `project:delete` command should be run from the root directory of your project.

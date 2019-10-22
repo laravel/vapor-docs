@@ -18,7 +18,7 @@ environments:
         storage: my-bucket-name
         memory: 1024
         build:
-            - 'composer install --no-dev --classmap-authoritative'
+            - 'composer install --no-dev'
         deploy:
             - 'php artisan migrate --force'
 ```

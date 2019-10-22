@@ -62,7 +62,7 @@ environments:
     production:
         balancer: my-balancer
         build:
-            - 'composer install --no-dev --classmap-authoritative'
+            - 'composer install --no-dev'
         deploy:
             - 'php artisan migrate --force'
 ```

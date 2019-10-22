@@ -30,7 +30,7 @@ environments:
     production:
         cli-concurrency: 50
         build:
-            - 'composer install --no-dev --classmap-authoritative'
+            - 'composer install --no-dev'
 ```
 
 ## Queue Visibility Timeout
@@ -44,6 +44,6 @@ environments:
     production:
         cli-timeout: 300
         build:
-            - 'composer install --no-dev --classmap-authoritative'
+            - 'composer install --no-dev'
 ```
 

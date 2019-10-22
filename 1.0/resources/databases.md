@@ -61,7 +61,7 @@ environments:
     production:
         database: my-application-db
         build:
-            - 'composer install --no-dev --classmap-authoritative'
+            - 'composer install --no-dev'
         deploy:
             - 'php artisan migrate --force'
 ```
@@ -102,7 +102,7 @@ environments:
         database: my-application-db
         database-user: user-2
         build:
-            - 'composer install --no-dev --classmap-authoritative'
+            - 'composer install --no-dev'
         deploy:
             - 'php artisan migrate --force'
 ```

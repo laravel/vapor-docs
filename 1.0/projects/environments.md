@@ -24,10 +24,10 @@ name: vapor-laravel-app
 environments:
     production:
         build:
-            - 'composer install --no-dev --classmap-authoritative'
+            - 'composer install --no-dev'
     my-environment:
         build:
-            - 'composer install --no-dev --classmap-authoritative'
+            - 'composer install --no-dev'
 ```
 
 ## Environment Variables
@@ -122,7 +122,7 @@ environments:
     production:
         domain: example.com
         build:
-            - 'composer install --no-dev --classmap-authoritative'
+            - 'composer install --no-dev'
 ```
 
 During deployment, Vapor will configure the environment to handle requests on this domain. After the deployment is completed, Vapor will provide you with CNAME records for the domain. These records will point the domain to your Lambda application.
@@ -145,7 +145,7 @@ environments:
     production:
         domain: '*.example.com'
         build:
-            - 'composer install --no-dev --classmap-authoritative'
+            - 'composer install --no-dev'
 ```
 
 ## Maintenance Mode
@@ -194,7 +194,7 @@ environments:
     production:
         warm: 10
         build:
-            - 'composer install --no-dev --classmap-authoritative'
+            - 'composer install --no-dev'
 ```
 
 ## Concurrency
@@ -210,7 +210,7 @@ environments:
     production:
         concurrency: 50
         build:
-            - 'composer install --no-dev --classmap-authoritative'
+            - 'composer install --no-dev'
 ```
 
 ## Timeout
@@ -224,7 +224,7 @@ environments:
     production:
         timeout: 20
         build:
-            - 'composer install --no-dev --classmap-authoritative'
+            - 'composer install --no-dev'
 ```
 
 ## Metrics

@@ -27,7 +27,7 @@ environments:
         database: vapor-app
         cache: vapor-cache
         build:
-            - 'composer install --no-dev --classmap-authoritative'
+            - 'composer install --no-dev'
             - 'php artisan event:cache'
         deploy:
             - 'php artisan migrate --force'
@@ -46,7 +46,7 @@ environments:
         database: vapor-app
         cache: vapor-cache
         build:
-            - 'composer install --no-dev --classmap-authoritative'
+            - 'composer install --no-dev'
             - 'php artisan event:cache'
         deploy:
             - 'php artisan migrate --force'

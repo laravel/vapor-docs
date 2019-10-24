@@ -229,7 +229,9 @@ environments:
 
 ## Scheduler
 
-Vapor automatically configures Laravel's task scheduler and instructs it to use the DynamoDB cache driver to avoid overlapping tasks. If you would like to disable the scheduler, you may set an environment's `scheduler` option to `false`:
+Vapor automatically configures Laravel's task scheduler and instructs it to use the DynamoDB cache driver to avoid overlapping tasks, so no other configuration is required to begin leveraging Laravel's scheduled task feature.
+
+If you would like to disable the scheduler, you may set an environment's `scheduler` option to `false`:
 
 ```yaml
 id: 2

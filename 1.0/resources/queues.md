@@ -19,6 +19,20 @@ When using Vapor, your application will use the AWS SQS service, which is alread
 Currently, serverless applications on AWS may only process a single request (web or queue) for a maximum of 15 minutes. If your queued jobs take longer than 15 minutes, you will need to either chunk your job's work into smaller pieces or consider another deployment solution for your application.
 :::
 
+### Disabling The Queue
+
+If your application does not use queues, you may set the environment's `queues` option to `false`:
+
+```yaml
+id: 2
+name: vapor-laravel-app
+environments:
+    production:
+        queues: false
+        build:
+            - 'composer install --no-dev'
+```
+
 ## Queue Concurrency
 
 By default, Vapor will allow your queue to process jobs at max concurrency, which is typically 1,000 concurrent jobs executing at the same time. If you would like to reduce the maximum queue concurrency, you may define the `cli-concurrency` option in the environment's `vapor.yml` configuration:

@@ -227,6 +227,20 @@ environments:
             - 'composer install --no-dev'
 ```
 
+## Scheduler
+
+Vapor automatically configures Laravel's task scheduler and instructs it to use the DynamoDB cache driver to avoid overlapping tasks. If you would like to disable the scheduler, you may set an environment's `scheduler` option to `false`:
+
+```yaml
+id: 2
+name: vapor-laravel-app
+environments:
+    production:
+        scheduler: false
+        build:
+            - 'composer install --no-dev'
+```
+
 ## Metrics
 
 A variety of environment performance metrics may be found in the Vapor UI or using the `metrics` CLI command:

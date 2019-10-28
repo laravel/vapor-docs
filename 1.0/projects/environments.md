@@ -263,6 +263,20 @@ vapor metrics production 1M
 
 You may configure alarms for all environment metrics using the Vapor UI. These alarms will notify you via the notification method of your choice when an alarm's configured threshold is broken and when an alarm recovers.
 
+## Runtime
+
+The `runtime` configuration option allows you to specify which PHP version a given environment runs on. The currently supported runtimes are `php-7.3` and `php-7.4`:
+
+```yaml
+id: 2
+name: vapor-laravel-app
+environments:
+    production:
+        runtime: php-7.4
+        build:
+            - 'composer install --no-dev'
+```
+
 ## Deleting Environments
 
 Environments may be deleted via the Vapor UI or using the `env:delete` CLI command:

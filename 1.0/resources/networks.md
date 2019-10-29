@@ -6,6 +6,20 @@
 
 Networks house your databases, caches, jumpboxes, and occasionally applications within AWS. In general, although they are displayed in the Vapor UI for you to review, you are not required to interact with networks directly when using Vapor. When you create a project in a region that does not contain any previous Vapor projects, Vapor automatically begins provisioning a network for you.
 
+### Attaching A Network To An Environment
+
+Typically, you do not need to manually add a `network` directive to your `vapor.yml` file; however, sometimes you may want to manually specify that a Vapor environment should be placed within a given network. This may be the case when you are accessing private AWS resources, such as ElasticSearch, that are not created through Vapor. To place an environment within a network, add the `network` directive to your `vapor.yml` configuration file:
+
+```yaml
+id: 3
+name: vapor-app
+environments:
+    production:
+        network: my-network
+        build:
+            - 'composer install --no-dev'
+```
+
 ## Jumpboxes
 
 Some Vapor resources, such as private databases or cache clusters, may not be accessed from the public Internet. Instead, they can only be accessed by a machine within their network. This can make it cumbersome to inspect and manipulate these resources during development. To mitigate this inconvenience, Vapor allows you to create jumpboxes. Jumpboxes are very small, SSH accessible servers that are placed within your private network.
@@ -63,8 +77,6 @@ environments:
         balancer: my-balancer
         build:
             - 'composer install --no-dev'
-        deploy:
-            - 'php artisan migrate --force'
 ```
 
 

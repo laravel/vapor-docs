@@ -19,6 +19,20 @@ When using Vapor, your application will use the AWS SQS service, which is alread
 Currently, serverless applications on AWS may only process a single request (web or queue) for a maximum of 15 minutes. If your queued jobs take longer than 15 minutes, you will need to either chunk your job's work into smaller pieces or consider another deployment solution for your application.
 :::
 
+## Custom Queue Names
+
+By default, Vapor will create an SQS queue that has the same name as your project and inject the proper environment variables to make this queue the default queue. If you would like to specify your own custom queue names that Vapor should create instead, you may define a `queues` option in your environment's `vapor.yml` configuration. The first queue in the list of queues will be considered your "default" queue and will automatically be set as the `SQS_QUEUE` environment variable:
+
+```yaml
+id: 2
+name: vapor-laravel-app
+environments:
+    production:
+        queues:
+            - emails
+            - invoices
+```
+
 ### Disabling The Queue
 
 If your application does not use queues, you may set the environment's `queues` option to `false`:

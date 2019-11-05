@@ -53,7 +53,7 @@ php vendor/bin/vapor list
 To save keystrokes when interacting with per-project installations of the Vapor CLI, you may add a shell alias to your operating system that aliases the `vapor` command to `php vendor/bin/vapor`.
 :::
 
-To learn more about a command and its arguments, execute the `help` command which the name of the command you wish to explore:
+To learn more about a command and its arguments, execute the `help` command with the name of the command you wish to explore:
 
 ```bash
 php vendor/bin/vapor help deploy

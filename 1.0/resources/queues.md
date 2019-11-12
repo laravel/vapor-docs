@@ -16,9 +16,7 @@ When using Vapor, your application will use the AWS SQS service, which is alread
 
 :::danger Queued Job Time Limits
 
-Currently, serverless applications on AWS may only process a single request (web or queue) for a maximum of 15 minutes. If your queued jobs take longer than 15 minutes, you will need to either chunk your job's work into smaller pieces or consider another deployment solution for your application.
-
-The maximum delay for a job is also 15 minutes. If you need a longer delay, consider using your own solution using the Scheduler.
+Currently, serverless applications on AWS may only process a single request (web or queue) for a maximum of 15 minutes. If your queued jobs take longer than 15 minutes, you will need to either chunk your job's work into smaller pieces or consider another deployment solution for your application. In addition, a queued job may not have a "delay" greater than 15 minutes.
 :::
 
 ## Custom Queue Names

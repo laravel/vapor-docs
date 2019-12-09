@@ -181,22 +181,6 @@ vapor command production
 vapor command production --command="php artisan inspire"
 ```
 
-## Prewarming
-
-By default, when an environment is deployed, the first request it receives may encounter "cold starts". These requests typically incur a penalty of a few seconds while AWS loads a serverless container to serve the request. Once a request has been served by that container, it is typically kept warm to serve further requests with no delay.
-
-To mitigate "cold starts" after a fresh deployment, Vapor allows you to define a `warm` configuration value for an environment in your `vapor.yml` file. The `warm` value represents how many serverless containers Vapor will "pre-warm" by making concurrent requests to the newly deployed application **before it is activated for public accessibility**. Vapor will continue to pre-warm this many containers every 10 minutes while the application is deployed so the specified number of containers are always ready to serve requests:
-
-```yaml
-id: 2
-name: vapor-laravel-app
-environments:
-    production:
-        warm: 10
-        build:
-            - 'composer install --no-dev'
-```
-
 ## Concurrency
 
 By default, Vapor will allow your application to process web requests at max concurrency, which is typically 1,000 requests executing at the same time at any given moment. If you would like to reduce the maximum web concurrency, you may define the `concurrency` option in the environment's `vapor.yml` configuration. Additionally, if you need more than 1,000 concurrent requests, you can submit a limit increase request in the AWS Support Center console.
@@ -209,6 +193,38 @@ name: vapor-laravel-app
 environments:
     production:
         concurrency: 50
+        build:
+            - 'composer install --no-dev'
+```
+
+## Provisioned Concurrency
+
+By default, when an environment is deployed, the first request it receives may encounter "cold starts". These requests typically incur a penalty of a few seconds while AWS loads a serverless container to serve the request. Once a request has been served by that container, it is typically kept warm to serve further requests with no delay.
+
+To mitigate this issue, Amazon supports "provisioned concurrency". When using this feature, the requested number of execution environments / containers will be provisioned and kept "warm" for you automatically, allowing them to immediately serve any incoming requests. To enable this feature, you may add a `capacity` configuration option to the environment in your `vapor.yml` file:
+
+```yaml
+id: 2
+name: vapor-laravel-app
+environments:
+    production:
+        capacity: 5
+        build:
+            - 'composer install --no-dev'
+```
+
+## Prewarming
+
+By default, when an environment is deployed, the first request it receives may encounter "cold starts". These requests typically incur a penalty of a few seconds while AWS loads a serverless container to serve the request. Once a request has been served by that container, it is typically kept warm to serve further requests with no delay.
+
+To mitigate "cold starts" after a fresh deployment, Vapor allows you to define a `warm` configuration value for an environment in your `vapor.yml` file. The `warm` value represents how many serverless containers Vapor will "pre-warm" by making concurrent requests to the newly deployed application **before it is activated for public accessibility**. Vapor will continue to pre-warm this many containers every 10 minutes while the application is deployed so the specified number of containers are always ready to serve requests:
+
+```yaml
+id: 2
+name: vapor-laravel-app
+environments:
+    production:
+        warm: 10
         build:
             - 'composer install --no-dev'
 ```

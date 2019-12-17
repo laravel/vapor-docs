@@ -109,7 +109,7 @@ if (mix.inProduction()) {
 If you are using code splitting and "hot module replacement" during local development, you will need to use the `mix` helper locally and the `asset` helper when deploying to Vapor:
 
 ```php
- @if (app()->environment('local'))
+@if (app()->environment('local'))
     <link href="{{ mix('css/admin/app.css') }}" rel="stylesheet">
     <script src="{{ mix('js/admin/app.js') }}"></script>
 @else

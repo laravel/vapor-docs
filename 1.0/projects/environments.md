@@ -134,6 +134,22 @@ During deployment, Vapor will configure the environment to handle requests on th
 Due to the nature of AWS CloudFront, custom domains often take 30-45 minutes to become fully active. So, do not worry if your custom domain is not immediately accessible after deployment.
 :::
 
+### Multiple Domains
+
+Vapor allows you to attach multiple domains to a single project. Before doing so, ensure you have a valid certificate for each of the domains:
+
+```yaml
+id: 2
+name: vapor-laravel-app
+environments:
+    production:
+        domain:
+            - example1.com
+            - example2.com
+        build:
+            - 'composer install --no-dev'
+```
+
 ### Wildcard Subdomains
 
 You may attach a domain that supports wildcard subdomains to a Vapor environment if that environment is also using an [application load balancer](./../resources/networks.md#load-balancers) and you have a valid certificate for the domain. To attach a wildcard domain to your environment, specify a `*` as the subdomain:

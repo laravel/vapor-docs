@@ -49,28 +49,28 @@ environments:
 
 ## Queue Concurrency
 
-By default, Vapor will allow your queue to process jobs at max concurrency, which is typically 1,000 concurrent jobs executing at the same time. If you would like to reduce the maximum queue concurrency, you may define the `cli-concurrency` option in the environment's `vapor.yml` configuration:
+By default, Vapor will allow your queue to process jobs at max concurrency, which is typically 1,000 concurrent jobs executing at the same time. If you would like to reduce the maximum queue concurrency, you may define the `queue-concurrency` option in the environment's `vapor.yml` configuration:
 
 ```yaml
 id: 2
 name: vapor-laravel-app
 environments:
     production:
-        cli-concurrency: 50
+        queue-concurrency: 50
         build:
             - 'composer install --no-dev'
 ```
 
 ## Queue Visibility Timeout
 
-By default, if your queued job is not deleted or released within one minute of beginning to process, SQS will retry the job. To configure this "visibility timeout", you may define the `cli-timeout` option in the environment's `vapor.yml` configuration. For example, we may set this timeout to five minutes:
+By default, if your queued job is not deleted or released within one minute of beginning to process, SQS will retry the job. To configure this "visibility timeout", you may define the `queue-timeout` option in the environment's `vapor.yml` configuration. For example, we may set this timeout to five minutes:
 
 ```yaml
 id: 2
 name: vapor-laravel-app
 environments:
     production:
-        cli-timeout: 300
+        queue-timeout: 300
         build:
             - 'composer install --no-dev'
 ```

@@ -27,6 +27,8 @@ Once a zone has been created for a domain, you can add, update, or remove DNS re
 ```bash
 vapor record example.com A www 192.168.1.1
 
+vapor record example.com A @ 192.168.1.1
+
 vapor record example.com CNAME foo another-example.com
 
 vapor record example.com MX foo "10 example.com,20 example2.com"

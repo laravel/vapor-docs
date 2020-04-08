@@ -37,6 +37,11 @@ vapor record example.com MX foo "10 example.com,20 example2.com"
 The `record` command functions as an "UPSERT" operation. If an existing record exists with the given type and name, its value will be updated to the given value. If no record exists with the given type or name, the record will be created.
 :::
 
+:::tip Records without name
+
+To create records with no name, please use the `@` sign as value for the name field. This may be applicable for eg. MX records or your main domain record.
+:::
+
 ### Deleting Records
 
 To delete a record via the Vapor CLI, you may use the `record:delete` command:

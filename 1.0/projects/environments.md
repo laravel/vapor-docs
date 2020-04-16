@@ -328,6 +328,30 @@ environments:
             - 'composer install --no-dev'
 ```
 
+## Gateway Versions
+
+By default, Vapor routes HTTP traffic to your serverless applications using AWS API Gateway. Your application may run on either API Gateway 1.0 or API Gateway 2.0 (HTTP APIs). By default, applications deploy using API Gateway 1.0 as it provides a fuller feature set such as wildcard domains, automatic HTTP to HTTPS redirection, and more.
+
+However, API Gateway 2.0 offers a cost reduction per million requests to your application ($1.00 per million vs. $3.50 per million). If you would like to use API Gateway 2.0, you may specify the `gateway-version` configuration option for a given environment in your `vapor.yml` file:
+
+```yaml
+id: 2
+name: vapor-laravel-app
+environments:
+    production:
+        gateway-version: 2
+        build:
+            - 'composer install --no-dev'
+```
+
+### HTTP to HTTP Redirection With API Gateway 2.0
+
+If you choose to use API Gateway 2.0 and would like to support HTTP to HTTPS redirection, we currently suggest using Cloudflare as an external DNS provider for your Vapor application. Cloudflare not only provides DNS, but serves as a reverse proxy to your application and features an option for automatic HTTP to HTTPS redirection.
+
+After a Vapor deployment is completed, Vapor will provide you with CNAME records for the domain(s) associated with your environment. These records will point the domain to your Lambda application. You should manually add these values as CNAME records within the Cloudflare DNS dashboard.
+
+In addition, when using Cloudflare, you should set your Cloudflare SSL / TLS mode to "Full". The "Always Use HTTPS" configuration option may be found under the SSL / TLS menu's "Edge Certificates" tab.
+
 ## Deleting Environments
 
 Environments may be deleted via the Vapor UI or using the `env:delete` CLI command:

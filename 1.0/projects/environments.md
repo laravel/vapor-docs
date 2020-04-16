@@ -346,7 +346,7 @@ environments:
 
 ### HTTP to HTTP Redirection With API Gateway 2.0
 
-If you choose to use API Gateway 2.0 and would like to support HTTP to HTTPS redirection, we currently suggest using Cloudflare as an external DNS provider for your Vapor application. Cloudflare not only provides DNS, but serves as a reverse proxy to your application and features an option for automatic HTTP to HTTPS redirection.
+If you choose to use API Gateway 2.0 and would like to support HTTP to HTTPS redirection, we currently suggest using [Cloudflare](https://cloudflare.com) as an external DNS provider for your Vapor application. Cloudflare not only provides DNS, but serves as a reverse proxy to your application and features an option for automatic HTTP to HTTPS redirection.
 
 After a Vapor deployment is completed, Vapor will provide you with CNAME records for the domain(s) associated with your environment. These records will point the domain to your Lambda application. You should manually add these values as CNAME records within the Cloudflare DNS dashboard.
 

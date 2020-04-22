@@ -344,7 +344,7 @@ environments:
             - 'composer install --no-dev'
 ```
 
-### HTTP to HTTP Redirection With API Gateway 2.0
+### HTTP to HTTPS Redirection With API Gateway 2.0
 
 If you choose to use API Gateway 2.0 and would like to support HTTP to HTTPS redirection, we currently suggest using [Cloudflare](https://cloudflare.com) as an external DNS provider for your Vapor application. Cloudflare not only provides DNS, but serves as a reverse proxy to your application and features an option for automatic HTTP to HTTPS redirection.
 

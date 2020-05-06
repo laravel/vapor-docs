@@ -197,7 +197,7 @@ vapor command production
 vapor command production --command="php artisan inspire"
 ```
 
-By default, your command will timeout after one minute. You can configure the timeout of your CLI commands using the `cli-timeout` option within your `vapor.yml` file:
+By default, your command will timeout after one minute. You can configure the timeout of your CLI commands using the `cli-timeout` option within your `vapor.yml` file. This option allows you to specify the maximum number of seconds a CLI command should be allowed to run:
 
 ```yaml
 id: 2

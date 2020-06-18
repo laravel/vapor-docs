@@ -4,7 +4,7 @@
 
 ## Introduction
 
-When running an application in a serverless environment, you may not store files permanently on the local filesystem, since you can never be sure that the same serverless "container" will be used on a subsequent request. All files should be stored in a cloud storage system, such as AWS S3.
+When running an application in a serverless environment, you may not store files permanently on the local filesystem, since you can never be sure that the same serverless "container" will be used on a subsequent request. All files should be stored in a cloud storage system, such as AWS S3, or in a shared file system through AWS EFS.
 
 ## Attaching Storage
 
@@ -22,6 +22,16 @@ environments:
         deploy:
             - 'php artisan migrate --force'
 ```
+
+## Mounting A File System
+
+To mount a file system on your Lambda, you need to create a new file system using the AWS console. While following the wizard in the AWS console, choose the VPC created by your Vapor network, then add an access point using `1001` for the user and the group.
+
+In the path for the access point, we recommend that you give it a unique name like `{project_name}.{environment_name}`.
+
+Now in the Lambda section of your AWS console, locate each of the 3 functions under your project environment and attach the file system you just created. 
+
+You can mount the file system to a `/mnt/local`. Now you can store and retrieve files in any of your lambdas to the `/mnt/local` file system
 
 ## File Uploads
 

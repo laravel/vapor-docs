@@ -4,7 +4,7 @@
 
 ## Introduction
 
-When running an application in a serverless environment, you may not store files permanently on the local filesystem, since you can never be sure that the same serverless "container" will be used on a subsequent request. All files should be stored in a cloud storage system, such as AWS S3.
+When running an application in a serverless environment, you may not store files permanently on the local filesystem, since you can never be sure that the same serverless "container" will be used on a subsequent request. All files should be stored in a cloud storage system, such as AWS S3, or in a shared file system through AWS EFS.
 
 ## Attaching Storage
 
@@ -22,6 +22,14 @@ environments:
         deploy:
             - 'php artisan migrate --force'
 ```
+
+## Mounting A Persistent File System
+
+To mount a file system on your Lambda, you need to create a new elastic file system (EFS) using the AWS console. In the EFS dashboard, you should click the "Create file system" button and follow the disk creation wizard. While following the wizard, you should choose the VPC created by your Vapor network and add an access point. The disk's access point should specify `1001` for both the user and the group settings of the POSIX user and owner. For the access point's "path" configuration option, you should assign a unique name such as `{project_name}.{environment_name}`.
+
+After creating the disk, you should navigate to the AWS Lambda dashboard. Once in the Lambda dashboard, locate each of the three Lambda functions (the primary function, the "cli" function, and the "queue" function) for your project environment and attach the file system you just created. You may attach the file system by viewing the Lambda function's detail page and clicking the "Add file system" button. You should mount the file system to `/mnt/local`.
+
+Once mounted, you can store and retrieve files to the `/mnt/local` disk path. This path will be shared and accessible by all three of the Lambda functions.
 
 ## File Uploads
 

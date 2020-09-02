@@ -4,7 +4,7 @@
 
 ## Introduction
 
-As you may know, Laravel provides support for a variety of powerful log handlers. By default, when using Vapor, your application will use the AWS CloudWatch service when logging messages.
+As you may know, Laravel provides support for a variety of logging services. By default, when using Vapor, your application will use the AWS CloudWatch service when logging messages.
 
 ## Visualize Logs
 

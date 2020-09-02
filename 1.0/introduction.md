@@ -91,7 +91,7 @@ php artisan vapor-ui:install
 
 ### Dashboard Authorization
 
-Vapor UI exposes a dashboard at `/vapor-ui`. By default, you will only be able to access this dashboard in the `local` environment. Within your `app/Providers/VaporUIServiceProvider.php` file, there is a `gate` method. This authorization gate controls access to Vapor UI in **non-local** environments. You are free to modify this gate as needed to restrict access to your Vapor UI dashboard:
+Vapor UI exposes a dashboard at `/vapor-ui`. By default, you will only be able to access this dashboard in the `local` environment. Within your `app/Providers/VaporUiServiceProvider.php` file, there is a `gate` method. This authorization gate controls access to Vapor UI in **non-local** environments. You are free to modify this gate as needed to restrict access to your Vapor UI dashboard:
 
 ```php
 /**

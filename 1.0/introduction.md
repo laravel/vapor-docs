@@ -75,15 +75,15 @@ The `laravel/vapor-core` [package](https://github.com/laravel/vapor-core) must b
 composer require laravel/vapor-core
 ```
 
-## Installing The Vapor UI
+## Installing The Vapor UI Dashboard
 
-Optionally, you may want to install the `laravel/vapor-ui` [package](https://github.com/laravel/vapor-ui). This package provides a beautiful dashboard through your application with a variety of metrics across all of your AWS resources. The Vapor UI package can be installed in your project using Composer:
+In addition, you may want to install the `laravel/vapor-ui` [package](https://github.com/laravel/vapor-ui) package. This package provides a beautiful dashboard through your application that allows you to monitor your application's logs and failed queue jobs. The Vapor UI dashboard package can be installed in your project using Composer:
 
 ```bash
 composer require laravel/vapor-ui
 ```
 
-After installing Vapor UI, publish its assets using the `vapor-ui:install` Artisan command:
+After installing Vapor UI, you may publish its assets using the `vapor-ui:install` Artisan command:
 
 ```bash
 php artisan vapor-ui:install
@@ -91,7 +91,7 @@ php artisan vapor-ui:install
 
 ### Dashboard Authorization
 
-Vapor UI exposes a dashboard at `/vapor-ui`. By default, you will only be able to access this dashboard in the `local` environment. Within your `app/Providers/VaporUiServiceProvider.php` file, there is a `gate` method. This authorization gate controls access to Vapor UI in **non-local** environments. You are free to modify this gate as needed to restrict access to your Vapor UI dashboard:
+Vapor UI exposes a dashboard at the `/vapor-ui` URI. By default, you will only be able to access this dashboard in the `local` environment. However, within your `app/Providers/VaporUiServiceProvider.php` file, there is a `gate` method that controls access to the Vapor UI dashboard in **non-local** environments. You are free to modify this gate as needed to restrict access to your Vapor UI dashboard:
 
 ```php
 /**

@@ -75,6 +75,62 @@ The `laravel/vapor-core` [package](https://github.com/laravel/vapor-core) must b
 composer require laravel/vapor-core
 ```
 
+## Installing The Vapor UI
+
+Optionally, you may want to install the `laravel/vapor-ui` [package](https://github.com/laravel/vapor-ui). This package provides a beautiful dashboard through your application with a variety of metrics across all of your AWS resources. The Vapor UI package can be installed in your project using Composer:
+
+```bash
+composer require laravel/vapor-ui
+```
+
+After installing Vapor UI, publish its assets using the `vapor-ui:install` Artisan command:
+
+```bash
+php artisan vapor-ui:install
+```
+
+### Dashboard Authorization
+
+Vapor UI exposes a dashboard at `/vapor-ui`. By default, you will only be able to access this dashboard in the `local` environment. Within your `app/Providers/VaporUIServiceProvider.php` file, there is a `gate` method. This authorization gate controls access to Vapor UI in **non-local** environments. You are free to modify this gate as needed to restrict access to your Vapor UI dashboard:
+
+```php
+/**
+ * Register the Vapor UI gate.
+ *
+ * This gate determines who can access Vapor UI in non-local environments.
+ *
+ * @return void
+ */
+protected function gate()
+{
+    Gate::define('viewVaporUI', function ($user = null) {
+        return in_array(optional($user)->email, [
+            'taylor@laravel.com',
+        ]);
+    });
+}
+```
+
+### Upgrading Vapor UI
+
+When upgrading to a new version of Vapor UI, you should re-publish Vapor UI's assets:
+
+```bash
+php artisan vapor-ui:publish
+```
+
+To keep the assets up-to-date and avoid issues in future updates, you may add the `vapor-ui:publish` command to the `post-update-cmd` scripts in your application's `composer.json` file:
+
+```json
+{
+    "scripts": {
+        "post-update-cmd": [
+            "@php artisan vapor-ui:publish --ansi"
+        ]
+    }
+}
+```
+
 ## Teams
 
 When you create your Vapor account, a "Personal" team is automatically created for you. You can rename this team in your team settings. All projects, databases, caches, and other Vapor resources belong to a team. You are free to create as many teams as you wish via the Vapor UI or the `team` CLI command. There is no additional charge for creating teams, and they serve as a great way to organize your projects by client or topic.

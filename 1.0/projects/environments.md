@@ -278,6 +278,13 @@ environments:
             - 'composer install --no-dev'
 ```
 
+:::tip Detecting Timeouts In Logs
+
+Remember, you can use the [Vapor UI package](#installing-the-vapor-ui) for searching for timeout occurrences.
+
+For that, you should visit the `/vapor-ui` URL, and filter logs by "TIMEOUT". 
+:::
+
 ## Scheduler
 
 Vapor automatically configures Laravel's task scheduler and instructs it to use the DynamoDB cache driver to avoid overlapping tasks, so no other configuration is required to begin leveraging Laravel's scheduled task feature.

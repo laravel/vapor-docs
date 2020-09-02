@@ -75,3 +75,10 @@ environments:
             - 'composer install --no-dev'
 ```
 
+## Monitor Failed Jobs
+
+If you have installed the [Vapor UI package](#installing-the-vapor-ui), you may access the `/vapor-ui/jobs/failed` URL to monitor failed jobs.
+
+On Vapor UI, you can see the list of failed jobs, their details, job IDs, connections, queues, failures times, and other information about the jobs.
+
+Optionally, on the detail of each job, you may opt by retry or forget the job.

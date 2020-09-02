@@ -23,6 +23,7 @@ module.exports = [
       'networks',
       'databases',
       'caches',
+      'logs',
     ]),
   },
   {

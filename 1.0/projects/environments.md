@@ -280,7 +280,7 @@ environments:
 
 :::tip Detecting Timeouts In Logs
 
-Remember, you can use the [Vapor UI dashboard package](#installing-the-vapor-ui) to search for timeout occurrences.
+Remember, you can use the [Vapor UI dashboard package](./../introduction.html#installing-the-vapor-ui-dashboard) to search for timeout occurrences.
 :::
 
 ## Scheduler

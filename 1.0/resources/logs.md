@@ -8,7 +8,7 @@ As you may know, Laravel provides support for a variety of logging services. By 
 
 ## Visualizing Logs
 
-If you have installed the [Vapor UI dashboard package](#installing-the-vapor-ui), you may access the `/vapor-ui` URI to view and search your application's logs stored in AWS CloudWatch.
+If you have installed the [Vapor UI dashboard package](./../introduction.html#installing-the-vapor-ui-dashboard), you may access the `/vapor-ui` URI to view and search your application's logs stored in AWS CloudWatch.
 
 :::tip Infrastructure Logs
 

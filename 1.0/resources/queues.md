@@ -77,6 +77,6 @@ environments:
 
 ## Monitor Failed Jobs
 
-If you have installed the [Vapor UI dashboard package](#installing-the-vapor-ui), you may access the `/vapor-ui/jobs/failed` URI to monitor failed jobs.
+If you have installed the [Vapor UI dashboard package](./../introduction.html#installing-the-vapor-ui-dashboard), you may access the `/vapor-ui/jobs/failed` URI to monitor failed jobs.
 
 Within the Vapor UI dashboard, you can view the list of failed jobs, their details, job IDs, connections, queues, failures times, and other information about the jobs. In addition, you may choose to retry to delete the failed job.

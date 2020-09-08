@@ -24,6 +24,7 @@ module.exports = [
       'databases',
       'caches',
       'logs',
+      'phpExtensions'
     ]),
   },
   {

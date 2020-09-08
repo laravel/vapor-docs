@@ -4,11 +4,13 @@
 
 ## Introduction
 
-When your application requires additional php extensions, which are not part of the [Server requirements](https://laravel.com/docs/#server-requirements) by laravel, you are required to add them to your build layers in vapor. Please refer to [brefphp/extra-php-extensions](https://github.com/brefphp/extra-php-extensions) for a list of [available layers](https://github.com/brefphp/extra-php-extensions#available-layers).
+When your application requires additional php extensions, which are not part of the [Server requirements](https://laravel.com/docs/#server-requirements) by laravel, you are required to add them as additional AWS Lambda Layers in Vapor.
 
 ## Adding Extensions
 
-To add an extension to your project, you need to create a `php.ini` file in the root directory which lists the additional extensions to load. Lets use `Imagick` as an example:
+To add an extension to your project, you need to create a `php.ini` file in the root directory which lists the additional extensions to load. Please refer to [brefphp/extra-php-extensions](https://github.com/brefphp/extra-php-extensions) for a list of [available layers](https://github.com/brefphp/extra-php-extensions#available-layers).
+
+Lets use `Imagick` as an example:
 
 ```sh
 extension=/opt/bref-extra/imagick.so

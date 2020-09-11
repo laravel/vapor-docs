@@ -333,6 +333,35 @@ environments:
             - 'composer install --no-dev'
 ```
 
+## Layers
+
+The `layers ` configuration option allows you to specify the lambda layers that should be available to the deployment. 
+
+Vapor has built-in support for the following layers:
+
+- vapor:php-7.3
+- vapor:php-7.4
+- vapor:php-7.4:imagick
+
+To use different layers, you can provide the [layer ARN](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html).
+
+```yaml
+id: 2
+name: vapor-laravel-app
+environments:
+    production:
+        layers:
+          - vapor:php-7.4
+          - vapor:php-7.4:imagick
+          - arn:aws:lambda:us-959512994844-74:13
+```
+
+:::tip Adding Imagick Support
+
+If you wish to use Imagick in your project, add a `/php/conf.d/php.ini` file in your project root that contains `extension=/opt/bref-extra/imagick.so`
+:::
+
+
 ## Gateway Versions
 
 By default, Vapor routes HTTP traffic to your serverless applications using AWS API Gateway. Your application may run on either API Gateway 1.0 or API Gateway 2.0 (HTTP APIs). By default, applications deploy using API Gateway 1.0 as it provides a fuller feature set such as wildcard domains, automatic HTTP to HTTPS redirection, and more.
@@ -347,6 +376,22 @@ environments:
         gateway-version: 2
         build:
             - 'composer install --no-dev'
+```
+
+## VPC Configurations
+
+If you want to place your Lambda functions in a VPC not managed by Vapor, you may specify the `subnets` and `security-groups` configuration options for a given environment in your `vapor.yml` file:
+
+```yaml
+id: 2
+name: vapor-laravel-app
+environments:
+    production:
+        subnets:
+            - subnet-08aczain4man8bba7
+            - subnet-08acr4nd0mbba7
+        security-groups:
+            - sg-0cr4and0m45b7e0
 ```
 
 ### HTTP to HTTPS Redirection With API Gateway 2.0

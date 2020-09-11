@@ -380,9 +380,17 @@ environments:
             - 'composer install --no-dev'
 ```
 
-## VPC Configurations
+### HTTP to HTTPS Redirection With API Gateway 2.0
 
-If you want to place your Lambda functions in a VPC not managed by Vapor, you may specify the `subnets` and `security-groups` configuration options for a given environment in your `vapor.yml` file:
+If you choose to use API Gateway 2.0 and would like to support HTTP to HTTPS redirection, we currently suggest using [Cloudflare](https://cloudflare.com) as an external DNS provider for your Vapor application. Cloudflare not only provides DNS, but serves as a reverse proxy to your application and features an option for automatic HTTP to HTTPS redirection.
+
+After a Vapor deployment is completed, Vapor will provide you with CNAME records for the domain(s) associated with your environment. These records will point the domain to your Lambda application. You should manually add these values as CNAME records within the Cloudflare DNS dashboard.
+
+In addition, when using Cloudflare, you should set your Cloudflare SSL / TLS mode to "Full". The "Always Use HTTPS" configuration option may be found under the SSL / TLS menu's "Edge Certificates" tab.
+
+## Custom VPCs
+
+If you want to place your Lambda functions within a VPC that is not managed by Vapor, you may specify the `subnets` and `security-groups` configuration options for a given environment in your `vapor.yml` file:
 
 ```yaml
 id: 2
@@ -395,14 +403,6 @@ environments:
         security-groups:
             - sg-0cr4and0m45b7e0
 ```
-
-### HTTP to HTTPS Redirection With API Gateway 2.0
-
-If you choose to use API Gateway 2.0 and would like to support HTTP to HTTPS redirection, we currently suggest using [Cloudflare](https://cloudflare.com) as an external DNS provider for your Vapor application. Cloudflare not only provides DNS, but serves as a reverse proxy to your application and features an option for automatic HTTP to HTTPS redirection.
-
-After a Vapor deployment is completed, Vapor will provide you with CNAME records for the domain(s) associated with your environment. These records will point the domain to your Lambda application. You should manually add these values as CNAME records within the Cloudflare DNS dashboard.
-
-In addition, when using Cloudflare, you should set your Cloudflare SSL / TLS mode to "Full". The "Always Use HTTPS" configuration option may be found under the SSL / TLS menu's "Edge Certificates" tab.
 
 ## Deleting Environments
 

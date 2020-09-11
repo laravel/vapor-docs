@@ -335,15 +335,13 @@ environments:
 
 ## Layers
 
-The `layers ` configuration option allows you to specify the lambda layers that should be available to the deployment. 
-
-Vapor has built-in support for the following layers:
+The `layers ` configuration option allows you to specify the Lambda layers that should be available to the deployment. Vapor has built-in support for the following layers:
 
 - vapor:php-7.3
 - vapor:php-7.4
 - vapor:php-7.4:imagick
 
-To use different layers, you can provide the [layer ARN](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html).
+To use different layers, you can provide the [layer ARN](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html) in your `vapor.yml` file:
 
 ```yaml
 id: 2
@@ -356,11 +354,15 @@ environments:
           - arn:aws:lambda:us-959512994844-74:13
 ```
 
-:::tip Adding Imagick Support
+### Imagick Support
 
-If you wish to use Imagick in your project, add a `/php/conf.d/php.ini` file in your project root that contains `extension=/opt/bref-extra/imagick.so`
-:::
+If you would like to add the Imagick extension to your deployment, you should add the `vapor:php-7.4` and `vapor:php-7.4:imagick` layers to your `vapor.yml` file. In addition, create a `/php/conf.d/php.ini` within your project that contains the following configuration entry:
 
+```
+extension=/opt/bref-extra/imagick.so
+```
+
+Once these configuration changes have been made, you may deploy your project.
 
 ## Gateway Versions
 

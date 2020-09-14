@@ -79,6 +79,6 @@ environments:
 
 If you have installed the [Vapor UI dashboard package](./../introduction.html#installing-the-vapor-ui-dashboard), you may access the `/vapor-ui/jobs/metrics` URI to monitor queue jobs.
 
-Within the Vapor UI dashboard, you can monitor (in real-time) the number of processed jobs, failed jobs, and pending jobs for your Vapor application. Besides, it includes charts providing job statistics over the last 24 hours, allowing you to understand better the trends of your queue.
+Within the Vapor UI dashboard, you can monitor (in real-time) the number of processed jobs, failed jobs, and pending jobs for your Vapor application. In addition, it includes charts providing job statistics over the last 24 hours, allowing you to understand better the trends of your queue.
 
-Also, you may access the `/vapor-ui/jobs/failed` to view the list of failed jobs, their details, job IDs, connections, queues, failures times, and other information about the jobs. In addition, you may choose to retry, or to delete the failed job.
+Furthermore, you may access the `/vapor-ui/jobs/failed` to view the list of failed jobs, their details, job IDs, connections, queues, failures times, and other information about the jobs. From this screen, you may choose to retry or delete the failed job.

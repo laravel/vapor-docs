@@ -43,4 +43,5 @@ separate-vendor: true
 
 ## Deleting Projects
 
-You may delete a project using the Vapor UI or the `project:delete` CLI command. The `project:delete` command should be run from the root directory of your project.
+You may delete a project using the Vapor UI or the `project:delete` CLI command. The `project:delete` command should be run from the root directory of your project. Please note, this only deletes the project in Vapor and containers in AWS, any further resources like your AWS S3 Buckets have to be deleted at AWS manually.
+

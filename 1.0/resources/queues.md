@@ -75,6 +75,21 @@ environments:
             - 'composer install --no-dev'
 ```
 
+## Queue Memory
+
+By default, 512 mb will be reserved on AWS Lambda for your queue. To override this, use ```queue-memory```.
+
+```yaml
+id: 2
+name: vapor-laravel-app
+environments:
+    production:
+        queue-memory: 1024
+        build:
+            - 'composer install --no-dev'
+```
+
+
 ## Monitoring Jobs
 
 If you have installed the [Vapor UI dashboard package](./../introduction.html#installing-the-vapor-ui-dashboard), you may access the `/vapor-ui/jobs/metrics` URI to monitor queue jobs.

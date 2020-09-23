@@ -77,7 +77,7 @@ environments:
 
 ## Queue Memory
 
-By default, 512 mb will be reserved on AWS Lambda for your queue. To override this, use ```queue-memory```.
+You may use the `queue-memory` option in your environment's `vapor.yml` connfiguration to define the memory that should be available to your queue worker Lambda function:
 
 ```yaml
 id: 2
@@ -88,7 +88,6 @@ environments:
         build:
             - 'composer install --no-dev'
 ```
-
 
 ## Monitoring Jobs
 

@@ -77,7 +77,7 @@ environments:
 
 ## Queue Memory
 
-You may use the `queue-memory` option in your environment's `vapor.yml` connfiguration to define the memory that should be available to your queue worker Lambda function:
+You may use the `queue-memory` option in your environment's `vapor.yml` configuration to define the memory that should be available to your queue worker Lambda function:
 
 ```yaml
 id: 2

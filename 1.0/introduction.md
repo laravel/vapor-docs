@@ -111,9 +111,35 @@ protected function gate()
 }
 ```
 
+### Upgrading Vapor UI
+
+When upgrading to a new version of Vapor UI, you should re-publish Vapor UI's assets:
+
+```bash
+php artisan vapor-ui:publish
+```
+
+To keep the assets up-to-date and avoid issues in future updates, you may add the `vapor-ui:publish` command to the `post-update-cmd` scripts in your application's `composer.json` file:
+
+```json
+{
+    "scripts": {
+        "post-update-cmd": [
+            "@php artisan vapor-ui:publish --ansi"
+        ]
+    }
+}
+```
+
 ### Customizing Middleware
 
-If needed, you can customize the middleware stack used in Vapor UI routes updating the `config/vapor-ui.php` file:
+If needed, you can customize the middleware stack used by Vapor UI routes by updating your `config/vapor-ui.php` file. If you have not published Vapor UI's confiugration file, you may do so using the `vendor:publish` Artisan command:
+
+```
+php artisan vendor:publish --tag=vapor-ui-config
+```
+
+Once the configuration file has been published, you may edit Vapor UI's middleware by tweaking the `middleware` configuration option within this file:
 
 ```php
 /*
@@ -133,32 +159,6 @@ If needed, you can customize the middleware stack used in Vapor UI routes updati
     EnsureEnvironmentVariables::class,
     EnsureUpToDateAssets::class,
 ],
-```
-
-In case your application does not contain yet a `config/vapor-ui.php` file, you can create it using the `vendor:publish` Artisan command:
-
-```
-php artisan vendor:publish --tag=vapor-ui-config
-```
-
-### Upgrading Vapor UI
-
-When upgrading to a new version of Vapor UI, you should re-publish Vapor UI's assets:
-
-```bash
-php artisan vapor-ui:publish
-```
-
-To keep the assets up-to-date and avoid issues in future updates, you may add the `vapor-ui:publish` command to the `post-update-cmd` scripts in your application's `composer.json` file:
-
-```json
-{
-    "scripts": {
-        "post-update-cmd": [
-            "@php artisan vapor-ui:publish --ansi"
-        ]
-    }
-}
 ```
 
 ## Teams

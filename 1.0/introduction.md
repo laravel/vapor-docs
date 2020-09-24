@@ -111,6 +111,36 @@ protected function gate()
 }
 ```
 
+### Customizing Middleware
+
+If needed, you can customize the middleware stack used in Vapor UI routes updating the `config/vapor-ui.php` file:
+
+```php
+/*
+|--------------------------------------------------------------------------
+| Vapor UI Route Middleware
+|--------------------------------------------------------------------------
+|
+| These middleware will be assigned to every Vapor UI route - giving you
+| the chance to add your own middleware to this list or change any of
+| the existing middleware. Or, you can simply stick with this list.
+|
+*/
+
+'middleware' => [
+    'web',
+    EnsureUserIsAuthorized::class,
+    EnsureEnvironmentVariables::class,
+    EnsureUpToDateAssets::class,
+],
+```
+
+In case your application does not contain yet a `config/vapor-ui.php` file, you can create it using the `vendor:publish` Artisan command:
+
+```
+php artisan vendor:publish --tag=vapor-ui-config
+```
+
 ### Upgrading Vapor UI
 
 When upgrading to a new version of Vapor UI, you should re-publish Vapor UI's assets:

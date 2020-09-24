@@ -131,6 +131,36 @@ To keep the assets up-to-date and avoid issues in future updates, you may add th
 }
 ```
 
+### Customizing Middleware
+
+If needed, you can customize the middleware stack used by Vapor UI routes by updating your `config/vapor-ui.php` file. If you have not published Vapor UI's confiugration file, you may do so using the `vendor:publish` Artisan command:
+
+```
+php artisan vendor:publish --tag=vapor-ui-config
+```
+
+Once the configuration file has been published, you may edit Vapor UI's middleware by tweaking the `middleware` configuration option within this file:
+
+```php
+/*
+|--------------------------------------------------------------------------
+| Vapor UI Route Middleware
+|--------------------------------------------------------------------------
+|
+| These middleware will be assigned to every Vapor UI route - giving you
+| the chance to add your own middleware to this list or change any of
+| the existing middleware. Or, you can simply stick with this list.
+|
+*/
+
+'middleware' => [
+    'web',
+    EnsureUserIsAuthorized::class,
+    EnsureEnvironmentVariables::class,
+    EnsureUpToDateAssets::class,
+],
+```
+
 ## Teams
 
 When you create your Vapor account, a "Personal" team is automatically created for you. You can rename this team in your team settings. All projects, databases, caches, and other Vapor resources belong to a team. You are free to create as many teams as you wish via the Vapor UI or the `team` CLI command. There is no additional charge for creating teams, and they serve as a great way to organize your projects by client or topic.

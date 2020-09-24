@@ -122,6 +122,55 @@ If you are using code splitting and "hot module replacement" during local develo
 
 Sometimes, your CSS may need to reference asset URLs, such as a `background-image` property that references an image via URL. Obviously, you are not able to use the PHP `asset` helper within your CSS. For this reason, Vapor will automatically prepend the correct asset base URL to all relative URLs in your CSS during the build process. After your build steps have executed, Vapor performs this action against any CSS files in your application's `public` directory (including directories nested under `public`).
 
+### Root Domain Assets
+
+Some applications like PWAs may need to serve certain assets from the root domain. If your application fits in those cases, you can define an array of assets that should be served from the root domain in your `config/vapor.php` file:
+
+```php
+/*
+|--------------------------------------------------------------------------
+| Servable Assets
+|--------------------------------------------------------------------------
+|
+| Here you can configure list of public assets that should be servable
+| from your application's domain instead of only being servable via
+| the public S3 "asset" bucket or the AWS CloudFront CDN network.
+|
+*/
+
+'serve_assets' => [
+    'serviceWorker.js',
+],
+```
+
+In case your application does not contain yet a `config/vapor.php` file, you can create it  using the `vendor:publish` Artisan command:
+
+```
+php artisan vendor:publish --tag=vapor-config
+```
+
+:::warning Performance Penalty
+Due to the serverless nature of applications powered by Vapor, assets served from the root domain are not cacheable at the client-side and they are served using Laravel routes. Therefore, you should only serve assets that absolutely must be served from the root domain as there is a slight performance penalty for doing so.
+:::
+
+### Dot Files As Assets
+
+If for some reason you need to public directory's dot files to be interpreted as assets, you should set the `dot-files-as-assets` key to `true` in your `vapor.yml` file:
+
+```yml
+id: 1
+name: app-test
+dot-files-as-assets: true
+```
+
+And, of course, you can opt to serve those dot files from the root domain as well:
+```php
+'serve_assets' => [
+    'serviceWorker.js',
+    '.well-known/assetlinks.json',
+],
+```
+
 ## Redeploying
 
 Sometimes you may need to simply redeploy a given environment without rebuilding it. For example, you may wish to do this after updating an environment variable. To accomplish this, you may use the Vapor UI or the `redeploy` CLI command:

@@ -124,7 +124,7 @@ Sometimes, your CSS may need to reference asset URLs, such as a `background-imag
 
 ### Root Domain Assets
 
-Some applications like PWAs may need to serve certain assets from the root domain. If your application fits in those cases, you can define an array of assets that should be served from the root domain in your `config/vapor.php` file:
+Some applications, such as PWAs, may need to serve certain assets from the root domain. If your application has this need, you can define an array of assets that should be served from your application's root domain via the `serve_assets` configuration option within your `vapor` configuration file:
 
 ```php
 /*
@@ -143,19 +143,20 @@ Some applications like PWAs may need to serve certain assets from the root domai
 ],
 ```
 
-In case your application does not contain yet a `config/vapor.php` file, you can create it  using the `vendor:publish` Artisan command:
+If your application doesn't contain a `vapor` configuration file, you can publish it using the `vendor:publish` Artisan command:
 
 ```
 php artisan vendor:publish --tag=vapor-config
 ```
 
 :::warning Performance Penalty
+
 Due to the serverless nature of applications powered by Vapor, assets served from the root domain are not cacheable at the client-side and they are served using Laravel routes. Therefore, you should only serve assets that absolutely must be served from the root domain as there is a slight performance penalty for doing so.
 :::
 
 ### Dot Files As Assets
 
-If for some reason you need to public directory's dot files to be interpreted as assets, you should set the `dot-files-as-assets` key to `true` in your `vapor.yml` file:
+Typically, "dot" files are not uploaded to the AWS CloudFront CDN by Vapor. However, if you need the public directory's dot files to be uploaded as assets, you should set the `dot-files-as-assets` key to `true` in your `vapor.yml` file:
 
 ```yml
 id: 1
@@ -163,7 +164,8 @@ name: app-test
 dot-files-as-assets: true
 ```
 
-And, of course, you can opt to serve those dot files from the root domain as well:
+You may also choose to serve asset dot files from the application's root domain:
+
 ```php
 'serve_assets' => [
     'serviceWorker.js',

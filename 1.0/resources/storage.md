@@ -107,11 +107,9 @@ Storage::copy(
 );
 ```
 
-:::tip Local Development
+#### Local Development
 
-When developing locally, `Vapor.store` will upload to the bucket specified by the `AWS_BUCKET` environment variable.
-
-Your bucket may require CORS configuration to allow uploads from localhost
+When developing locally, `Vapor.store` will upload to the bucket specified by the `AWS_BUCKET` environment variable. In addition, your bucket may require CORS configuration to allow uploads from localhost:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -124,4 +122,3 @@ Your bucket may require CORS configuration to allow uploads from localhost
 </CORSRule>
 </CORSConfiguration>
 ```
-:::

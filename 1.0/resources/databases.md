@@ -86,7 +86,7 @@ vapor database:shell my-application-db
 
 ## Database Proxies
 
-Optionally, you may add a proxy to your database so your applications can pool and share database connections. This can be very useful at large scale, as it reduces the chances of "too many connections" errors.
+Even though your serverless Laravel applications running on Vapor can handle extreme amounts of web traffic, traditional relational databases such as MySQL can become overwhelmed and crash due to connection limit restrictions. To solve this, you may use an RDS proxy to efficiently manage your database connections and allow many more connections than would typically be possible.
 
 The database proxy can be added via the Vapor UI or the `database:proxy` CLI command:
 
@@ -94,7 +94,7 @@ The database proxy can be added via the Vapor UI or the `database:proxy` CLI com
 vapor database:proxy my-application-db
 ```
 
-You may instruct an environment to use the proxy associated with the database using the `database-proxy` configuration option within your `vapor.yml` file:
+Next, you may instruct an environment to use the proxy associated with the database using the `database-proxy` configuration option within your `vapor.yml` file:
 
 ```yaml
 id: 3
@@ -109,7 +109,7 @@ environments:
             - 'php artisan migrate --force'
 ```
 
-You can delete the proxy at any time using the Vapor UI or the `database:delete-proxy` CLI command. Before doing this operation, make sure none of your applications is using the associated proxy:
+You can delete the proxy at any time using the Vapor UI or the `database:delete-proxy` CLI command. Before deleting a proxy, make sure none of your applications are using the associated proxy:
 
 ```bash
 vapor database:delete-proxy my-application-db
@@ -117,7 +117,7 @@ vapor database:delete-proxy my-application-db
 
 :::warning Limitations
 
-Before considering the usage of database proxies in Vapor, please be aware of the [list of limitations](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/rds-proxy.html#rds-proxy.limitations).
+Before considering the usage of database proxies in Vapor, please consult Amazon's [list of limitations](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/rds-proxy.html#rds-proxy.limitations).
 :::
 
 ## Database Users

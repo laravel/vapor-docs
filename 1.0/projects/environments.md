@@ -366,45 +366,46 @@ Once these configuration changes have been made, you may deploy your project.
 
 ### Building Custom Layers
 
-Even though Vapor has built-in support for layers that should serve the most common use cases, for using non-included libraries or extensions you will need to build a layer yourself. No worries, in this section we are going to detail how to achieve that.
+Even though Vapor's provided PHP runtime meets the common requirements of Laravel applications, it is possible to build your own PHP runtime that includes non-standard extensions or libraries.
 
-- **Requires:** [Docker](https://docs.docker.com/get-docker/)
-
-1. First, clone the `vapor-php-build` repository locally:
+First, you should ensure that you have installed [Docker](https://docs.docker.com/get-docker/) on your local machine. Next, you should, clone the `laravel/vapor-php-build` repository. This repository is used internally to build the standard Vapor PHP runtime:
 
 ```bash
 git clone https://github.com/laravel/vapor-php-build
-```
 
-2. Then, inside the `vapor-php-build` directory, install the needed dependencies:
+cd vapor-php-build
 
-```bash
 composer install
 ```
 
-3. Still inside `vapor-php-build` directory, create a `.env` file, and add your AWS Credentials on it:
+Once you have cloned the repository and installed its Composer dependencies, you should create an `.env` file containing your AWS access key information:
 
 ```bash
 AWS_ACCESS_KEY_ID=
 AWS_SECRET_ACCESS_KEY=
 ```
 
-3. Head over to the `vapor-php-build/phpxx` PHP folder version you wanna use, and modify any file to fit your own needs, e.g: `php.Dockerfile`, or `/runtime/php.ini`.
-4. Now, still inside the `vapor-php-build/phpxx` PHP folder version, start the compilation step running:
+As you may have noticed, the `vapor-php-build` repository contains a directory corresponding to each version of PHP that we currently support. If you navigate within one of these directories, you will find the Docker files and configuration files needed to build the runtime. You may customize or modify these files as you wish in order to build your runtime.
+
+Once you have customized the runtime to your liking, you should run the `make distribution` command in your terminal. This command should be executed from within the PHP version directory that you have modified (`vapor-php-build/php{xx}`):
 
 ```bash
+cd vapor-php-build/phpxx
+
 make distribution
 ```
 
-5. Next, get back to the `vapor-php-build` folder, edit the `$layers` and `$regions` of the  `publish.php` file, and run:
+The `make distribution` command will place the final ZIP archive of the runtime in the `export` directory of `vapor-php-build`.
+
+Finally, the `vapor-php-build/publish.php` script may be used to publish the custom runtime to AWS. You will need to publish the runtime in the correct region for your application. By default, this script publishes to all regions, you should modify the `publish.php` script to only publish to the region that your application belongs to. In addition, you should customize the `$layers` array to only contain the PHP version that you are modifying.
+
+After you have made these customizations to the `publish.php` script, you may execute it. The script will output the ARNs of the layers that are published:
 
 ```bash
 php -d memory_limit=-1 publish.php
 ```
 
-The `publish.php` script will output the ARNs of the layers you've published.
-
-6. Finally, in your `vapor.yml` remove the `runtime` key and specify the ARNs of `layers` you wanna use:
+Once the layers have been published, you may include the layer ARNs in your `vapor.yml`. You should remove the `runtime` option from your environment's configuration and add a `layers` option in its place. The `layers` option should be a list of layers your application will utilize - include your newly published layer in this list:
 
 ```yaml
 id: 3

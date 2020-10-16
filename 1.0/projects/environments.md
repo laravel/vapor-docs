@@ -333,38 +333,7 @@ environments:
             - 'composer install --no-dev'
 ```
 
-## Layers
-
-The `layers ` configuration option allows you to specify the Lambda layers that should be available to the deployment. Vapor has built-in support for the following layers:
-
-- vapor:php-7.3
-- vapor:php-7.4
-- vapor:php-7.4:imagick
-
-To use different layers, you can provide the [layer ARN](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html) in your `vapor.yml` file:
-
-```yaml
-id: 2
-name: vapor-laravel-app
-environments:
-    production:
-        layers:
-          - vapor:php-7.4
-          - vapor:php-7.4:imagick
-          - arn:aws:lambda:us-959512994844-74:13
-```
-
-### Imagick Support
-
-If you would like to add the Imagick extension to your deployment, you should add the `vapor:php-7.4` and `vapor:php-7.4:imagick` layers to your `vapor.yml` file. In addition, create a `/php/conf.d/php.ini` within your project that contains the following configuration entry:
-
-```
-extension=/opt/bref-extra/imagick.so
-```
-
-Once these configuration changes have been made, you may deploy your project.
-
-### Building Custom Layers
+### Building Custom Runtimes
 
 Even though Vapor's provided PHP runtime meets the common requirements of Laravel applications, it is possible to build your own PHP runtime that includes non-standard extensions or libraries.
 
@@ -415,6 +384,37 @@ environments:
         layers:
             - 'arn:aws:lambda:xxxxxxxx:xxxxxxx:layer:vapor-php-xx:x'
 ```
+
+## Layers
+
+The `layers ` configuration option allows you to specify the Lambda layers that should be available to the deployment. Vapor has built-in support for the following layers:
+
+- vapor:php-7.3
+- vapor:php-7.4
+- vapor:php-7.4:imagick
+
+To use different layers, you can provide the [layer ARN](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html) in your `vapor.yml` file:
+
+```yaml
+id: 2
+name: vapor-laravel-app
+environments:
+    production:
+        layers:
+          - vapor:php-7.4
+          - vapor:php-7.4:imagick
+          - arn:aws:lambda:us-959512994844-74:13
+```
+
+### Imagick Support
+
+If you would like to add the Imagick extension to your deployment, you should add the `vapor:php-7.4` and `vapor:php-7.4:imagick` layers to your `vapor.yml` file. In addition, create a `/php/conf.d/php.ini` within your project that contains the following configuration entry:
+
+```
+extension=/opt/bref-extra/imagick.so
+```
+
+Once these configuration changes have been made, you may deploy your project.
 
 ## Gateway Versions
 

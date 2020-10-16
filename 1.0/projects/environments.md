@@ -364,6 +364,57 @@ extension=/opt/bref-extra/imagick.so
 
 Once these configuration changes have been made, you may deploy your project.
 
+### Building Custom Layers
+
+Even though Vapor has built-in support for layers that should serve the most common use cases, for using non-included libraries or extensions you will need to build a layer yourself. No worries, in this section we are going to detail how to achieve that.
+
+- **Requires:** [Docker](https://docs.docker.com/get-docker/)
+
+1. First, clone the `vapor-php-build` repository locally:
+
+```bash
+git clone https://github.com/laravel/vapor-php-build
+```
+
+2. Then, inside the `vapor-php-build` directory, install the needed dependencies:
+
+```bash
+composer install
+```
+
+3. Still inside `vapor-php-build` directory, create a `.env` file, and add your AWS Credentials on it:
+
+```bash
+AWS_ACCESS_KEY_ID=
+AWS_SECRET_ACCESS_KEY=
+```
+
+3. Head over to the `vapor-php-build/phpxx` PHP folder version you wanna use, and modify any file to fit your own needs, e.g: `php.Dockerfile`, or `/runtime/php.ini`.
+4. Now, still inside the `vapor-php-build/phpxx` PHP folder version, start the compilation step running:
+
+```bash
+make distribution
+```
+
+5. Next, get back to the `vapor-php-build` folder, edit the `$layers` and `$regions` of the  `publish.php` file, and run:
+
+```bash
+php -d memory_limit=-1 publish.php
+```
+
+The `publish.php` script will output the ARNs of the layers you've published.
+
+6. Finally, in your `vapor.yml` remove the `runtime` key and specify the ARNs of `layers` you wanna use:
+
+```yaml
+id: 3
+name: your-project
+environments:
+    production:
+        layers:
+            - 'arn:aws:lambda:xxxxxxxx:xxxxxxx:layer:vapor-php-xx:x'
+```
+
 ## Gateway Versions
 
 By default, Vapor routes HTTP traffic to your serverless applications using AWS API Gateway. Your application may run on either API Gateway 1.0 or API Gateway 2.0 (HTTP APIs). By default, applications deploy using API Gateway 1.0 as it provides a fuller feature set such as wildcard domains, automatic HTTP to HTTPS redirection, and more.

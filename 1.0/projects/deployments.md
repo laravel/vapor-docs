@@ -35,7 +35,7 @@ environments:
 
 ## Deploy Hooks
 
-You may define deployment hooks for an environment using the `deploy` key within your `vapor.yml` file. These commands are executed against the deployed environment **before it is activated for general availability**. If any of these commands fail, the deployment will not be activated. You may review the output / logs from your deployment hooks via the Vapor UI's deployment detail screen:
+You may define deployment hooks for an environment using the `deploy` key within your `vapor.yml` file. These commands are executed against the deployed environment **before it is activated for general availability**. If any of these commands fail, the deployment will not be activated.
 
 ```yaml
 id: 3
@@ -50,6 +50,22 @@ environments:
             - 'php artisan event:cache'
         deploy:
             - 'php artisan migrate --force'
+```
+
+### Reviewing Output / Logs
+
+When a deployment hook fails, you may review the output / logs via the Vapor UI's deployment detail screen.
+
+Also, if you are deploying your application using the `vapor deploy` command, the CLI output will contain the failing hook output. Of course, you may review the output at any time using the `hook:output` command:
+
+```bash
+vapor hook:output {DEPLOYMENT_HOOK_ID}
+```
+
+You can review the logs associated with the failing hook using the `hook:log` command:
+
+```bash
+vapor hook:log {DEPLOYMENT_HOOK_ID}
 ```
 
 ## Assets

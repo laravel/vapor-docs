@@ -56,13 +56,13 @@ environments:
 
 When a deployment hook fails, you may review the output / logs via the Vapor UI's deployment detail screen.
 
-Also, if you deploying your application using the `vapor deploy` command, the CLI output will contain the failing hook output. Of course, you may review the output at any time using the `hook:output` command:
+Also, if you are deploying your application using the `vapor deploy` command, the CLI output will contain the failing hook output. Of course, you may review the output at any time using the `hook:output` command:
 
 ```bash
 vapor hook:output {DEPLOYMENT_HOOK_ID}
 ```
 
-You can equally review the logs associated with the failing hook using the `hook:log` command:
+You can review the logs associated with the failing hook using the `hook:log` command:
 
 ```bash
 vapor hook:log {DEPLOYMENT_HOOK_ID}

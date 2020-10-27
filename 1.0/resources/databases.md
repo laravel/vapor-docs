@@ -160,7 +160,11 @@ vapor database:scale my-application-db
 
 Vapor database backups are performed automatically and you may restore databases to any point in time within the database backup retention period, which is currently three days.
 
-When restoring a database, a new database is created with the same configuration as the previous database. Then, the previous database's contents are restored to the new database as they existed at the exact point in time you choose. Once you are satisfied with the database restoration, you may delete the old database.
+When restoring a database, a new database is created with the same configuration as the previous database. Then, the previous database's contents are restored to the new database as they existed at the exact point in time you choose. 
+
+To attach the restored database to an environment, update the value of the `database` key in `vaopr.yml` and start a fresh deployment.
+
+Once you are satisfied with the database restoration, you may delete the old database.
 
 Database restoration may be initiated via the Vapor UI or the `database:restore` CLI command:
 

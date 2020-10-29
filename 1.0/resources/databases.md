@@ -158,7 +158,7 @@ vapor database:scale my-application-db
 
 ## Restoring Databases
 
-Vapor database backups are performed automatically and you may restore databases to any point in time within the database backup retention period, which is three days by default. You can change the database backup retention period at any time via Vapor UI on the database details screen.
+Vapor database backups are performed automatically and you may restore databases to any point in time within the database backup retention period, which is three days by default. You can change the database backup retention period at any time via the Vapor UI's database details screen.
 
 Database restoration may be initiated via the Vapor UI or the `database:restore` CLI command:
 

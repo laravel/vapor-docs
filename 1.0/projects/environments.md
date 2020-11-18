@@ -299,6 +299,11 @@ environments:
             - 'composer install --no-dev'
 ```
 
+:::warning Log Messages
+
+Due to Vapor limitations, log messages from scheduled tasks won't appear in AWS CloudWatch or Vapor UI. As a workaround, you should dispatch a queue job from your scheduled tasks, or use a different log channel in your application.
+:::
+
 ## Metrics
 
 A variety of environment performance metrics may be found in the Vapor UI or using the `metrics` CLI command:

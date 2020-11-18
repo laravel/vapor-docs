@@ -301,7 +301,7 @@ environments:
 
 :::warning Log Messages
 
-Due to Vapor limitations, log messages from scheduled tasks won't appear in AWS CloudWatch or Vapor UI. As a workaround, you should dispatch a queue job from your scheduled tasks, or use a different log channel in your application.
+Due to Vapor limitations, log messages from scheduled tasks will not appear in AWS CloudWatch or Vapor UI. As a workaround, you should dispatch a queued job from your scheduled tasks and write log messages from your queued job.
 :::
 
 ## Metrics

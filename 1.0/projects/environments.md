@@ -82,6 +82,8 @@ The following environment variables are reserved and may not be added to your en
 - LAMBDA_TASK_ROOT
 - TZ
 
+Also, the environment variables should not contain `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, or `AWS_SESSION_TOKEN` in their names. E.g: `MY_SERVICE_AWS_SECRET_ACCESS_KEY`.
+
 ## Secrets
 
 Due to AWS Lambda limitations, your environment variables may only be 4kb in total. However, "secrets" may be much larger, making them a perfect way to store large environment variables such as Laravel Passport keys. You may create secrets via the Vapor UI or the `secret` CLI command:

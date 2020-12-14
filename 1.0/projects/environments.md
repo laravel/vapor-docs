@@ -82,7 +82,7 @@ The following environment variables are reserved and may not be added to your en
 - LAMBDA_TASK_ROOT
 - TZ
 
-Also, the environment variables should not contain `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, or `AWS_SESSION_TOKEN` in their names. E.g: `MY_SERVICE_AWS_SECRET_ACCESS_KEY`.
+In addition, environment variables should not contain `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, or `AWS_SESSION_TOKEN` in their names. For example: `MY_SERVICE_AWS_SECRET_ACCESS_KEY`.
 
 ## Secrets
 

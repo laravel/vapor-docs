@@ -30,6 +30,14 @@ environments:
             - 'composer install --no-dev'
 ```
 
+If you would like to use a docker image instead of the default Vapor Lambda runtime, use the `--docker` option:
+
+```bash
+vapor env my-environment --docker
+```
+
+This will create a `my-environment.Dockerfile` file in your project's root directory.
+
 ## Environment Variables
 
 Each environment contains a set of environment variables that provide crucial information to your application during execution, just like the variables present in your application's local `.env` file.
@@ -337,6 +345,40 @@ environments:
         build:
             - 'composer install --no-dev'
 ```
+
+If you would like to use a docker image instead of the default Vapor Lambda runtime, set the value to `docker`:
+
+```yaml
+id: 2
+name: vapor-laravel-app
+environments:
+    production:
+        runtime: docker
+        build:
+            - 'composer install --no-dev'
+```
+
+:::warning Switching between docker based and layer based runtimes
+
+Due to AWS limitations, you cannot switch between docker based and layer based runtimes if you have already deployed your environment. To change a deployed environment runtime type, you have to create a new environment.
+:::
+
+### Building a Docker Image
+
+Using a docker based runtime allows you to install extra PHP extensions or libraries. You may build an image up to 10GB in size, including your project files, and AWS will handle running it inside your lambda container.
+
+For every new environment, Vapor adds a `.Dockerfile` file that uses one of Vapor's base images that are based on Alpine Linux. Here's how you may install the FFmpeg library:
+
+```docker
+FROM laravelphp/vapor:php74
+
+RUN apk --update add ffmpeg
+
+COPY . /var/task
+```
+
+Vapor will build, tag, and publish the image on your next deployment. However, you should ensure that you have installed [Docker](https://docs.docker.com/get-docker/) on your local machine.
+
 
 ### Building Custom Runtimes
 

@@ -346,7 +346,7 @@ environments:
             - 'composer install --no-dev'
 ```
 
-If you would like to use a docker image instead of the default Vapor Lambda runtime, set the value to `docker`:
+If you would like to use a Docker image instead of the default Vapor Lambda runtime, set the `runtime` configuration option to `docker`:
 
 ```yaml
 id: 2
@@ -358,16 +358,16 @@ environments:
             - 'composer install --no-dev'
 ```
 
-:::warning Switching between docker based and layer based runtimes
+:::warning Switching Between Docker & Layer Based Runtimes
 
-Due to AWS limitations, you cannot switch between docker based and layer based runtimes if you have already deployed your environment. To change a deployed environment runtime type, you have to create a new environment.
+Due to AWS limitations, you cannot switch between Docker based and layer based runtimes if you have already deployed your environment. Unfortunately, you must create a new environment to change a deployed environment's runtime type.
 :::
 
-### Building a Docker Image
+### Building Custom Docker Images
 
-Using a docker based runtime allows you to install extra PHP extensions or libraries. You may build an image up to 10GB in size, including your project files, and AWS will handle running it inside your lambda container.
+Using a Docker based runtime allows you to install additional PHP extensions or libraries. You may build an image up to 10GB in size (including your project files). When you deploy, Vapor and AWS will automatically handle building, running, and scaling your application within your Docker based Lambda runtime.
 
-For every new environment, Vapor adds a `.Dockerfile` file that uses one of Vapor's base images that are based on Alpine Linux. Here's how you may install the FFmpeg library:
+For every new Docker based environment, Vapor adds a `.Dockerfile` file that uses one of Vapor's base images as a starting point for building your image. All of Vapor's base Docker images are based on Alpine Linux. For example, here's how you may install the FFmpeg library within your custom Docker image:
 
 ```docker
 FROM laravelphp/vapor:php74
@@ -377,9 +377,9 @@ RUN apk --update add ffmpeg
 COPY . /var/task
 ```
 
-Vapor will build, tag, and publish the image on your next deployment. However, you should ensure that you have installed [Docker](https://docs.docker.com/get-docker/) on your local machine.
+Vapor will build, tag, and publish the image on your next deployment; therefore, you should ensure that you have installed [Docker](https://docs.docker.com/get-docker/) on your local machine.
 
-The available base images are:
+Vapor's base Docker images are:
 
 - `laravelphp/vapor:php74`
 - `laravelphp/vapor:php80`

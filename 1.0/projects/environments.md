@@ -36,7 +36,7 @@ In addition to our native runtimes, Vapor supports Docker image deployments. If 
 vapor env my-environment --docker
 ```
 
-This will create a `my-environment.Dockerfile` file in your project's root directory.
+This command will create a `my-environment.Dockerfile` file in your application's root directory.
 
 ## Environment Variables
 

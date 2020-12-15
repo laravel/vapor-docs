@@ -30,7 +30,7 @@ environments:
             - 'composer install --no-dev'
 ```
 
-If you would like to use a docker image instead of the default Vapor Lambda runtime, use the `--docker` option:
+In addition to our native runtimes, Vapor supports Docker image deployments. If you would like an environment to use a Docker image runtime instead of the default Vapor runtime, use the `--docker` option when creating your environment:
 
 ```bash
 vapor env my-environment --docker

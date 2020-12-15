@@ -379,6 +379,11 @@ COPY . /var/task
 
 Vapor will build, tag, and publish the image on your next deployment. However, you should ensure that you have installed [Docker](https://docs.docker.com/get-docker/) on your local machine.
 
+The available base images are:
+
+- `laravelphp/vapor:php74`
+- `laravelphp/vapor:php80`
+
 
 ### Building Custom Runtimes
 

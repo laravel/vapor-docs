@@ -30,6 +30,14 @@ environments:
             - 'composer install --no-dev'
 ```
 
+In addition to our native runtimes, Vapor supports Docker image deployments. If you would like an environment to use a Docker image runtime instead of the default Vapor runtime, use the `--docker` option when creating your environment:
+
+```bash
+vapor env my-environment --docker
+```
+
+This command will create a `my-environment.Dockerfile` file in your application's root directory.
+
 ## Environment Variables
 
 Each environment contains a set of environment variables that provide crucial information to your application during execution, just like the variables present in your application's local `.env` file.
@@ -339,6 +347,45 @@ environments:
         build:
             - 'composer install --no-dev'
 ```
+
+If you would like to use a Docker image instead of the default Vapor Lambda runtime, set the `runtime` configuration option to `docker`:
+
+```yaml
+id: 2
+name: vapor-laravel-app
+environments:
+    production:
+        runtime: docker
+        build:
+            - 'composer install --no-dev'
+```
+
+:::warning Switching Between Docker & Layer Based Runtimes
+
+Due to AWS limitations, you cannot switch between Docker based and layer based runtimes if you have already deployed your environment. Unfortunately, you must create a new environment to change a deployed environment's runtime type.
+:::
+
+### Building Custom Docker Images
+
+Using a Docker based runtime allows you to install additional PHP extensions or libraries. You may build an image up to 10GB in size (including your project files). When you deploy, Vapor and AWS will automatically handle building, running, and scaling your application within your Docker based Lambda runtime.
+
+For every new Docker based environment, Vapor adds a `.Dockerfile` file that uses one of Vapor's base images as a starting point for building your image. All of Vapor's base Docker images are based on Alpine Linux. For example, here's how you may install the FFmpeg library within your custom Docker image:
+
+```docker
+FROM laravelphp/vapor:php74
+
+RUN apk --update add ffmpeg
+
+COPY . /var/task
+```
+
+Vapor will build, tag, and publish the image on your next deployment; therefore, you should ensure that you have installed [Docker](https://docs.docker.com/get-docker/) on your local machine.
+
+Vapor's base Docker images are:
+
+- `laravelphp/vapor:php74`
+- `laravelphp/vapor:php80`
+
 
 ### Building Custom Runtimes
 

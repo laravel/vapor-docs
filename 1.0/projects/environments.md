@@ -336,14 +336,14 @@ You may configure alarms for all environment metrics using the Vapor UI. These a
 
 ## Runtime
 
-The `runtime` configuration option allows you to specify which PHP version a given environment runs on. The currently supported runtimes are `php-7.3` and `php-7.4`:
+The `runtime` configuration option allows you to specify which PHP version a given environment runs on. The currently supported runtimes are `php-7.3`, `php-7.4`, and `php-8.0`:
 
 ```yaml
 id: 2
 name: vapor-laravel-app
 environments:
     production:
-        runtime: php-7.4
+        runtime: php-8.0
         build:
             - 'composer install --no-dev'
 ```
@@ -446,6 +446,7 @@ The `layers ` configuration option allows you to specify the Lambda layers that 
 - vapor:php-7.3
 - vapor:php-7.4
 - vapor:php-7.4:imagick
+- vapor:php-8.0
 
 To use different layers, you can provide the [layer ARN](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html) in your `vapor.yml` file:
 
@@ -469,6 +470,11 @@ extension=/opt/bref-extra/imagick.so
 ```
 
 Once these configuration changes have been made, you may deploy your project.
+
+:::warning Imagick & PHP 8
+
+The Imagick extension does not support PHP 8 at this time.
+:::
 
 ## Gateway Versions
 

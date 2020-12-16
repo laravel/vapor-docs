@@ -336,7 +336,7 @@ You may configure alarms for all environment metrics using the Vapor UI. These a
 
 ## Runtime
 
-The `runtime` configuration option allows you to specify which PHP version a given environment runs on. The currently supported runtimes are `php-7.3`, `php-7.4` and `php-8.0`:
+The `runtime` configuration option allows you to specify which PHP version a given environment runs on. The currently supported runtimes are `php-7.3`, `php-7.4`, and `php-8.0`:
 
 ```yaml
 id: 2
@@ -471,9 +471,9 @@ extension=/opt/bref-extra/imagick.so
 
 Once these configuration changes have been made, you may deploy your project.
 
-:::warning Usage of Imagick extension with PHP 8
+:::warning Imagick & PHP 8
 
-At this time, the Imagick extension does not support PHP 8.
+The Imagick extension does not support PHP 8 at this time.
 :::
 
 ## Gateway Versions

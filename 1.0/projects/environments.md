@@ -433,7 +433,7 @@ After you have made these customizations to the `publish.php` script, you may ex
 php -d memory_limit=-1 publish.php
 ```
 
-Once the layers have been published, you may include the layer ARNs in your `vapor.yml`. The `layers` option should be a list of layers your application will utilize - include your newly published layer in this list:
+Once the layers have been published, you may include the layer ARNs in your `vapor.yml`. You should remove the `runtime` option from your environment's configuration and add a `layers` option in its place. The `layers` option should be a list of layers your application will utilize - include your newly published layer in this list:
 
 ```yaml
 id: 3

@@ -433,7 +433,7 @@ After you have made these customizations to the `publish.php` script, you may ex
 php -d memory_limit=-1 publish.php
 ```
 
-Once the layers have been published, you may include the layer ARNs in your `vapor.yml`. You may keep the `runtime` option with the value `al2` if your `layers` are targetting Amazon Linux 2. The `layers` option should be a list of layers your application will utilize - include your newly published layer in this list:
+Once the layers have been published, you may include the layer ARNs in your `vapor.yml`. The `layers` option should be a list of layers your application will utilize - include your newly published layer in this list:
 
 ```yaml
 id: 3
@@ -471,7 +471,7 @@ environments:
           - arn:aws:lambda:us-959512994844-74:13
 ```
 
-You may need to specify the `al2` runtime when layers are targetting Amazon Linux 2:
+You may need to use the Amazon Linux 2 runtimes when layers are targeting that operating system. Amazon Linux 2 runtimes are suffixed with `al2`:
 
 ```yaml
 id: 3
@@ -486,7 +486,7 @@ environments:
 
 ### Imagick Support
 
-:::warning Amazon Linux 2 or PHP 8 limitations
+:::warning Amazon Linux 2 & PHP 8 limitations
 
 The Imagick extension does not support Amazon Linux 2 or PHP 8 at this time.
 :::

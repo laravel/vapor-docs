@@ -336,7 +336,7 @@ You may configure alarms for all environment metrics using the Vapor UI. These a
 
 ## Runtime
 
-The `runtime` configuration option allows you to specify which PHP version a given environment runs on. The currently supported runtimes are `php-7.3`, `php-7.4`, `php-7.4:al2`, `php-8.0`, and `php-8.0:al2`:
+The `runtime` configuration option allows you to specify which PHP version a given environment runs on. The currently supported runtimes are `php-7.3`, `php-7.4`, `php-7.4:al2`, `php-8.0`, and `php-8.0:al2`. The runtimes that are suffixed with `al2` use Amazon Linux 2 while those without the suffix use Amazon Linux 1:
 
 ```yaml
 id: 2
@@ -350,7 +350,7 @@ environments:
 
 :::warning Amazon Linux 2
 
-**Using [Amazon Linux 2](https://aws.amazon.com/amazon-linux-2/) — `php-7.4:al2` or `php-8.0:al2` — is highly recommended**, as Amazon Linux 1 ends its standard support on December 31 - 2020.
+Using [Amazon Linux 2](https://aws.amazon.com/amazon-linux-2/) (`php-7.4:al2` or `php-8.0:al2`) is **highly recommended**, as Amazon Linux 1 ends its standard support on December 31, 2020.
 :::
 
 If you would like to use a Docker image instead of the default Vapor Lambda runtime, set the `runtime` configuration option to `docker`:

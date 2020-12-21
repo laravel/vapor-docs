@@ -365,11 +365,6 @@ environments:
             - 'composer install --no-dev'
 ```
 
-:::warning Switching Between Docker & Layer Based Runtimes
-
-Due to AWS limitations, you cannot switch between Docker based and layer based runtimes if you have already deployed your environment. Unfortunately, you must create a new environment to change a deployed environment's runtime type.
-:::
-
 ### Building Custom Docker Images
 
 Using a Docker based runtime allows you to install additional PHP extensions or libraries. You may build an image up to 10GB in size (including your project files). When you deploy, Vapor and AWS will automatically handle building, running, and scaling your application within your Docker based Lambda runtime.

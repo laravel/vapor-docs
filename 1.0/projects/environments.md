@@ -336,17 +336,22 @@ You may configure alarms for all environment metrics using the Vapor UI. These a
 
 ## Runtime
 
-The `runtime` configuration option allows you to specify which PHP version a given environment runs on. The currently supported runtimes are `php-7.3`, `php-7.4`, and `php-8.0`:
+The `runtime` configuration option allows you to specify which PHP version a given environment runs on. The currently supported runtimes are `php-7.3`, `php-7.4`, `php-7.4:al2`, `php-8.0`, and `php-8.0:al2`. The runtimes that are suffixed with `al2` use Amazon Linux 2 while those without the suffix use Amazon Linux 1:
 
 ```yaml
 id: 2
 name: vapor-laravel-app
 environments:
     production:
-        runtime: php-8.0
+        runtime: php-8.0:al2
         build:
             - 'composer install --no-dev'
 ```
+
+:::warning Amazon Linux 2
+
+Using [Amazon Linux 2](https://aws.amazon.com/amazon-linux-2/) (`php-7.4:al2` or `php-8.0:al2`) is **highly recommended**, as Amazon Linux 1 ends its standard support on December 31, 2020.
+:::
 
 If you would like to use a Docker image instead of the default Vapor Lambda runtime, set the `runtime` configuration option to `docker`:
 
@@ -443,10 +448,15 @@ environments:
 
 The `layers ` configuration option allows you to specify the Lambda layers that should be available to the deployment. Vapor has built-in support for the following layers:
 
+Amazon Linux 1:
 - vapor:php-7.3
 - vapor:php-7.4
 - vapor:php-7.4:imagick
 - vapor:php-8.0
+
+Amazon Linux 2:
+- vapor:php-7.4:al2
+- vapor:php-8.0:al2
 
 To use different layers, you can provide the [layer ARN](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html) in your `vapor.yml` file:
 
@@ -461,7 +471,25 @@ environments:
           - arn:aws:lambda:us-959512994844-74:13
 ```
 
+You may need to use the Amazon Linux 2 runtimes when layers are targeting that operating system. Amazon Linux 2 runtimes are suffixed with `al2`:
+
+```yaml
+id: 3
+name: vapor-laravel-app
+environments:
+    production:
+        runtime: al2
+        layers:
+          - vapor:php-7.4:al2
+          - arn:aws:lambda:us-5678902323-74:13
+```
+
 ### Imagick Support
+
+:::warning Amazon Linux 2 & PHP 8 limitations
+
+The Imagick extension does not support Amazon Linux 2 or PHP 8 at this time.
+:::
 
 If you would like to add the Imagick extension to your deployment, you should add the `vapor:php-7.4` and `vapor:php-7.4:imagick` layers to your `vapor.yml` file. In addition, create a `/php/conf.d/php.ini` within your project that contains the following configuration entry:
 
@@ -470,11 +498,6 @@ extension=/opt/bref-extra/imagick.so
 ```
 
 Once these configuration changes have been made, you may deploy your project.
-
-:::warning Imagick & PHP 8
-
-The Imagick extension does not support PHP 8 at this time.
-:::
 
 ## Gateway Versions
 

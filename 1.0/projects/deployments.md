@@ -14,6 +14,13 @@ To initiate a deployment, execute the `deploy` CLI command from the root of your
 vapor deploy production
 ```
 
+:::warning Application Size
+
+AWS Lambda has strict limitations on the size of applications running within the environment. Typically, the size of your application should not be a problem. However, you may receive an error indicating that your project is too large.
+
+To mitigate this, Vapor offers [Docker based deployments](https://docs.vapor.build/1.0/projects/environments.html#building-custom-docker-images). Which allows developers to package and deploy applications as Docker container images of up to 10GB.
+:::
+
 ## Build Hooks
 
 You may define build hooks for an environment using the `build` key within your `vapor.yml` file. These commands are executed on the local machine that the deployment is running on and may be used to prepare your application for deployment. During deployment, your application is built within a temporary `.vapor` directory that is created by the CLI and all of your `build` commands will run within that temporary directory:

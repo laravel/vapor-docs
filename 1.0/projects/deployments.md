@@ -16,9 +16,7 @@ vapor deploy production
 
 :::warning Application Size
 
-AWS Lambda has strict limitations on the size of applications running within the environment. Typically, the size of your application should not be a problem. However, you may receive an error indicating that your project is too large.
-
-To mitigate this, Vapor offers [Docker based deployments](https://docs.vapor.build/1.0/projects/environments.html#building-custom-docker-images). Which allows developers to package and deploy applications as Docker container images of up to 10GB.
+AWS Lambda has strict limitations on the size of applications running within the environment. If your application exceeds this limit, you may take advantage of Vapor's [Docker based deployments](https://docs.vapor.build/1.0/projects/environments.html#building-custom-docker-images). Docker based deployments allow you to package and deploy applications up to 10GB in size.
 :::
 
 ## Build Hooks

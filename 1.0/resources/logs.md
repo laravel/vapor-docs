@@ -6,11 +6,11 @@
 
 As you may know, Laravel provides support for a variety of logging services. By default, when using Vapor, your application will use the AWS CloudWatch service when logging messages.
 
-## Visualizing Logs
+## Viewing Logs
 
 If you have installed the [Vapor UI dashboard package](./../introduction.html#installing-the-vapor-ui-dashboard), you may access the `/vapor-ui` URI to view and search your application's logs stored in AWS CloudWatch.
 
-Alternatively, you may visualize logs directly in AWS CloudWatch at AWS console > Lambda > Locate the lambda for your project (vapor-{projectName}-{environmentName}) > Monitoring > View logs in CloudWatch.
+Alternatively, you may view logs directly in AWS CloudWatch. To do so, navigate to the AWS console's "Lambda" dashboard. Then, locate the Lambda for your project (vapor-{projectName}-{environmentName}). Then, you may click the "View logs in CloudWatch" link within the Lambda's "Monitoring" tab.
 
 :::tip Infrastructure Logs
 

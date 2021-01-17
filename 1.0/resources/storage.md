@@ -94,6 +94,17 @@ Vapor.store(this.$refs.file.files[0], {
 
 All uploaded files will be placed in a `tmp` directory within the bucket. **This directory is automatically configured to purge any files older than 24 hours.** This feature serves to conveniently clean up file uploads that are initiated but not completed, such as a user that begins updating their profile photo but does not save the change.
 
+The `tmp` directory is private by default. To override this for a given file you can add a `visibility` property to the second argument of `Vapor.store`, and assign it one of [S3's predefined permission grants](https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl):
+
+```js
+Vapor.store(this.$refs.file.files[0], {
+    visibility: 'public-read'
+    }
+}).then(response => {
+    // copy to permanent storage
+});
+````
+
 ### Acknowledge File Uploads & Permanent Storage
 
 All uploaded files will be stored using a UUID as their filename. The `response` provided to the `store` method's `then` callback will contain the UUID of the file, the file's full S3 key, and the file's bucket. You may then POST this information to your application's backend to permanently store the file by moving it out of the bucket's `tmp` directory. In addition, you may wish to store additional information about the file, such as its original name and content type, in your application's database:

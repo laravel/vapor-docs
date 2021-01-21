@@ -365,6 +365,11 @@ environments:
             - 'composer install --no-dev'
 ```
 
+:::warning Migrating Existing Environments To A Docker Runtime
+
+When migrating an existing environment to a Docker runtime, please keep in mind that you won't be able to revert that environment to the default Vapor Lambda runtime later. For that reason, you may want to create an environment for testing the Docker runtime first.
+:::
+
 ### Building Custom Docker Images
 
 Using a Docker based runtime allows you to install additional PHP extensions or libraries. You may build an image up to 10GB in size (including your project files). When you deploy, Vapor and AWS will automatically handle building, running, and scaling your application within your Docker based Lambda runtime.

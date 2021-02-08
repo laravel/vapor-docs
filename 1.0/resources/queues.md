@@ -61,6 +61,8 @@ environments:
             - 'composer install --no-dev'
 ```
 
+When using multiple custom queues, the `queue-concurrency` option defines the maximum concurrency per queue. For example, if you were to define two custom queues and a `queue-concurrency` of 100 the total maximum concurrency will be 200.
+
 ## Queue Visibility Timeout
 
 By default, if your queued job is not deleted or released within one minute of beginning to process, SQS will retry the job. To configure this "visibility timeout", you may define the `queue-timeout` option in the environment's `vapor.yml` configuration. For example, we may set this timeout to five minutes:

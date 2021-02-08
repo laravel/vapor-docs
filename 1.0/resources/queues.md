@@ -61,7 +61,7 @@ environments:
             - 'composer install --no-dev'
 ```
 
-When using multiple custom queues, the `queue-concurrency` option defines the maximum concurrency per queue. As an example, using a `queue-concurrency` with the value 100 and two custom queues, the total maximum concurrency will be 200.
+When using multiple custom queues, the `queue-concurrency` option defines the maximum concurrency per queue. For example, if you were to define two custom queues and a `queue-concurrency` of 100 the total maximum concurrency will be 200.
 
 ## Queue Visibility Timeout
 

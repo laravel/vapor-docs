@@ -91,7 +91,7 @@ php artisan vapor-ui:install
 
 ### Dashboard Authorization
 
-Vapor UI exposes a dashboard at the `/vapor-ui` URI. By default, you won't be able to access this dashboard. However, within your `app/Providers/VaporUiServiceProvider.php` file, there is a `gate` method that controls access to the Vapor UI dashboard. You are free to modify this gate as needed to restrict access to your Vapor UI dashboard:
+Vapor UI exposes a dashboard at the `/vapor-ui` URI. Within your `app/Providers/VaporUiServiceProvider.php` file, there is a `gate` method that controls access to the Vapor UI dashboard. By default, all visitors are restricted. You should modify this gate as needed to grant access to your Vapor UI dashboard:
 
 ```php
 /**

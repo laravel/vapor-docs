@@ -4,6 +4,11 @@
 
 ## What Is Vapor?
 
+:::tip Laravel Vapor YouTube Series
+
+Our [official video introduction to Laravel Vapor](https://www.youtube.com/playlist?list=PLcjapmjyX17gqhjUz8mgTaWzSv1FPgePD) is a great way to learn the ropes! Over a dozen videos will show you every aspect of Laravel Vapor.
+:::
+
 Laravel Vapor is an auto-scaling, serverless deployment platform for Laravel, powered by AWS Lambda. Manage your Laravel infrastructure on Vapor and fall in love with the scalability and simplicity of serverless.
 
 Vapor abstracts the complexity of managing Laravel applications on AWS Lambda, as well as interfacing those applications with SQS queues, databases, Redis clusters, networks, CloudFront CDN, and more. Some highlights of Vapor's features include:

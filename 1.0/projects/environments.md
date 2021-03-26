@@ -336,24 +336,36 @@ You may configure alarms for all environment metrics using the Vapor UI. These a
 
 ## Runtime
 
-The `runtime` configuration option allows you to specify which PHP version a given environment runs on. The currently supported runtimes are `php-7.3`, `php-7.4`, `php-7.4:al2`, `php-8.0`, and `php-8.0:al2`. The runtimes that are suffixed with `al2` use Amazon Linux 2 while those without the suffix use Amazon Linux 1:
+The `runtime` configuration option allows you to specify the runtime a given environment runs on.
+
+### Native Runtimes
+
+The currently supported native runtimes are `php-7.3`, `php-7.4`, `php-7.4:al2`, `php-8.0`, and `php-8.0:al2`. The runtimes that are suffixed with `al2` use Amazon Linux 2 while those without the suffix use Amazon Linux 1:
 
 ```yaml
 id: 2
 name: vapor-laravel-app
 environments:
     production:
-        runtime: php-8.0:al2
+        runtime: 'php-8.0:al2'
         build:
             - 'composer install --no-dev'
 ```
 
 :::warning Amazon Linux 2
 
-Using [Amazon Linux 2](https://aws.amazon.com/amazon-linux-2/) (`php-7.4:al2` or `php-8.0:al2`) is **highly recommended**, as Amazon Linux 1 ends its standard support on December 31, 2020.
+Using [Amazon Linux 2](https://aws.amazon.com/amazon-linux-2/) (`php-7.4:al2` or `php-8.0:al2`) is **highly recommended**, as Amazon Linux 1 ended its standard support on December 31, 2020.
 :::
 
-If you would like to use a Docker image instead of the default Vapor Lambda runtime, set the `runtime` configuration option to `docker`:
+The following limitations apply to Vapor native runtimes:
+- The application size, including the runtime itself, must not exceed 250MB.
+- Additional PHP extensions or libraries — such as `imagick` — can not be installed.
+
+### Docker Runtimes
+
+Docker based runtimes allow you to package and deploy applications up to 10GB in size and you can install additional PHP extensions or libraries by updating the environment's corresponding `.Dockerfile`.
+
+If you would like to use a Docker image instead of the Vapor native runtimes, set the `runtime` configuration option to `docker`:
 
 ```yaml
 id: 2
@@ -370,11 +382,7 @@ environments:
 When migrating an existing environment to a Docker runtime, please keep in mind that you won't be able to revert that environment to the default Vapor Lambda runtime later. For that reason, you may want to create an environment for testing the Docker runtime first.
 :::
 
-### Building Custom Docker Images
-
-Using a Docker based runtime allows you to install additional PHP extensions or libraries. You may build an image up to 10GB in size (including your project files). When you deploy, Vapor and AWS will automatically handle building, running, and scaling your application within your Docker based Lambda runtime.
-
-For every new Docker based environment, Vapor adds a `.Dockerfile` file that uses one of Vapor's base images as a starting point for building your image. All of Vapor's base Docker images are based on Alpine Linux. For example, here's how you may install the FFmpeg library within your custom Docker image:
+For every new Docker based environment, Vapor adds a `.Dockerfile` file that uses one of Vapor's base images as a starting point for building your image. All of Vapor's Docker images are based on Alpine Linux. For example, here's how you may install the FFmpeg library within your custom Docker image:
 
 ```docker
 FROM laravelphp/vapor:php74
@@ -390,114 +398,6 @@ Vapor's base Docker images are:
 
 - `laravelphp/vapor:php74`
 - `laravelphp/vapor:php80`
-
-
-### Building Custom Runtimes
-
-Even though Vapor's provided PHP runtime meets the common requirements of Laravel applications, it is possible to build your own PHP runtime that includes non-standard extensions or libraries.
-
-First, you should ensure that you have installed [Docker](https://docs.docker.com/get-docker/) on your local machine. Next, you should, clone the `laravel/vapor-php-build` repository. This repository is used internally to build the standard Vapor PHP runtime:
-
-```bash
-git clone https://github.com/laravel/vapor-php-build
-
-cd vapor-php-build
-
-composer install
-```
-
-Once you have cloned the repository and installed its Composer dependencies, you should create an `.env` file containing your AWS access key information:
-
-```bash
-AWS_ACCESS_KEY_ID=
-AWS_SECRET_ACCESS_KEY=
-```
-
-As you may have noticed, the `vapor-php-build` repository contains a directory corresponding to each version of PHP that we currently support. If you navigate within one of these directories, you will find the Docker files and configuration files needed to build the runtime. You may customize or modify these files as you wish in order to build your runtime.
-
-Once you have customized the runtime to your liking, you should run the `make distribution` command in your terminal. This command should be executed from within the PHP version directory that you have modified (`vapor-php-build/php{xx}`):
-
-```bash
-cd vapor-php-build/phpxx
-
-make distribution
-```
-
-The `make distribution` command will place the final ZIP archive of the runtime in the `export` directory of `vapor-php-build`.
-
-Finally, the `vapor-php-build/publish.php` script may be used to publish the custom runtime to AWS. You will need to publish the runtime in the correct region for your application. By default, this script publishes to all regions, you should modify the `publish.php` script to only publish to the region that your application belongs to. In addition, you should customize the `$layers` array to only contain the PHP version that you are modifying.
-
-After you have made these customizations to the `publish.php` script, you may execute it. The script will output the ARNs of the layers that are published:
-
-```bash
-php -d memory_limit=-1 publish.php
-```
-
-Once the layers have been published, you may include the layer ARNs in your `vapor.yml`. You should remove the `runtime` option from your environment's configuration and add a `layers` option in its place. The `layers` option should be a list of layers your application will utilize - include your newly published layer in this list:
-
-```yaml
-id: 3
-name: your-project
-environments:
-    production:
-        layers:
-            - 'arn:aws:lambda:xxxxxxxx:xxxxxxx:layer:vapor-php-xx:x'
-```
-
-## Layers
-
-The `layers ` configuration option allows you to specify the Lambda layers that should be available to the deployment. Vapor has built-in support for the following layers:
-
-Amazon Linux 1:
-- vapor:php-7.3
-- vapor:php-7.4
-- vapor:php-7.4:imagick
-- vapor:php-8.0
-
-Amazon Linux 2:
-- vapor:php-7.4:al2
-- vapor:php-8.0:al2
-
-To use different layers, you can provide the [layer ARN](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html) in your `vapor.yml` file:
-
-```yaml
-id: 2
-name: vapor-laravel-app
-environments:
-    production:
-        layers:
-          - vapor:php-7.4
-          - vapor:php-7.4:imagick
-          - arn:aws:lambda:us-959512994844-74:13
-```
-
-You may need to use the Amazon Linux 2 runtimes when layers are targeting that operating system. Amazon Linux 2 runtimes are suffixed with `al2`:
-
-```yaml
-id: 3
-name: vapor-laravel-app
-environments:
-    production:
-        runtime: al2
-        layers:
-          - vapor:php-7.4:al2
-          - arn:aws:lambda:us-5678902323-74:13
-```
-
-### Imagick Support
-
-:::warning Amazon Linux 2 & PHP 8 limitations
-
-The Imagick extension does not support Amazon Linux 2 or PHP 8 at this time.
-:::
-
-If you would like to add the Imagick extension to your deployment, you should add the `vapor:php-7.4` and `vapor:php-7.4:imagick` layers to your `vapor.yml` file. In addition, create a `/php/conf.d/php.ini` within your project that contains the following configuration entry:
-
-```
-extension=/opt/bref-extra/imagick.so
-```
-
-Once these configuration changes have been made, you may deploy your project.
 
 ## Gateway Versions
 

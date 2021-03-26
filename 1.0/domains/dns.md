@@ -18,6 +18,8 @@ vapor zone example.com
 
 Once a zone has been created, Vapor will provide you with the DNS zone's "nameservers". At your domain registrar, you may set the domain's nameservers to the nameservers given to you by Vapor. This will specify Vapor as the entity managing the DNS records for the domain.
 
+If you don't want Vapor to manage your DNS, attaching a domain to a Vapor environment requires you manually add the CNAME records to your DNS configuration. These CNAME records are displayed at the end of every deployment CLI output.
+
 ## Managing DNS Records
 
 ### Creating & Updating Records

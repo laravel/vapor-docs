@@ -121,7 +121,7 @@ In addition, these secret URLs will continue to work even when an application is
 
 ## Custom Domains
 
-Of course, as cool as they are, you don't want to share your vanity URL with the world. You likely want to attach your own custom domain to an environment. To do so, you'll first need to create a [certificate](./../domains/certificates.md) for the domain. All Vapor applications are required to utilize SSL. Don't worry, Vapor's certificates are free and automatically renew.
+Of course, as cool as they are, you don't want to share your vanity URL with the world. You likely want to attach your own custom domain to an environment. To do so, you'll first need to create a [DNS zone](./../domains/dns.md) for the domain. Next, you need to create a [certificate](./../domains/certificates.md) for the domain. All Vapor applications are required to utilize SSL. Don't worry, Vapor's certificates are free and automatically renew.
 
 After creating a certificate, you may attach the domain to your environment using the `domain` configuration option in your `vapor.yml` file. When attaching a domain to an environment, it is not necessary to provide the `www` sub-domain:
 
@@ -135,9 +135,9 @@ environments:
             - 'composer install --no-dev'
 ```
 
-During deployment, Vapor will configure the environment to handle requests on this domain. After the deployment is completed, Vapor will provide you with CNAME records for the domain. These records will point the domain to your Lambda application.
+During deployment, Vapor will configure the environment to handle requests on this domain. After the deployment is completed, the deployment output will provide you with CNAME records for the domain. These records will point the domain to your environment.
 
-**Of course, Vapor will automatically add these records to a [Vapor DNS zone](./../domains/dns.md) for you. So, if you are using Vapor to manage your DNS records, you are not required to manually add these CNAME records to your DNS configuration.** If you are not using Vapor to manage your DNS, you should manually add these CNAME records to your domain's DNS provider.
+**Of course, Vapor will automatically add these records to a [DNS zone](./../domains/dns.md) for you. So, if you are using Vapor to manage your DNS records, you are not required to manually add these CNAME records to your DNS configuration.** If you are not using Vapor to manage your DNS, you should manually add these CNAME records to your domain's DNS provider.
 
 :::warning Custom Domain Provisioning Time
 

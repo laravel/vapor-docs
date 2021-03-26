@@ -354,18 +354,19 @@ environments:
 
 :::warning Amazon Linux 2
 
-Using [Amazon Linux 2](https://aws.amazon.com/amazon-linux-2/) (`php-7.4:al2` or `php-8.0:al2`) is **highly recommended**, as Amazon Linux 1 ended its standard support on December 31, 2020.
+Using [Amazon Linux 2](https://aws.amazon.com/amazon-linux-2/) (`php-7.4:al2` or `php-8.0:al2`) is **highly recommended**, as Amazon Linux 1 is no longer maintained as of December 31, 2020.
 :::
 
 The following limitations apply to Vapor native runtimes:
+
 - The application size, including the runtime itself, must not exceed 250MB.
-- Additional PHP extensions or libraries — such as `imagick` — can not be installed.
+- Additional PHP extensions or libraries (such as `imagick`) can not be installed.
 
 ### Docker Runtimes
 
-Docker based runtimes allow you to package and deploy applications up to 10GB in size and you can install additional PHP extensions or libraries by updating the environment's corresponding `.Dockerfile`.
+Docker based runtimes allow you to package and deploy applications up to 10GB in size and allow you to install additional PHP extensions or libraries by updating the environment's corresponding `.Dockerfile`.
 
-If you would like to use a Docker image instead of the Vapor native runtimes, set the `runtime` configuration option to `docker`:
+If you would like to use a Docker image instead of the Vapor native runtimes, set the `runtime` configuration option to `docker` within your `vapor.yml` file:
 
 ```yaml
 id: 2

@@ -30,7 +30,6 @@ module.exports = [
     title: 'Domains',
     collapsable: false,
     children: prefix('domains', [
-      'registrar',
       'dns',
       'certificates',
     ]),

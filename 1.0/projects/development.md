@@ -34,3 +34,15 @@ Route::get('/', function (LambdaEvent $event) {
     // ..
 });
 ```
+## Configuring OpenSSL
+
+To use certain OpenSSL functions, such as [openssl_pkey_new](https://www.php.net/manual/en/function.openssl-pkey-new.php), you'll need to provide an openssl.cnf file. Because Vapor injects environment variables into the underlying lambda container instead of loading them at runtime, the path to the file can be provided in your `.env` file
+
+```
+OPENSSL_CONF="/var/task/openssl.cnf"
+```
+
+:::warning Local functionality
+
+Because environment variables locally get loaded at a later stage, this will not override the config on a local environment.
+:::

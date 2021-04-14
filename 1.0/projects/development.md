@@ -17,16 +17,16 @@ return $response->withHeaders([
 Lambda limits responses to 6MB. If you need to serve a larger file, consider returning a signed, temporary S3 URL that your user may use to download the file directly from S3.
 :::
 
-## Access To The Underlying Event Object
+## Access To The Underlying Lambda Event Object
 
 When an AWS Lambda is invoked (whether HTTP, CLI, or Queue), one of the parameters provided an event object. The event differs in structure and contents. For example, an event created by API Gateway will contain details related to the HTTP request.
 
-To obtain an instance of the current event object via dependency injection, you should type-hint the `Laravel\Vapor\Runtime\Event` class on your route closure, controller, job, or command:
+To obtain an instance of the current lambda event object via dependency injection, you should type-hint the `Laravel\Vapor\Runtime\LambdaEvent` class on your route closure, controller, job, or command:
 
 ```php
-use Laravel\Vapor\Runtime\Event;
+use Laravel\Vapor\Runtime\LambdaEvent;
 
-Route::get('/', function (Event $event) {
+Route::get('/', function (LambdaEvent $event) {
     $context = $event['requestContext'];
 
     $domain = $context['domainName'];

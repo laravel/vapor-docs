@@ -60,10 +60,7 @@ vapor env:push production
 
 Vapor automatically injects a variety of environment variables based on your environment's configured database, cache, etc. You will not see these environment variables when you manage your environment, and any variables you manually define will override Vapor's automatically injected variables.
 
-:::warning Variable Nesting
-
-If you are using DotEnv's [variable nesting](https://github.com/vlucas/phpdotenv#nesting-variables) feature to reference environment variables that Vapor is injecting, you should replace these references with literal values instead.
-:::
+If you are using the DotEnv library's [variable nesting](https://github.com/vlucas/phpdotenv#nesting-variables) feature to reference environment variables that Vapor is injecting, you should replace these references with literal values instead. Since Vapor's injected environment variables do not belong to the environment file, they can not be referenced using the nesting feature.
 
 :::tip Variables & Deployments
 

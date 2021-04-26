@@ -223,7 +223,7 @@ environments:
 
 ## Memory
 
-Vapor allocates CPU power of your Lambda function in proportion to the amount of memory configured. You may increase or decrease the memory by using the `memory` option in your environment's `vapor.yml` configuration:
+Vapor (via AWS Lambda) allocates CPU power to your Lambda function in proportion to the amount of memory configured for the application. You may increase or decrease the configured memory using the `memory` option in your environment's `vapor.yml` configuration:
 
 ```yaml
 id: 2

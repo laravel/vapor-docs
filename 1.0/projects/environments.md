@@ -221,6 +221,20 @@ environments:
             - 'composer install --no-dev'
 ```
 
+## Memory
+
+Vapor (via AWS Lambda) allocates CPU power to your Lambda function in proportion to the amount of memory configured for the application. You may increase or decrease the configured memory using the `memory` option in your environment's `vapor.yml` configuration:
+
+```yaml
+id: 2
+name: vapor-laravel-app
+environments:
+    production:
+        memory: 1024
+        build:
+            - 'composer install --no-dev'
+```
+
 ## Concurrency
 
 By default, Vapor will allow your application to process web requests at max concurrency, which is typically 1,000 requests executing at the same time at any given moment across all of your AWS Lambda functions in a given region. If you would like to reduce the maximum web concurrency, you may define the `concurrency` option in the environment's `vapor.yml` configuration. Additionally, if you need more than 1,000 concurrent requests, you can submit a limit increase request in the AWS Support Center console.

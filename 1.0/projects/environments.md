@@ -383,7 +383,7 @@ The following limitations apply to Vapor native runtimes:
 Docker based runtimes allow you to package and deploy applications up to 10GB in size and allow you to install additional PHP extensions or libraries by updating the environment's corresponding `.Dockerfile`.
 
 ```docker
-FROM laravelphp/vapor:php74
+FROM laravelphp/vapor:php80
 
 COPY . /var/task
 ```
@@ -408,7 +408,7 @@ When migrating an existing environment to a Docker runtime, please keep in mind 
 For every new Docker based environment, Vapor adds a `.Dockerfile` file that uses one of Vapor's base images as a starting point for building your image. All of Vapor's Docker images are based on Alpine Linux. For example, here's how you may install the FFmpeg library within your custom Docker image:
 
 ```docker
-FROM laravelphp/vapor:php74
+FROM laravelphp/vapor:php80
 
 RUN apk --update add ffmpeg
 

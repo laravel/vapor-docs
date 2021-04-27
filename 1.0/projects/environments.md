@@ -380,7 +380,13 @@ The following limitations apply to Vapor native runtimes:
 
 ### Docker Runtimes
 
-Docker based runtimes allow you to package and deploy applications up to 10GB in size and allow you to install additional PHP extensions or libraries by updating the environment's corresponding `.Dockerfile`.
+Docker based runtimes allow you to package and deploy applications up to 10GB in size and allow you to install additional PHP extensions or libraries by updating the environment's corresponding `.Dockerfile`. For every new Docker based environment, Vapor adds a `.Dockerfile` file that uses one of Vapor's base images as a starting point for building your image. All of Vapor's Docker images are based on Alpine Linux:
+
+```docker
+FROM laravelphp/vapor:php80
+
+COPY . /var/task
+```
 
 If you would like to use a Docker image instead of the Vapor native runtimes, set the `runtime` configuration option to `docker` within your `vapor.yml` file:
 
@@ -399,17 +405,17 @@ environments:
 When migrating an existing environment to a Docker runtime, please keep in mind that you won't be able to revert that environment to the default Vapor Lambda runtime later. For that reason, you may want to create an environment for testing the Docker runtime first.
 :::
 
-For every new Docker based environment, Vapor adds a `.Dockerfile` file that uses one of Vapor's base images as a starting point for building your image. All of Vapor's Docker images are based on Alpine Linux. For example, here's how you may install the FFmpeg library within your custom Docker image:
+Of course, you are free to modify your environment's `Dockerfile` to install additional dependencies or PHP extensions. For example, here's how you may install the FFmpeg library within your custom Docker image:
 
 ```docker
-FROM laravelphp/vapor:php74
+FROM laravelphp/vapor:php80
 
 RUN apk --update add ffmpeg
 
 COPY . /var/task
 ```
 
-Vapor will build, tag, and publish the image on your next deployment; therefore, you should ensure that you have installed [Docker](https://docs.docker.com/get-docker/) on your local machine.
+Vapor will build, tag, and publish your environment's image during your deployments; therefore, you should ensure that you have installed [Docker](https://docs.docker.com/get-docker/) on your local machine.
 
 Vapor's base Docker images are:
 

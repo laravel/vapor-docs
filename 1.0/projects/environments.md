@@ -382,6 +382,12 @@ The following limitations apply to Vapor native runtimes:
 
 Docker based runtimes allow you to package and deploy applications up to 10GB in size and allow you to install additional PHP extensions or libraries by updating the environment's corresponding `.Dockerfile`.
 
+```docker
+FROM laravelphp/vapor:php74
+
+COPY . /var/task
+```
+
 If you would like to use a Docker image instead of the Vapor native runtimes, set the `runtime` configuration option to `docker` within your `vapor.yml` file:
 
 ```yaml

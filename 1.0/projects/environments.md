@@ -237,7 +237,7 @@ environments:
 
 :::warning Memory Increments
 
-To configure the memory for your function, set a value between 128 MB and 10,240 MB in 64-MB increments.
+When configuring the memory for your Lambda function, you may define a value between 128 MB and 10,240 MB in 64-MB increments.
 :::
 
 ## Concurrency

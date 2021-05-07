@@ -235,6 +235,11 @@ environments:
             - 'composer install --no-dev'
 ```
 
+:::warning Memory Increments
+
+When configuring the memory for your Lambda function, you may define a value between 128 MB and 10,240 MB in 64-MB increments.
+:::
+
 ## Concurrency
 
 By default, Vapor will allow your application to process web requests at max concurrency, which is typically 1,000 requests executing at the same time at any given moment across all of your AWS Lambda functions in a given region. If you would like to reduce the maximum web concurrency, you may define the `concurrency` option in the environment's `vapor.yml` configuration. Additionally, if you need more than 1,000 concurrent requests, you can submit a limit increase request in the AWS Support Center console.

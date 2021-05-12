@@ -137,9 +137,12 @@ environments:
             - 'composer install --no-dev'
 ```
 
-During deployment, Vapor will configure the environment to handle requests on this domain. After the deployment is completed, the deployment output will provide you with CNAME records for the domain. These records will point the domain to your environment.
+During deployment, Vapor will configure the environment to handle requests on this domain, and automatically add the necessary DNS records to the [DNS zone](./../domains/dns.md).
 
-**Of course, Vapor will automatically add these records to a [DNS zone](./../domains/dns.md) for you. So, if you are using Vapor to manage your DNS records, you are not required to manually add these CNAME records to your DNS configuration.** If you are not using Vapor to manage your DNS, you should manually add these CNAME records to your domain's DNS provider.
+:::warning Self-Managed Domains
+
+If you self-manage the domain DNS settings, Vapor will not update the DNS records automatically. Therefore, you will need to run `vapor record:list domain-name.com`, and update the DNS settings accordingly.
+:::
 
 :::warning Custom Domain Provisioning Time
 
@@ -334,6 +337,21 @@ environments:
 
 Due to Vapor limitations, log messages from scheduled tasks will not appear in AWS CloudWatch or Vapor UI. As a workaround, you should dispatch a queued job from your scheduled tasks and write log messages from your queued job.
 :::
+
+## Mail
+
+As you may know, Laravel provides a clean, simple email API. And by default, Vapor will automatically configure your environment to use **[Amazon SES](https://aws.amazon.com/ses/)** as the default mail driver by injecting the proper Laravel environment variables during deployment. Of course, you may change the default mail driver by setting a different `MAIL_MAILER` environment variable.
+
+Now, if you plan to use Amazon SES in a Vapor environment, you first need to [attach a domain](#custom-domains) to your environment. Once attached and deployed, Vapor will automatically update the domain DNS records, so Amazon SES can validate the domain and configure the DKIM.  These new DNS records are necessary to help protect your reputation as a sender.
+
+:::warning Self-Managed Domains
+
+If you self-manage the domain DNS settings, Vapor will not update the DNS records automatically. Therefore, you will need to run `vapor record:list domain-name.com`, and update the DNS settings accordingly.
+:::
+
+Next, by default Vapor configures "From Address", and the "From Name", with the`hello@your-domain.com` and `Your Project Name` values respectively. Of course, feel free to modify these values by adjusting both `MAIL_FROM_ADDRESS` and `MAIL_FROM_NAME` environment variables.
+
+Finally, if you haven't used Amazon SES before, your account will be in sandbox mode. Meaning that you can only send emails to verified domains, e.g: from `hello@your-domain.com` to `world@your-domain.com`. Moving out of the Amazon SES sandbox requires you to follow these instructions: **[docs.aws.amazon.com/ses/latest/DeveloperGuide/request-production-access.html](https://docs.aws.amazon.com/ses/latest/DeveloperGuide/request-production-access.html)**.
 
 ## Metrics
 

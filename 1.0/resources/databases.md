@@ -183,7 +183,7 @@ When upgrading a database, a new database is created with the same configuration
 
 This operation can take up to several hours. Therefore, if you plan to attach the new database to a production environment, you may want to place any affected environments in maintenance mode first. Once the new upgraded database is available, you may start using it by attaching it to an environment. 
 
-Of course, if you are satisfied with the database upgrade, you may delete the original database.
+Of course, once you are satisfied with the database upgrade, you may delete the original database.
 
 ## Metrics
 

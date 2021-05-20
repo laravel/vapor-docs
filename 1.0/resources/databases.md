@@ -170,6 +170,21 @@ When restoring a database, a new database is created with the same configuration
 
 Once you are satisfied with the database restoration, you may delete the old database.
 
+
+## Upgrading Databases
+
+You may upgrade a Vapor managed database via the Vapor UI or the `database:upgrade` CLI command. When upgrading a database, a new database is created with the same configuration and credentials as the original database:
+
+```bash
+vapor database:upgrade current-database-name new-database-name
+```
+
+Keep in mind that major version upgrades can contain database changes that are not backward-compatible with existing applications. For that reason, we recommend that you thoroughly test the new upgraded database version before attaching it to a production environment. The original database will not be affected by this operation at any point.
+
+Upgrading a database can take several hours for large databases. Therefore, if you plan to attach the new database to a production environment, you may want to place any affected environments in maintenance mode first. Once the newly upgraded database is available, you may start using it by attaching it to an environment. 
+
+Of course, once you are satisfied with the database upgrade, you may delete the original database.
+
 ## Metrics
 
 A variety of database performance metrics are available via the Vapor UI's database detail screen or using the `database:metrics` CLI command:

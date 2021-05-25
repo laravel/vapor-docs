@@ -317,11 +317,11 @@ environments:
             rate-limit: 1000
 ```
 
-By using the `rate-limit` option, Vapor's managed Firewall tracks the rate of requests for each originating IP address and blocks IPs with rates over the given `rate-limit` value. On the example above, if the count for an IP address exceeds 1,000 requests in any 5-minute time span, the Firewall will block temporarly requests from that IP address.
+By using the `rate-limit` option, Vapor's managed Firewall tracks the rate of requests for each originating IP address and blocks IPs with rates over the given `rate-limit` value. On the example above, if the count for an IP address exceeds 1,000 requests in any 5-minute time span, the Firewall will block temporarly requests from that IP address with the status code `403 Forbidden`.
 
 :::warning API Gateway v2
 
-Due to AWS limitations, Vapor Firewall does not support API Gateway v2.
+Due to AWS limitations, Vapor's managed Firewall does not support API Gateway v2.
 :::
 
 Behind the scenes, Vapor's managed Firewall uses **[Amazon WAF](https://aws.amazon.com/waf/)**. Feel free to check out their documentation for more information about WAF and it's pricing.

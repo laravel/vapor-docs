@@ -298,6 +298,34 @@ environments:
             - 'composer install --no-dev'
 ```
 
+## Firewall
+
+You may instruct Vapor to configure a Firewall for basic protection against denial-of-service attacks targeting your environment.
+
+Before getting started, keep in mind that Vapor's managed Firewall rate limits requests using the IP address from the web request origin. Therefore, this solution only makes sense if the requests are not being reversed proxied from a service like Cloudflare. **If you are using a reverse proxy, you should not use this Firewall**. Otherwise, this Firewall may block legit requests to your environment.
+
+Now, if your infrastructure does not sit behind a reverse proxy, you may use Vapor's managed Firewall setting the `firewall` configuration option within your `vapor.yml` file:
+
+```yaml
+id: 2
+name: vapor-laravel-app
+environments:
+    production:
+        build:
+            - 'composer install --no-dev'
+        firewall:
+            rate-limit: 1000
+```
+
+By using the `rate-limit` option, Vapor's managed Firewall tracks the rate of requests for each originating IP address and blocks IPs with rates over the given `rate-limit` value. On the example above, if the count for an IP address exceeds 1,000 requests in any 5-minute time span, the Firewall will block temporarly requests from that IP address.
+
+:::warning API Gateway v2
+
+Due to AWS limitations, Vapor Firewall does not support API Gateway v2.
+:::
+
+Behind the scenes, Vapor's managed Firewall uses **[Amazon WAF](https://aws.amazon.com/waf/)**. Feel free to check out their documentation for more information about WAF and it's pricing.
+
 ## Timeout
 
 By default, Vapor will limit web request execution time to 10 seconds. If you would like to change the timeout value, you may add a `timeout` value (in seconds) to the environment's configuration. Note that AWS does not allow Lambda executions to process for more than 15 minutes:

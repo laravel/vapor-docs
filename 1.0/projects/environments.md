@@ -324,7 +324,7 @@ By using the `rate-limit` option, Vapor's managed Firewall tracks the rate of re
 Due to AWS limitations, Vapor's managed Firewall does not support API Gateway v2.
 :::
 
-Behind the scenes, Vapor's managed Firewall uses **[Amazon WAF](https://aws.amazon.com/waf/)** creating a Web ACL with one rate-based rule per Vapor environment. Feel free to check out their documentation for more information about WAF and it's pricing.
+Behind the scenes, Vapor's managed Firewall uses **[Amazon WAF](https://aws.amazon.com/waf/)**, creating a Web ACL with one rate-based rule, per Vapor environment. Feel free to check out their documentation for more information about WAF and it's pricing.
 
 ## Timeout
 

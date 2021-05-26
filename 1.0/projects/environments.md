@@ -300,11 +300,11 @@ environments:
 
 ## Firewall
 
-You may instruct Vapor to configure a Firewall for basic protection against denial-of-service attacks targeting your environment.
+You may instruct Vapor to automatically configure a firewall that provides basic protection against denial-of-service attacks targeting your environment.
 
-Before getting started, keep in mind that Vapor's managed Firewall rate limits requests using the IP address from the web request origin. Therefore, this solution only makes sense if the requests are not being reversed proxied from a service like Cloudflare. **If you are using a reverse proxy, you should not use this Firewall**. Otherwise, this Firewall may block legit requests to your environment.
+Before getting started, keep in mind that Vapor's managed firewall rate limits requests using the IP address from the web request origin. Therefore, this feature should only be used if the requests are not already being reversed proxied through a service such as Cloudflare. **If you are already using a reverse proxy, you should not use this feature**.
 
-Now, if your infrastructure does not sit behind a reverse proxy, you may use Vapor's managed Firewall setting the `firewall` configuration option within your `vapor.yml` file:
+You may use Vapor's managed firewall by defining the `firewall` configuration option within your application's `vapor.yml` file:
 
 ```yaml
 id: 2
@@ -317,14 +317,14 @@ environments:
             rate-limit: 1000
 ```
 
-By using the `rate-limit` option, Vapor's managed Firewall tracks the rate of requests for each originating IP address and blocks IPs with rates over the given `rate-limit` value. On the example above, if the count for an IP address exceeds 1,000 requests in any 5-minute time span, the Firewall will block temporarly requests from that IP address with the status code `403 Forbidden`.
+By using the `rate-limit` option, Vapor's managed firewall tracks the rate of requests for each originating IP address and blocks IPs with request rates over the given `rate-limit` value. In the example above, if the request count for an IP address exceeds 1,000 requests in any 5-minute time span then the firewall will temporarily block requests from that IP address with the `403 Forbidden` HTTP status code.
 
 :::warning API Gateway v2
 
-Due to AWS limitations, Vapor's managed Firewall does not support API Gateway v2.
+Due to AWS limitations, Vapor's managed firewall does not support API Gateway v2.
 :::
 
-Behind the scenes, Vapor's managed Firewall uses **[Amazon WAF](https://aws.amazon.com/waf/)**, creating a Web ACL with one rate-based rule, per Vapor environment. Feel free to check out their documentation for more information about WAF and it's pricing.
+Behind the scenes, Vapor's managed firewall uses **[Amazon WAF](https://aws.amazon.com/waf/)**, creating a Web ACL with one rate-based rule per Vapor environment. Feel free to check out the AWS WAF documentation for more information about WAF and its pricing.
 
 ## Timeout
 

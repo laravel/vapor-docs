@@ -316,8 +316,9 @@ environments:
         firewall:
             rate-limit: 1000
             bot-control:
-                - 'CategorySearchEngine'
-                - 'CategorySocialMedia'
+                - CategorySearchEngine
+                - CategorySocialMedia
+                - CategoryScrapingFramework
 ```
 
 ### `rate-limit`
@@ -331,9 +332,9 @@ By using the `bot-control` option, Vapor's managed firewall blocks requests from
 ```yaml
 firewall:
     bot-control:
-        - 'CategoryAdvertising'
-        - 'CategoryArchiver'
-        - 'SignalNonBrowserUserAgent'
+        - CategoryAdvertising
+        - CategoryArchiver
+        - SignalNonBrowserUserAgent
 ```
 
 Here is the list of available categories you may use:

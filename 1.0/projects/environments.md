@@ -300,7 +300,7 @@ environments:
 
 ## Firewall
 
-You may instruct Vapor to automatically configure a firewall that provides basic protection against denial-of-service attacks targeting your environment.
+You may instruct Vapor to automatically configure a firewall that provides basic protection against denial-of-service attacks targeting your environment, as well as protection against pervasive bot traffic that can consume your environment's resources.
 
 Before getting started, keep in mind that Vapor's managed firewall inspects requests using the IP address from the web request origin. Therefore, this feature should only be used if the requests are not already being reversed proxied through a service such as Cloudflare. **If you are already using a reverse proxy, you should not use this feature**.
 

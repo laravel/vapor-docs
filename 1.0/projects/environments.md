@@ -323,11 +323,11 @@ environments:
 
 ### `rate-limit`
 
-By using the `rate-limit` option, Vapor's managed firewall tracks the rate of requests for each originating IP address and blocks IPs with request rates over the given `rate-limit` value. In the example above, if the request count for an IP address exceeds 1,000 requests in any 5-minute time span then the firewall will temporarily block requests from that IP address with the `403 Forbidden` HTTP status code.
+When using the `rate-limit` option, Vapor's managed firewall tracks the rate of requests for each originating IP address and blocks IPs with request rates over the given `rate-limit` value. In the example above, if the request count for an IP address exceeds 1,000 requests in any 5-minute time span then the firewall will temporarily block requests from that IP address with the `403 Forbidden` HTTP status code.
 
 ### `bot-control`
 
-By using the `bot-control` option, Vapor's managed firewall blocks requests from pervasive bots, such as scrapers, or search engines. You may customize the "category" of requests the `bot-control` should block by setting an `array` of categories within your application's `vapor.yml` file:
+When using the `bot-control` option, Vapor's managed firewall blocks requests from pervasive bots, such as scrapers or search engines. You may customize the "category" of requests the `bot-control` should block by providing an `array` of categories within your application's `vapor.yml` file:
 
 ```yaml
 firewall:

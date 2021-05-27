@@ -315,9 +315,48 @@ environments:
             - 'composer install --no-dev'
         firewall:
             rate-limit: 1000
+            bot-control:
+                - 'CategorySearchEngine'
+                - 'CategorySocialMedia'
 ```
 
+### `rate-limit`
+
 By using the `rate-limit` option, Vapor's managed firewall tracks the rate of requests for each originating IP address and blocks IPs with request rates over the given `rate-limit` value. In the example above, if the request count for an IP address exceeds 1,000 requests in any 5-minute time span then the firewall will temporarily block requests from that IP address with the `403 Forbidden` HTTP status code.
+
+### `bot-control`
+
+By using the `bot-control` option, Vapor's managed firewall blocks requests from pervasive bots, such as scrapers, or search engines. You may customize the "category" of requests the `bot-control` should block by using an `array` of categories within your application's `vapor.yml` file:
+
+```yaml
+firewall:
+    bot-control:
+        - 'CategoryAdvertising'
+        - 'CategoryArchiver'
+        - 'SignalNonBrowserUserAgent'
+```
+
+Here is the list of available categories you may use:
+
+| Category | Description |
+| --- | --- |
+| CategoryAdvertising | Blocks requests from bots that are used for advertising purposes\. |
+| CategoryArchiver | Blocks requests from bots that are used for archiving purposes\. |
+| CategoryContentFetcher | Blocks requests from bots that are fetching content on behalf of an end-user\. |
+| CategoryHttpLibrary | Blocks requests from HTTP libraries that are often used by bots\. |
+| CategoryLinkChecker | Blocks requests from bots that check for broken links\. |
+| CategoryMiscellaneous | Blocks requests from miscellaneous bots\. |
+| CategoryMonitoring | Blocks requests from bots that are used for monitoring purposes\. |
+| CategoryScrapingFramework | Blocks requests from web scraping frameworks\. |
+| CategorySecurity | Blocks requests from security\-related bots\. |
+| CategorySeo | Blocks requests from bots that are used for search engine optimization\. |
+| CategorySocialMedia | Blocks requests from bots that are used by social media platforms to provide content summaries\. Verified social media bots are not blocked\.  |
+| CategorySearchEngine | Blocks requests from search engine bots\. Verified search engines are not blocked\.  |
+| SignalAutomatedBrowser | Blocks requests with indications of an automated web browser\. |
+| SignalKnownBotDataCenter | Blocks requests from data centers that are typically used by bots\. |
+| SignalNonBrowserUserAgent | Blocks requests with user-agent strings that don't seem to be from a web browser\. |
+
+---
 
 :::warning API Gateway v2
 

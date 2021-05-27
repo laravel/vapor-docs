@@ -302,7 +302,7 @@ environments:
 
 You may instruct Vapor to automatically configure a firewall that provides basic protection against denial-of-service attacks targeting your environment.
 
-Before getting started, keep in mind that Vapor's managed firewall rate limits requests using the IP address from the web request origin. Therefore, this feature should only be used if the requests are not already being reversed proxied through a service such as Cloudflare. **If you are already using a reverse proxy, you should not use this feature**.
+Before getting started, keep in mind that Vapor's managed firewall inspects requests using the IP address from the web request origin. Therefore, this feature should only be used if the requests are not already being reversed proxied through a service such as Cloudflare. **If you are already using a reverse proxy, you should not use this feature**.
 
 You may use Vapor's managed firewall by defining the `firewall` configuration option within your application's `vapor.yml` file:
 
@@ -327,7 +327,7 @@ By using the `rate-limit` option, Vapor's managed firewall tracks the rate of re
 
 ### `bot-control`
 
-By using the `bot-control` option, Vapor's managed firewall blocks requests from pervasive bots, such as scrapers, or search engines. You may customize the "category" of requests the `bot-control` should block by using an `array` of categories within your application's `vapor.yml` file:
+By using the `bot-control` option, Vapor's managed firewall blocks requests from pervasive bots, such as scrapers, or search engines. You may customize the "category" of requests the `bot-control` should block by setting an `array` of categories within your application's `vapor.yml` file:
 
 ```yaml
 firewall:

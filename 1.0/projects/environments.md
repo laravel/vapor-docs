@@ -298,6 +298,74 @@ environments:
             - 'composer install --no-dev'
 ```
 
+## Firewall
+
+You may instruct Vapor to automatically configure a firewall that provides basic protection against denial-of-service attacks targeting your environment.
+
+Before getting started, keep in mind that Vapor's managed firewall inspects requests using the IP address from the web request origin. Therefore, this feature should only be used if the requests are not already being reversed proxied through a service such as Cloudflare. **If you are already using a reverse proxy, you should not use this feature**.
+
+You may use Vapor's managed firewall by defining the `firewall` configuration option within your application's `vapor.yml` file:
+
+```yaml
+id: 2
+name: vapor-laravel-app
+environments:
+    production:
+        build:
+            - 'composer install --no-dev'
+        firewall:
+            rate-limit: 1000
+            bot-control:
+                - CategorySearchEngine
+                - CategorySocialMedia
+                - CategoryScrapingFramework
+```
+
+### `rate-limit`
+
+When using the `rate-limit` option, Vapor's managed firewall tracks the rate of requests for each originating IP address and blocks IPs with request rates over the given `rate-limit` value. In the example above, if the request count for an IP address exceeds 1,000 requests in any 5-minute time span then the firewall will temporarily block requests from that IP address with the `403 Forbidden` HTTP status code.
+
+### `bot-control`
+
+When using the `bot-control` option, Vapor's managed firewall blocks requests from pervasive bots, such as scrapers or search engines. You may customize the "category" of requests the `bot-control` should block by providing an `array` of categories within your application's `vapor.yml` file:
+
+```yaml
+firewall:
+    bot-control:
+        - CategoryAdvertising
+        - CategoryArchiver
+        - SignalNonBrowserUserAgent
+```
+
+Here is the list of available categories you may use:
+
+| Category | Description |
+| --- | --- |
+| CategoryAdvertising | Blocks requests from bots that are used for advertising purposes\. |
+| CategoryArchiver | Blocks requests from bots that are used for archiving purposes\. |
+| CategoryContentFetcher | Blocks requests from bots that are fetching content on behalf of an end-user\. |
+| CategoryHttpLibrary | Blocks requests from HTTP libraries that are often used by bots\. |
+| CategoryLinkChecker | Blocks requests from bots that check for broken links\. |
+| CategoryMiscellaneous | Blocks requests from miscellaneous bots\. |
+| CategoryMonitoring | Blocks requests from bots that are used for monitoring purposes\. |
+| CategoryScrapingFramework | Blocks requests from web scraping frameworks\. |
+| CategorySecurity | Blocks requests from security\-related bots\. |
+| CategorySeo | Blocks requests from bots that are used for search engine optimization\. |
+| CategorySocialMedia | Blocks requests from bots that are used by social media platforms to provide content summaries\. Verified social media bots are not blocked\.  |
+| CategorySearchEngine | Blocks requests from search engine bots\. Verified search engines are not blocked\.  |
+| SignalAutomatedBrowser | Blocks requests with indications of an automated web browser\. |
+| SignalKnownBotDataCenter | Blocks requests from data centers that are typically used by bots\. |
+| SignalNonBrowserUserAgent | Blocks requests with user-agent strings that don't seem to be from a web browser\. |
+
+---
+
+:::warning API Gateway v2
+
+Due to AWS limitations, Vapor's managed firewall does not support API Gateway v2.
+:::
+
+Behind the scenes, Vapor's managed firewall uses **[Amazon WAF](https://aws.amazon.com/waf/)**, creating a Web ACL with one rate-based rule per Vapor environment. Feel free to check out the AWS WAF documentation for more information about WAF and its pricing.
+
 ## Timeout
 
 By default, Vapor will limit web request execution time to 10 seconds. If you would like to change the timeout value, you may add a `timeout` value (in seconds) to the environment's configuration. Note that AWS does not allow Lambda executions to process for more than 15 minutes:

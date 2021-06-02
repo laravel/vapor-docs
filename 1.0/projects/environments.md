@@ -496,22 +496,34 @@ environments:
 When migrating an existing environment to a Docker runtime, please keep in mind that you won't be able to revert that environment to the default Vapor Lambda runtime later. For that reason, you may want to create an environment for testing the Docker runtime first.
 :::
 
-Of course, you are free to modify your environment's `Dockerfile` to install additional dependencies or PHP extensions. For example, here's how you may install the FFmpeg library within your custom Docker image:
-
-```docker
-FROM laravelphp/vapor:php80
-
-RUN apk --update add ffmpeg
-
-COPY . /var/task
-```
-
 Vapor will build, tag, and publish your environment's image during your deployments; therefore, you should ensure that you have installed [Docker](https://docs.docker.com/get-docker/) on your local machine.
 
 Vapor's base Docker images are:
 
 - `laravelphp/vapor:php74`
 - `laravelphp/vapor:php80`
+
+Of course, you are free to modify your environment's `Dockerfile` to install additional dependencies or PHP extensions. Here are a few examples:
+
+```docker
+FROM laravelphp/vapor:php80
+
+# Adds the `ffmpeg` library
+RUN apk --update add ffmpeg
+
+# Adds the `mysql` client
+RUN apk --update add mysql-client
+
+# Adds the `gmp` PHP extension
+RUN apk --update add gmp gmp-dev
+RUN docker-php-ext-install gmp
+
+# Updates the `php.ini` file
+# Requires a `php.ini.overrides` file at the root of your project
+COPY ./php.ini.overrides /usr/local/etc/php/conf.d/overrides.ini
+
+COPY . /var/task
+```
 
 ## Gateway Versions
 

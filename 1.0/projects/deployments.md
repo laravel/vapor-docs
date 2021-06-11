@@ -266,4 +266,4 @@ jobs:
           VAPOR_API_TOKEN: ${{ secrets.VAPOR_API_TOKEN }}
 ```
 
-3. Finally, edit the `deploy.yml` file to fit your deployment needs, as it may require `npm`, etc. Once you are done, commit and push the `deploy.yml` file to `master` so GitHub actions can run the first deployment job.
+3. Finally, edit the `deploy.yml` file to fit your deployment needs, as it may require a different PHP version or a library like `npm`. Once you are done, commit and push the `deploy.yml` file to `master` so GitHub actions can run the first deployment job.

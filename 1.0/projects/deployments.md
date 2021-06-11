@@ -233,7 +233,7 @@ vapor deploy production --commit="${CI_COMMIT_ID}" --message="${CI_MESSAGE}"
 
 ### Example with GitHub Actions
 
-If [GitHub Actions](https://github.com/features/actions) is your CI platform of choice, you may follow these steps so you can have a basic deployment pipeline using GitHub Actions that deploys your application when someone pushes to `master`:
+If [GitHub Actions](https://github.com/features/actions) is your CI platform of choice, you may follow these steps so you can have a basic deployment pipeline using GitHub Actions that deploys your application when someone pushes a commit to the `master` branch:
 
 1. First, and as mentioned before, add the `VAPOR_API_TOKEN` environment variable to your "GitHub > Project Settings > Secrets" so GitHub can authenticate with Vapor while running actions.
 
@@ -266,6 +266,4 @@ jobs:
           VAPOR_API_TOKEN: ${{ secrets.VAPOR_API_TOKEN }}
 ```
 
-3. Finally, commit & push the `deploy.yml` file.
-
-Feel free to tweak the `deploy.yml` file to fit your own needs. As an example, your deployment depends on `npm`, you will need an extra step to install `npm`.
+3. Finally, edit the `deploy.yml` file to fit your deployment needs, as it may require `npm`, etc. Once you are done, commit and push the `deploy.yml` file to `master` so GitHub actions can run the first deployment job.

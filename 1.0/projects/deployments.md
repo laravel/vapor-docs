@@ -233,11 +233,11 @@ vapor deploy production --commit="${CI_COMMIT_ID}" --message="${CI_MESSAGE}"
 
 ### Example With GitHub Actions
 
-If [GitHub Actions](https://github.com/features/actions) is your CI platform of choice, you may follow these steps so you can have a basic deployment pipeline using GitHub Actions that deploys your application when someone pushes a commit to the `master` branch:
+If your application uses [GitHub Actions](https://github.com/features/actions) as its CI platform, the following guidelines will assist you in configuring Vapor deployments so that your application is automatically deployed when someone pushes a commit to the `master` branch:
 
-1. First, and as mentioned before, add the `VAPOR_API_TOKEN` environment variable to your "GitHub > Project Settings > Secrets" so GitHub can authenticate with Vapor while running actions.
+1. First, add the `VAPOR_API_TOKEN` environment variable to your "GitHub > Project Settings > Secrets" settings so that GitHub can authenticate with Vapor while running actions.
 
-2. Next, create a file on the directory `your-project/.github/workflows` with the name `deploy.yml` and the following contents:
+2. Next, create a `deploy.yml` file within the `your-project/.github/workflows` directory. The file should have the following contents:
 
 ```yml
 name: Deploy
@@ -266,4 +266,4 @@ jobs:
           VAPOR_API_TOKEN: ${{ secrets.VAPOR_API_TOKEN }}
 ```
 
-3. Finally, edit the `deploy.yml` file to fit your deployment needs, as it may require a different PHP version or a library like `npm`. Once you are done, commit and push the `deploy.yml` file to `master` so GitHub actions can run the first deployment job.
+3. Finally, you can edit the `deploy.yml` file to fit your application's deployment needs, as it may require a different PHP version or a library like `npm`. Once you are done, commit and push the `deploy.yml` file to `master` so GitHub Actions can run the first deployment job.

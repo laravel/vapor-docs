@@ -231,7 +231,7 @@ Some CI platforms expose the Git commit information as environment variables dur
 vapor deploy production --commit="${CI_COMMIT_ID}" --message="${CI_MESSAGE}"
 ```
 
-### Example with GitHub Actions
+### Example With GitHub Actions
 
 If [GitHub Actions](https://github.com/features/actions) is your CI platform of choice, you may follow these steps so you can have a basic deployment pipeline using GitHub Actions that deploys your application when someone pushes a commit to the `master` branch:
 

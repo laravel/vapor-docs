@@ -12,6 +12,7 @@ module.exports = [
       'environments',
       'deployments',
       'development',
+      'troubleshooting',
     ]),
   },
   {

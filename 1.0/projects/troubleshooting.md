@@ -57,3 +57,15 @@ If you would like to [use API Gateway 2.0](https://docs.vapor.build/1.0/projects
 #### Contact AWS Support
 
 Laravel Vapor provisions and configures your projects on the AWS infrastructure. However, for performance insights regarding your infrastructure, we recommend you to reach out to [AWS Support](https://console.aws.amazon.com/support/home?#/case/create?issueType=technical) as they can deeply examine the internal logs of your infrastructure.
+
+## 502 Bad Gateway Or "Internal Server Error"
+
+Typically, a 502 Bad Gateway or an "Internal Server Error" is thrown when the Lambda function fails to handle the request internally. Most of the time this is because the request has timed out or because the payload / response is exceeding the size allowed by AWS.
+
+You can see if a request has timed out by searching for "Task timed out" messages in your environment logs. Here are some common solutions to "time out" issues:
+
+1. Change the [`timeout`](https://docs.vapor.build/1.0/projects/environments.html#timeout) value on your `vapor.yml` file and deploy your application again.
+2. Try to identify the code that may be causing this "time out" issue. This may be related resources configured incorrectly, or a task may take longer than expected — in this case, please consider using [queues](docs.vapor.build/1.0/resources/queues.html) for heavy tasks.
+3. Alternatively, you can reach [AWS Support](https://console.aws.amazon.com/support/home?#/case/create?issueType=technical) - as they can deeply examine the internal logs of your infrastructure.
+
+If you don't see any "Task timed out" messages in your environment logs, this indicates the error is likely because the payload / response is exceeding the size allowed by AWS. Please consult AWS's [API Gateway](https://docs.aws.amazon.com/apigateway/latest/developerguide/limits.html) and [Load Balancers](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-limits.html) quotas.

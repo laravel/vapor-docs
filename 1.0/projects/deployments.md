@@ -230,3 +230,40 @@ Some CI platforms expose the Git commit information as environment variables dur
 ```sh
 vapor deploy production --commit="${CI_COMMIT_ID}" --message="${CI_MESSAGE}"
 ```
+
+### Example With GitHub Actions
+
+If your application uses [GitHub Actions](https://github.com/features/actions) as its CI platform, the following guidelines will assist you in configuring Vapor deployments so that your application is automatically deployed when someone pushes a commit to the `master` branch:
+
+1. First, add the `VAPOR_API_TOKEN` environment variable to your "GitHub > Project Settings > Secrets" settings so that GitHub can authenticate with Vapor while running actions.
+
+2. Next, create a `deploy.yml` file within the `your-project/.github/workflows` directory. The file should have the following contents:
+
+```yml
+name: Deploy
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.0
+          tools: composer:v2
+          coverage: none
+      - name: Require Vapor CLI
+        run: composer global require laravel/vapor-cli
+      - name: Deploy Environment
+        run: vapor deploy
+        env:
+          VAPOR_API_TOKEN: ${{ secrets.VAPOR_API_TOKEN }}
+```
+
+3. Finally, you can edit the `deploy.yml` file to fit your application's deployment needs, as it may require a different PHP version or a library like `npm`. Once you are done, commit and push the `deploy.yml` file to `master` so GitHub Actions can run the first deployment job.

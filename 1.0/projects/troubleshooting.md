@@ -65,7 +65,7 @@ Typically, a 502 Bad Gateway or an "Internal Server Error" is thrown when the La
 You can see if a request has timed out by searching for "Task timed out" messages in your environment logs. Here are some common solutions to "time out" issues:
 
 1. Change the [`timeout`](https://docs.vapor.build/1.0/projects/environments.html#timeout) value on your `vapor.yml` file and deploy your application again.
-2. Try to identify the code that may be causing this "time out" issue. This may be related resources configured incorrectly, or a task may take longer than expected — in this case, please consider using [queues](docs.vapor.build/1.0/resources/queues.html) for heavy tasks.
+2. Try to identify the code that may be causing this "time out" issue. This may be related resources configured incorrectly, or a task may take longer than expected — in this case, please consider using [queues](https://docs.vapor.build/1.0/resources/queues.html) for heavy tasks.
 3. Alternatively, you can reach [AWS Support](https://console.aws.amazon.com/support/home?#/case/create?issueType=technical) - as they can deeply examine the internal logs of your infrastructure.
 
 If you don't see any "Task timed out" messages in your environment logs, this indicates the error is likely because the payload / response is exceeding the size allowed by AWS. Please consult AWS's [API Gateway](https://docs.aws.amazon.com/apigateway/latest/developerguide/limits.html) and [Load Balancers](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-limits.html) quotas.

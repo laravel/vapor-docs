@@ -267,3 +267,28 @@ jobs:
 ```
 
 3. Finally, you can edit the `deploy.yml` file to fit your application's deployment needs, as it may require a different PHP version or a library like `npm`. Once you are done, commit and push the `deploy.yml` file to `master` so GitHub Actions can run the first deployment job.
+
+### Example With Chipper CI
+
+If your application uses [Chipper CI](https://chipperci.com/) as its CI platform, the following guidelines will assist you in configuring Vapor deployments so that your application is automatically deployed when someone pushes a commit to the `master` branch:
+
+1. First, add the `VAPOR_API_TOKEN` environment variable to your "Chipper CI > Project Settings > Project Environment Variables" settings so that Chipper CI can authenticate with Vapor while running your build pipeline.
+
+2. Then, on the "Build Pipeline" section, add a step with the name `Deploy` and the following content:
+
+```bash
+if [[ $CI_COMMIT_BRANCH == 'master' ]]; then
+    composer install --no-interaction --prefer-dist --optimize-autoloader
+
+    composer global require laravel/vapor-cli
+
+    ~/.config/composer/vendor/bin/vapor deploy
+fi
+```
+
+:::warning Docker Based Runtimes
+
+If you plan to use docker based runtimes in your Vapor environment, you must purchase a Chipper CI paid plan and enable Docker in each project that you'd like to use it in.
+:::
+
+3. Once you are done, commit and push any change to the `master` branch so Chipper CI can deploy your application.

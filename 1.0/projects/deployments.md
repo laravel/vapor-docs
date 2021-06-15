@@ -274,7 +274,7 @@ If your application uses [Chipper CI](https://chipperci.com/) as its CI platform
 
 1. First, add the `VAPOR_API_TOKEN` environment variable to your "Chipper CI > Project Settings > Project Environment Variables" settings so that Chipper CI can authenticate with Vapor while running your build pipeline.
 
-2. Then, on the "Build Pipeline" section, add a step with the name `Deploy` and the following content:
+2. Then, on the "Build Pipeline" dashboard, add a step with the name `Deploy` and the following content:
 
 ```bash
 if [[ $CI_COMMIT_BRANCH == 'master' ]]; then
@@ -286,9 +286,9 @@ if [[ $CI_COMMIT_BRANCH == 'master' ]]; then
 fi
 ```
 
+3. Next, commit and push any change to the `master` branch so that Chipper CI will deploy your application.
+
 :::warning Docker Based Runtimes
 
-If you plan to use docker based runtimes in your Vapor environment, you must purchase a Chipper CI paid plan and enable Docker in each project that you'd like to use it in.
+If you plan to use Docker based runtimes to run your Vapor application, you must purchase a Chipper CI paid plan and enable Docker in each project that contains a Docker based Vapor application.
 :::
-
-3. Once you are done, commit and push any change to the `master` branch so Chipper CI can deploy your application.

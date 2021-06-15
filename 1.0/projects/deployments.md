@@ -282,7 +282,7 @@ if [[ $CI_COMMIT_BRANCH == 'master' ]]; then
 
     composer global require laravel/vapor-cli
 
-    ~/.config/composer/vendor/bin/vapor deploy
+    vapor deploy
 fi
 ```
 

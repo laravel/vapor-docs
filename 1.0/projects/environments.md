@@ -102,16 +102,11 @@ Due to AWS Lambda limitations, your environment variables may only be 4kb in tot
 vapor secret production
 ```
 
+Behind the scenes, your secrets are stored as a `SecureString` in [AWS Systems Manager (SSM) > Parameter Store](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html).
+
 :::tip Secrets & Deployments
 
 After updating an environment's secrets, the new secrets will not be utilized until the application is deployed again. In addition, when rolling back to a previous deployment, Vapor will use the secrets as they existed at the time the deployment you're rolling back to was originally deployed.
-:::
-
-:::tip Secrets Storage
-
-Behind the scenes, your secrets are stored as a `SecureString` in **[AWS Systems Manager (SSM) > Parameter Store](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html)**.
-
-Note: Be careful not to confuse this with AWS Secret Manager, which is a different product.
 :::
 
 ### Passport Keys

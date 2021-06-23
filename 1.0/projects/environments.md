@@ -226,13 +226,13 @@ environments:
             - 'composer install --no-dev'
 ```
 
-Sometimes you may need to simply run again a command. To accomplish this, you may use the Vapor UI or the `command:again` CLI command:
+Sometimes you may need to run the previous command again. To accomplish this, you may use the Vapor UI or the `command:again` CLI command:
 
 ```bash
-# Runs again the latest command
+# Run the previous command again...
 vapor command:again
 
-# Runs again the given command ID
+# Run a specific command again using the command's ID...
 vapor command:again 50
 ```
 

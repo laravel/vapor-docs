@@ -226,6 +226,16 @@ environments:
             - 'composer install --no-dev'
 ```
 
+Sometimes you may need to run the previous command again. To accomplish this, you may use the Vapor UI or the `command:again` CLI command:
+
+```bash
+# Run the previous command again...
+vapor command:again
+
+# Run a specific command again using the command's ID...
+vapor command:again 50
+```
+
 ## Memory
 
 Vapor (via AWS Lambda) allocates CPU power to your Lambda function in proportion to the amount of memory configured for the application. You may increase or decrease the configured memory using the `memory` option in your environment's `vapor.yml` configuration:

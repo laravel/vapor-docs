@@ -121,14 +121,20 @@ Storage::copy(
 
 When developing locally, `Vapor.store` will upload to the bucket specified by the `AWS_BUCKET` environment variable. In addition, your bucket may require CORS configuration to allow uploads from localhost:
 
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<CORSConfiguration xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
-<CORSRule>
-    <AllowedOrigin>*</AllowedOrigin>
-    <AllowedMethod>PUT</AllowedMethod>
-    <AllowedMethod>GET</AllowedMethod>
-    <AllowedHeader>*</AllowedHeader>
-</CORSRule>
-</CORSConfiguration>
+```json
+[
+   {
+      "AllowedHeaders":[
+         "*"
+      ],
+      "AllowedMethods":[
+         "GET",
+         "PUT"
+      ],
+      "AllowedOrigins":[
+         "*"
+      ],
+      "ExposeHeaders":[]
+   }
+]
 ```

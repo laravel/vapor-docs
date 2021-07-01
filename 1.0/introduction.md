@@ -47,6 +47,11 @@ composer require laravel/vapor-cli
 composer global require laravel/vapor-cli
 ```
 
+:::warning Composer Unresolved Dependencies Error
+
+Depending on your project's dependencies, the `composer require` command may fail with an unresolved dependencies error. To mitigate this issue you may add the `--update-with-dependencies` option flag to instruct composer to also update the dependencies of the Vapor CLI tool in your project.
+:::
+
 When the CLI is installed per project, you will likely need to execute it via the `vendor/bin` directory of your project, which is where Composer installs executables. For example, to view all of the available Vapor CLI commands, you may use the `list` command:
 
 ```bash

@@ -106,7 +106,7 @@ Behind the scenes, your secrets are stored as a `SecureString` in [AWS Systems M
 
 :::tip Secrets & Deployments
 
-After updating an environment's secrets, the new secrets will not be utilized until the application is deployed again. In addition, when rolling back to a previous deployment, Vapor will use the secrets as they existed at the time the deployment you're rolling back to was originally deployed.
+After updating an environment's secrets, the new secrets will not be utilized until the application is deployed again using the `vapor deploy` CLI command. In addition, when rolling back to a previous deployment, Vapor will use the secrets as they existed at the time the deployment you're rolling back to was originally deployed.
 :::
 
 ### Passport Keys

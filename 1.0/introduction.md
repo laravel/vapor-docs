@@ -42,15 +42,10 @@ Before integrating Vapor into your application, you should create a Vapor accoun
 You will deploy your Laravel Vapor applications using the [Vapor CLI](https://github.com/laravel/vapor-cli). This CLI may be installed globally or on a per-project basis using Composer:
 
 ```bash
-composer require laravel/vapor-cli
+composer require laravel/vapor-cli --update-with-dependencies
 
-composer global require laravel/vapor-cli
+composer global require laravel/vapor-cli --update-with-dependencies
 ```
-
-:::warning Unresolved Dependencies
-
-Depending on your project's dependencies, the `composer require` command may fail because of unresolved dependencies. To mitigate this issue, you may add the `--update-with-dependencies` option to the command. This option will instruct Composer to also update the dependencies of the Vapor CLI tool.
-:::
 
 When the CLI is installed per project, you will likely need to execute it via the `vendor/bin` directory of your project, which is where Composer installs executables. For example, to view all of the available Vapor CLI commands, you may use the `list` command:
 
@@ -82,7 +77,7 @@ vapor login
 The `laravel/vapor-core` [package](https://github.com/laravel/vapor-core) must be installed as a dependency of every Laravel application that is deployed using Vapor. This package contains various Vapor runtime files and a service provider to allow your application to run on Vapor. You may install the Vapor Core into your project using Composer:
 
 ```bash
-composer require laravel/vapor-core
+composer require laravel/vapor-core --update-with-dependencies
 ```
 
 ## Installing The Vapor UI Dashboard

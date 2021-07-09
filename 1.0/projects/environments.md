@@ -78,6 +78,7 @@ The following environment variables are reserved and may not be added to your en
 
 - _HANDLER
 - AWS_ACCESS_KEY_ID
+- AWS_DEFAULT_REGION
 - AWS_EXECUTION_ENV
 - AWS_LAMBDA_FUNCTION_MEMORY_SIZE
 - AWS_LAMBDA_FUNCTION_NAME

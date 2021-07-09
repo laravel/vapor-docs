@@ -138,7 +138,7 @@ To keep the assets up-to-date and avoid issues in future updates, you may add th
 
 ### Customizing Middleware
 
-If needed, you can customize the middleware stack used by Vapor UI routes by updating your `config/vapor-ui.php` file. If you have not published Vapor UI's confiugration file, you may do so using the `vendor:publish` Artisan command:
+If needed, you can customize the middleware stack used by Vapor UI routes by updating your `config/vapor-ui.php` file. If you have not published Vapor UI's configuration file, you may do so using the `vendor:publish` Artisan command:
 
 ```
 php artisan vendor:publish --tag=vapor-ui-config

@@ -203,7 +203,7 @@ When an environment is in maintenance mode, the environment's custom domain will
 
 ### Customizing The Maintenance Mode Screen
 
-You may customize the maintenance mode splash screen for your application by placing a `503.html` file in your application's root directory.
+You may customize the maintenance mode splash screen for your application by placing a `503.html` file in your application's root directory. In addition, you may also place a `503.json` file in your application's root directory for requests asking for JSON responses.
 
 ## Commands
 

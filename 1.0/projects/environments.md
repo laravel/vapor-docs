@@ -42,6 +42,38 @@ This command will create a `my-environment.Dockerfile` file in your application'
 
 Each environment contains a set of environment variables that provide crucial information to your application during execution, just like the variables present in your application's local `.env` file.
 
+### Vapor's Default Environment Variables
+
+Vapor automatically injects a variety of environment variables based on your environment's configured cache, database, etc. As an example, by adding a `cache` or `database` key to your `vapor.yml` file, Vapor will inject the necessary `CACHE_*` and `DB_*` environment variables.
+
+Here is the full list of environment variables injected by Vapor on your environment:
+
+| `.env` Value | `env()` Value |
+|  --- | --- |
+| `APP_ENV` | Environment name |
+| `APP_DEBUG` | False |
+| `APP_LOG_LEVEL` | Debug
+| `APP_URL` | Vanity domain, or custom domain if exists |
+| `ASSET_URL` | CloudFront |
+| `AWS_BUCKET` | Storage resource if exists |
+| `BROADCAST_DRIVER` | Pusher |
+| `CACHE_DRIVER` | DynamoDB, or cache (Redis) resource if exists |
+| `DB_*` | Database (MySQL, Postgresql, etc) resource if exists |
+| `DYNAMODB_CACHE_TABLE` | `vapor_cache` |
+| `FILESYSTEM_DRIVER` | S3 |
+| `FILESYSTEM_CLOUD` | S3 |
+| `LOG_CHANNEL` | Stderr |
+| `MAIL_DRIVER` | SES |
+| `MAIL_MAILER` | SES |
+| `MAIL_FROM_ADDRESS` | `hello@example.com` or `hello@custom-domain.com` if exists |
+| `MAIL_FROM_NAME` | `your_project_name` |
+| `MIX_URL` | CloudFront |
+| `QUEUE_CONNECTION` | SQS |
+| `SCHEDULE_CACHE_DRIVER` | DynamoDB |
+| `SESSION_DRIVER` | Cookie |
+
+You will not see these environment variables when you manage your environment via Vapor CLI or Vapor UI, and any variables you manually define will override Vapor's automatically injected variables.
+
 ### Updating Environment Variables
 
 You may update an environment's variables via the Vapor UI or using the `env:pull` and `env:push` CLI commands. The `env:pull` command may be used to pull down an environment file for a given environment:
@@ -56,11 +88,7 @@ Once this command has been executed, a `.env.{environment}` file will be placed 
 vapor env:push production
 ```
 
-### Vapor Environment Variables
-
-Vapor automatically injects a variety of environment variables based on your environment's configured database, cache, etc. You will not see these environment variables when you manage your environment, and any variables you manually define will override Vapor's automatically injected variables.
-
-If you are using the DotEnv library's [variable nesting](https://github.com/vlucas/phpdotenv#nesting-variables) feature to reference environment variables that Vapor is injecting, you should replace these references with literal values instead. Since Vapor's injected environment variables do not belong to the environment file, they can not be referenced using the nesting feature.
+If you are using the DotEnv library's [variable nesting](https://github.com/vlucas/phpdotenv#nesting-variables) feature to reference default environment variables that Vapor is injecting, you should replace these references with literal values instead. Since Vapor's injected environment variables do not belong to the environment file, they can not be referenced using the nesting feature.
 
 :::tip Variables & Deployments
 

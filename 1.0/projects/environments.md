@@ -38,6 +38,14 @@ vapor env my-environment --docker
 
 This command will create a `my-environment.Dockerfile` file in your application's root directory.
 
+## Opening Environments
+
+Environments may be opened in your default browser using the `open` Vapor CLI command:
+
+```bash
+vapor open my-environment
+```
+
 ## Environment Variables
 
 Each environment contains a set of environment variables that provide crucial information to your application during execution, just like the variables present in your application's local `.env` file.

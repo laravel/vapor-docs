@@ -83,7 +83,7 @@ Because all of your assets will be served via S3 / CloudFront, you should always
 <img src="{{ asset('img.jpg') }}">
 ```
 
-On subsequent deployments, only the assets that have changed will be uploaded to S3, while unchanged assets will be copied over from the previous deployment.
+On subsequent deployments, only the assets that have changed will be uploaded to S3, while unchanged assets will be copied over from the previous deployment. 
 
 ### Code Splitting / Dynamic Imports
 
@@ -123,6 +123,23 @@ if (mix.inProduction()) {
         };
     });
 }
+```
+
+#### Relative Paths
+
+If you are referencing your project's public assets using a relative domain path in your JavaScript code, you may create your own `asset` helper taking advantage of a global variable called **`__webpack_public_path__`**. Here is an example using Vue JS mixins:
+
+```js
+Vue.mixin({
+    methods: {
+        asset: function (path) {
+            return __webpack_public_path__ + path
+        },
+    },
+});
+
+// Your component
+<img :src="asset('img/global/logo.svg')"/>
 ```
 
 #### Hot Module Replacement

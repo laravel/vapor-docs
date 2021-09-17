@@ -42,6 +42,10 @@ This command will create a `my-environment.Dockerfile` file in your application'
 
 Each environment contains a set of environment variables that provide crucial information to your application during execution, just like the variables present in your application's local `.env` file.
 
+### Vapor's Default Environment Variables
+
+Vapor automatically injects a variety of environment variables based on your environment's configured cache, database, etc. As an example, by adding a `cache` or `database` key to your `vapor.yml` file, Vapor will inject the necessary `CACHE_*` and `DB_*` environment variables. You will not see these environment variables when you manage your environment via Vapor CLI or Vapor UI, and any variables you manually define will override Vapor's automatically injected variables.
+
 ### Updating Environment Variables
 
 You may update an environment's variables via the Vapor UI or using the `env:pull` and `env:push` CLI commands. The `env:pull` command may be used to pull down an environment file for a given environment:
@@ -56,11 +60,7 @@ Once this command has been executed, a `.env.{environment}` file will be placed 
 vapor env:push production
 ```
 
-### Vapor Environment Variables
-
-Vapor automatically injects a variety of environment variables based on your environment's configured database, cache, etc. You will not see these environment variables when you manage your environment, and any variables you manually define will override Vapor's automatically injected variables.
-
-If you are using the DotEnv library's [variable nesting](https://github.com/vlucas/phpdotenv#nesting-variables) feature to reference environment variables that Vapor is injecting, you should replace these references with literal values instead. Since Vapor's injected environment variables do not belong to the environment file, they can not be referenced using the nesting feature.
+If you are using the DotEnv library's [variable nesting](https://github.com/vlucas/phpdotenv#nesting-variables) feature to reference default environment variables that Vapor is injecting, you should replace these references with literal values instead. Since Vapor's injected environment variables do not belong to the environment file, they can not be referenced using the nesting feature.
 
 :::tip Variables & Deployments
 

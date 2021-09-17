@@ -83,7 +83,7 @@ Because all of your assets will be served via S3 / CloudFront, you should always
 <img src="{{ asset('img.jpg') }}">
 ```
 
-On subsequent deployments, only the assets that have changed will be uploaded to S3, while unchanged assets will be copied over from the previous deployment. 
+On subsequent deployments, only the assets that have changed will be uploaded to S3, while unchanged assets will be copied over from the previous deployment.
 
 ### Code Splitting / Dynamic Imports
 

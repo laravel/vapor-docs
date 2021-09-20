@@ -40,7 +40,7 @@ This command will create a `my-environment.Dockerfile` file in your application'
 
 ## Opening Environments
 
-Environments may be opened in your default browser using the `open` Vapor CLI command:
+Environments may be opened in your default browser using the Vapor CLI's `open` command:
 
 ```bash
 vapor open my-environment

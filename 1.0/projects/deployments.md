@@ -85,6 +85,23 @@ Because all of your assets will be served via S3 / CloudFront, you should always
 
 On subsequent deployments, only the assets that have changed will be uploaded to S3, while unchanged assets will be copied over from the previous deployment.
 
+### Referencing Relative Asset Paths
+
+If you are referencing your project's public assets using a relative domain path in your JavaScript code, you may find it convenient to create your own `asset` helper which references the **`__webpack_public_path__`** global variable to correctly build asset URLs. For example, if your application is using Vue, you may consider writing the following mixin:
+
+```js
+Vue.mixin({
+    methods: {
+        asset: function (path) {
+            return __webpack_public_path__ + path
+        },
+    },
+});
+
+// Within your Vue components...
+<img :src="asset('img/global/logo.svg')"/>
+```
+
 ### Code Splitting / Dynamic Imports
 
 If you are taking advantage of dynamic imports and code splitting in your project, you will need to let Webpack know where the child chunks will be loaded from for each deployment. To accomplish this, you can take advantage of the `ASSET_URL` variable that Laravel Vapor injects into your environment during your build step:
@@ -125,24 +142,7 @@ if (mix.inProduction()) {
 }
 ```
 
-#### Relative Paths
-
-If you are referencing your project's public assets using a relative domain path in your JavaScript code, you may create your own `asset` helper taking advantage of a global variable called **`__webpack_public_path__`**. Here is an example using Vue JS mixins:
-
-```js
-Vue.mixin({
-    methods: {
-        asset: function (path) {
-            return __webpack_public_path__ + path
-        },
-    },
-});
-
-// Your component
-<img :src="asset('img/global/logo.svg')"/>
-```
-
-#### Hot Module Replacement
+### Hot Module Replacement
 
 If you are using code splitting and "hot module replacement" during local development, you will need to use the `mix` helper locally and the `asset` helper when deploying to Vapor:
 

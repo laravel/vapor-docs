@@ -85,17 +85,19 @@ Because all of your assets will be served via S3 / CloudFront, you should always
 
 On subsequent deployments, only the assets that have changed will be uploaded to S3, while unchanged assets will be copied over from the previous deployment.
 
-### Referencing Relative Asset Paths in JavaScript Apps
+### Referencing Relative Asset Paths Via JavaScript
 
-If you are referencing your project's public assets using a relative domain path in your JavaScript code, you may use the `ASSET_URL` vairable that Vapor injects into your environment to convert your relative paths to absolute ones. To accomplish this, you can assign the value to a global-scope JavaScript variable in your entry balde file:
+If you are referencing your project's public assets using a relative domain path in your JavaScript code, you may use the `ASSET_URL` variable that Vapor injects into your environment to convert your relative paths to absolute paths. To accomplish this, you can assign the value to a global-scope JavaScript variable in your top-level Blade file:
 
 ```php
-<script>
-    window.asset_url = {{env('ASSET_URL')}}
-</script>
+<head>
+    <script>
+        window.asset_url = {{ env('ASSET_URL') }}
+    </script>
+</head>
 ```
 
-After that, you may reference the `asset_url` variable in your paths:
+Once the variable has been defined, you may reference the `asset_url` variable in your paths. For convenience, you may write a helper method, such as a Vue mixin, that generates asset paths for you:
 
 ```javascript
 Vue.mixin({

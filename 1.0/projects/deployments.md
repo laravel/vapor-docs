@@ -87,6 +87,8 @@ On subsequent deployments, only the assets that have changed will be uploaded to
 
 ### Referencing Relative Asset Paths Via JavaScript
 
+#### Via Blade Defined JavaScript Variable
+
 If you are referencing your project's public assets using a relative domain path in your JavaScript code, you may use the `ASSET_URL` variable that Vapor injects into your environment to convert your relative paths to absolute paths. To accomplish this, you can assign the value to a global-scope JavaScript variable in your top-level Blade file:
 
 ```php
@@ -112,9 +114,26 @@ Vue.mixin({
 <img :src="asset('img/global/logo.svg')"/>
 ```
 
-### Configuring Laravel Mix
+#### Via Webpack
 
-If you use Laravel Mix, you will need to let Webpack know where the asset files will be loaded from for each deployment. To accomplish this, you can take advantage of the `ASSET_URL` variable that Laravel Vapor injects into your environment during your build step:
+Or, if you are using Webpack, you may find it convenient to create your own `asset` helper which references the **`__webpack_public_path__`** global variable to correctly build asset URLs. For example, if your application is using Vue, you may consider writing the following mixin:
+
+```js
+Vue.mixin({
+    methods: {
+        asset: function (path) {
+            return __webpack_public_path__ + path
+        },
+    },
+});
+
+// Within your Vue components...
+<img :src="asset('img/global/logo.svg')"/>
+```
+
+### Code Splitting / Dynamic Imports
+
+If you are taking advantage of dynamic imports and code splitting in your project, you will need to let Webpack know where the child chunks will be loaded from for each deployment. To accomplish this, you can take advantage of the `ASSET_URL` variable that Laravel Vapor injects into your environment during your build step:
 
 ```javascript
 const mix = require("laravel-mix");
@@ -150,21 +169,6 @@ if (mix.inProduction()) {
         };
     });
 }
-```
-
-If you are referencing your project's public assets using a relative domain path in your JavaScript code, you may find it convenient to create your own `asset` helper which references the **`__webpack_public_path__`** global variable to correctly build asset URLs. For example, if your application is using Vue, you may consider writing the following mixin:
-
-```js
-Vue.mixin({
-    methods: {
-        asset: function (path) {
-            return __webpack_public_path__ + path
-        },
-    },
-});
-
-// Within your Vue components...
-<img :src="asset('img/global/logo.svg')"/>
 ```
 
 ### Hot Module Replacement

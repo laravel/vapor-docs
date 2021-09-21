@@ -85,15 +85,23 @@ Because all of your assets will be served via S3 / CloudFront, you should always
 
 On subsequent deployments, only the assets that have changed will be uploaded to S3, while unchanged assets will be copied over from the previous deployment.
 
-### Referencing Relative Asset Paths
+### Referencing Relative Asset Paths in JavaScript Apps
 
-If you are referencing your project's public assets using a relative domain path in your JavaScript code, you may find it convenient to create your own `asset` helper which references the **`__webpack_public_path__`** global variable to correctly build asset URLs. For example, if your application is using Vue, you may consider writing the following mixin:
+If you are referencing your project's public assets using a relative domain path in your JavaScript code, you may use the `ASSET_URL` vairable that Vapor injects into your environment to convert your relative paths to absolute ones. To accomplish this, you can assign the value to a global-scope JavaScript variable in your entry balde file:
 
-```js
+```php
+<script>
+    window.asset_url = {{env('ASSET_URL')}}
+</script>
+```
+
+After that, you may reference the `asset_url` variable in your paths:
+
+```javascript
 Vue.mixin({
     methods: {
         asset: function (path) {
-            return __webpack_public_path__ + path
+            return window.asset_url + path
         },
     },
 });
@@ -102,9 +110,9 @@ Vue.mixin({
 <img :src="asset('img/global/logo.svg')"/>
 ```
 
-### Code Splitting / Dynamic Imports
+### Configuring Laravel Mix
 
-If you are taking advantage of dynamic imports and code splitting in your project, you will need to let Webpack know where the child chunks will be loaded from for each deployment. To accomplish this, you can take advantage of the `ASSET_URL` variable that Laravel Vapor injects into your environment during your build step:
+If you use Laravel Mix, you will need to let Webpack know where the asset files will be loaded from for each deployment. To accomplish this, you can take advantage of the `ASSET_URL` variable that Laravel Vapor injects into your environment during your build step:
 
 ```javascript
 const mix = require("laravel-mix");
@@ -140,6 +148,21 @@ if (mix.inProduction()) {
         };
     });
 }
+```
+
+If you are referencing your project's public assets using a relative domain path in your JavaScript code, you may find it convenient to create your own `asset` helper which references the **`__webpack_public_path__`** global variable to correctly build asset URLs. For example, if your application is using Vue, you may consider writing the following mixin:
+
+```js
+Vue.mixin({
+    methods: {
+        asset: function (path) {
+            return __webpack_public_path__ + path
+        },
+    },
+});
+
+// Within your Vue components...
+<img :src="asset('img/global/logo.svg')"/>
 ```
 
 ### Hot Module Replacement

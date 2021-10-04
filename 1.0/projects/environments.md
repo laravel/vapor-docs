@@ -573,6 +573,40 @@ COPY ./php.ini /usr/local/etc/php/conf.d/overrides.ini
 COPY . /var/task
 ```
 
+## Octane
+
+By default, when Lambda receives HTTP requests, Vapor sends those requests synchronously to PHP-FPM using the FastCGI Protocol. This means every incoming request is going to spawn a PHP-FPM worker and boot your application. This ensures Vapor runtime behaves exactly like a traditional web server.
+
+If you wish to reduce the overhead involved in using PPM-FPM, you may opt-in to **Laravel [Octane](https://laravel.com/docs/8.x/octane)**. Octane can increase your application's performance by booting your application once, keeps it in memory, and then feeds it requests much faster.
+
+To get started, first [install Laravel Octane](https://laravel.com/docs/8.x/octane#installation) in your project. After installing Octane, don't forget to review important [Octane documentation](https://laravel.com/docs/8.x/octane) topics such as [dependency injection](https://laravel.com/docs/8.x/octane#dependency-injection-and-octane) and [managing memory leaks](https://laravel.com/docs/8.x/octane#managing-memory-leaks).
+
+Finally, you may instruct Vapor to use Octane by setting the `octane` configuration option within your application's `vapor.yml` file:
+
+```yaml
+id: 1
+name: my-application
+environments:
+    staging:
+        memory: 1024
+        runtime: 'php-8.0:al2'
+        octane: true
+```
+
+In addition, if your project uses a database, you may use the `octane-database-session-persist` and `octane-database-session-ttl` options to instruct Octane that database connections should be reused between requests:
+
+```yaml
+        database: my-database
+        octane: true
+        octane-database-session-persist: true
+        octane-database-session-ttl: 10
+```
+
+- The option `octane-database-session-persist` indicates that database "session" connections should persist between requests. The main purpose of this option is to reduce the overhead involved on creating database connection on each request.
+- The option `octane-database-session-ttl` allows specifying the time (in seconds) the lambda container should stay connected to the database when the lambda container is not being used.
+
+It's **highly recommended to specify an `octane-database-session-ttl`**, otherwise, the lambda container will stay connected to your database until the lambda container gets destroyed. This may take several minutes and may cause lambda containers to be connected to your database even if they are not using the database.
+
 ## Gateway Versions
 
 By default, Vapor routes HTTP traffic to your serverless applications using AWS API Gateway v1 (REST APIs). Your application may run on either API Gateway v1 (REST APIs) or API Gateway v2 (HTTP APIs). By default, applications deploy using API Gateway v1 as it provides a fuller feature set such as Vapor's managed Firewall, and more.

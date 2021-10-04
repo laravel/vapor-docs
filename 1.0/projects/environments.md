@@ -575,11 +575,11 @@ COPY . /var/task
 
 ## Octane
 
-By default, when Lambda receives HTTP requests, Vapor sends those requests synchronously to PHP-FPM using the FastCGI Protocol. This means every incoming request is going to spawn a PHP-FPM worker and boot your application. This ensures Vapor runtime behaves exactly like a traditional web server.
+By default, when Lambda receives HTTP requests, Vapor sends those requests synchronously to PHP-FPM using the FastCGI Protocol. This means every incoming request spawns a PHP-FPM worker and boots your application. This approach ensures Vapor behaves exactly like a traditional web server.
 
-If you wish to reduce the overhead involved in using PPM-FPM, you may opt-in to **Laravel [Octane](https://laravel.com/docs/8.x/octane)**. Octane can increase your application's performance by booting your application once, keeps it in memory, and then feeds it requests much faster.
+If you wish to reduce the overhead involved in using PPM-FPM, you may opt-in to **Laravel [Octane](https://laravel.com/docs/8.x/octane)** support on Vapor. Octane can increase your application's performance by booting your application once, keeping it in memory, and then feeding that same application instance requests as they are received.
 
-To get started, first [install Laravel Octane](https://laravel.com/docs/8.x/octane#installation) in your project. After installing Octane, don't forget to review important [Octane documentation](https://laravel.com/docs/8.x/octane) topics such as [dependency injection](https://laravel.com/docs/8.x/octane#dependency-injection-and-octane) and [managing memory leaks](https://laravel.com/docs/8.x/octane#managing-memory-leaks).
+To get started, [install Laravel Octane](https://laravel.com/docs/8.x/octane#installation) in your project. After installing Octane, don't forget to review important [Octane documentation](https://laravel.com/docs/8.x/octane) topics such as [dependency injection](https://laravel.com/docs/8.x/octane#dependency-injection-and-octane) and [managing memory leaks](https://laravel.com/docs/8.x/octane#managing-memory-leaks).
 
 Finally, you may instruct Vapor to use Octane by setting the `octane` configuration option within your application's `vapor.yml` file:
 
@@ -602,10 +602,10 @@ In addition, if your project uses a database, you may use the `octane-database-s
         octane-database-session-ttl: 10
 ```
 
-- The option `octane-database-session-persist` indicates that database "session" connections should persist between requests. The main purpose of this option is to reduce the overhead involved on creating database connection on each request.
-- The option `octane-database-session-ttl` allows specifying the time (in seconds) the lambda container should stay connected to the database when the lambda container is not being used.
+- The `octane-database-session-persist` option indicates that database connections should persist between requests. The main purpose of this option is to reduce the overhead involved on creating a database connection on each request.
+- The `octane-database-session-ttl` option allows specifying the time (in seconds) the Lambda container should stay connected to the database when the Lambda container is not being used.
 
-It's **highly recommended to specify an `octane-database-session-ttl`**, otherwise, the lambda container will stay connected to your database until the lambda container gets destroyed. This may take several minutes and may cause lambda containers to be connected to your database even if they are not using the database.
+**We recommended that you specify an `octane-database-session-ttl` value**; otherwise, the Lambda container will stay connected to your database until the Lambda container gets destroyed. This may take several minutes and may result in your database becoming overwhelmed with active connections.
 
 ## Gateway Versions
 

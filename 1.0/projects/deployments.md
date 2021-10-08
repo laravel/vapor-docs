@@ -94,7 +94,7 @@ If you are referencing your project's public assets using a relative domain path
 ```php
 <head>
     <script>
-        window.asset_url = {{ env('ASSET_URL') }}
+        window.asset_url = "{{ env('ASSET_URL') }}"
     </script>
 </head>
 ```

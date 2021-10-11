@@ -206,7 +206,7 @@ environments:
 
 ### Wildcard Subdomains
 
-You may attach a domain that supports wildcard subdomains to a Vapor environment if that environment is also using an [application load balancer](./../resources/networks.md#load-balancers) and you have a valid certificate for the domain. To attach a wildcard domain to your environment, specify a `*` as the subdomain:
+You may attach a domain that supports wildcard subdomains to a Vapor environment if you have a valid certificate for the domain. To attach a wildcard domain to your environment, specify a `*` as the subdomain:
 
 ```yaml
 id: 2

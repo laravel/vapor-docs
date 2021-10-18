@@ -549,7 +549,6 @@ Vapor will build, tag, and publish your environment's image during your deployme
 
 - `laravelphp/vapor:php74`
 - `laravelphp/vapor:php80`
-- `laravelphp/vapor:php81`
 
 Of course, you are free to modify your environment's `Dockerfile` to install additional dependencies or PHP extensions. Here are a few examples:
 

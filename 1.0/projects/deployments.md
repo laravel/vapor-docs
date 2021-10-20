@@ -87,43 +87,30 @@ On subsequent deployments, only the assets that have changed will be uploaded to
 
 ### Referencing Relative Asset Paths Via JavaScript
 
-#### Via Blade Defined JavaScript Variable
+If you are referencing your project's public assets using a relative domain path in your JavaScript code, you may use Vapor's NPM package that includes a `Vapor.asset` helper which will take care of convert your relative paths to absolute paths. To get started, install the laravel-vapor NPM package:
 
-If you are referencing your project's public assets using a relative domain path in your JavaScript code, you may use the `ASSET_URL` variable that Vapor injects into your environment to convert your relative paths to absolute paths. To accomplish this, you can assign the value to a global-scope JavaScript variable in your top-level Blade file:
-
-```php
-<head>
-    <script>
-        window.asset_url = "{{ env('ASSET_URL') }}"
-    </script>
-</head>
+```bash
+npm install --save-dev laravel-vapor
 ```
 
-Once the variable has been defined, you may reference the `asset_url` variable in your paths. For convenience, you may write a helper method, such as a Vue mixin, that generates asset paths for you:
-
-```javascript
-Vue.mixin({
-    methods: {
-        asset: function (path) {
-            return window.asset_url + path
-        },
-    },
-});
-
-// Within your Vue components...
-<img :src="asset('img/global/logo.svg')"/>
-```
-
-#### Via Webpack
-
-Or, if you are using Webpack, you may find it convenient to create your own `asset` helper which references the **`__webpack_public_path__`** global variable to correctly build asset URLs. For example, if your application is using Vue, you may consider writing the following mixin:
+Next, within your application's `app.js` file, initialize the global Vapor JavaScript object:
 
 ```js
+window.Vapor = require('laravel-vapor');
+```
+
+Finally, you may call the `Vapor.asset` helper in your JavaScript code:
+
+```js
+$('#container').prepend($('<img>', { src: Vapor.asset('avatar.png') }))
+```
+
+Or, if you are using Vue, you may find convenient writing the following mixin:
+
+```
 Vue.mixin({
     methods: {
-        asset: function (path) {
-            return __webpack_public_path__ + path
-        },
+        asset: window.Vapor.asset
     },
 });
 

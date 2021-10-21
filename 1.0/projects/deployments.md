@@ -85,9 +85,9 @@ Because all of your assets will be served via S3 / CloudFront, you should always
 
 On subsequent deployments, only the assets that have changed will be uploaded to S3, while unchanged assets will be copied over from the previous deployment.
 
-### Assets On JavaScript
+### Referencing Assets From JavaScript
 
-If you are referencing your project's public assets in your JavaScript code, you may use Vapor's NPM package that includes a `Vapor.asset` helper that will behave like Laravel's `asset` helper but on the client-side. To get started, install the `laravel-vapor` NPM package:
+If you are referencing your project's public assets in your JavaScript code, you may generate URLs to these assets using Vapor's NPM package. This package includes a `Vapor.asset` helper that will behave like Laravel's `asset` helper but on the client. To get started, install the `laravel-vapor` NPM package:
 
 ```bash
 npm install --save-dev laravel-vapor
@@ -105,7 +105,7 @@ Finally, you may call the `Vapor.asset` helper in your JavaScript code:
 $('#container').prepend($('<img>', { src: Vapor.asset('avatar.png') }))
 ```
 
-Or, if you are using Vue, you may find convenient writing the following mixin:
+Or, if you are using Vue, you may find it convenient to add the following mixin to your Vue application:
 
 ```
 Vue.mixin({
@@ -118,7 +118,7 @@ Vue.mixin({
 <img :src="asset('img/global/logo.svg')"/>
 ```
 
-#### Code Splitting / Dynamic Imports
+### Code Splitting / Dynamic Imports
 
 If you are taking advantage of JavaScript dynamic imports and code splitting in your project, you will need to let Webpack know where the child chunks will be loaded from for each deployment. To accomplish this, you can take advantage of the `ASSET_URL` variable that Laravel Vapor injects into your environment during your build step:
 

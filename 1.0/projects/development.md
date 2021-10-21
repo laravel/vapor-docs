@@ -74,3 +74,18 @@ authorityKeyIdentifier = keyid:always,issuer:always
 basicConstraints = CA:FALSE
 subjectKeyIdentifier = hash
 ```
+
+## "After Response" Jobs
+
+In typical Laravel applications, you may dispatch jobs that will be executed after the HTTP response is sent to the browser:
+
+Route::get('/', function () {
+    dispatch(function () {
+        Mail::to('taylor@example.com')->send(new WelcomeMessage);
+    })->afterResponse();
+
+    return view('home');
+});
+```
+
+However, we recommend that you always dispatch jobs to your queue workers when using Vapor. Vapor is not able to execute a job after sending a response to the browser; therefore, attempting to do so will cause your application to appear slower to the end user.

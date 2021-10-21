@@ -85,45 +85,32 @@ Because all of your assets will be served via S3 / CloudFront, you should always
 
 On subsequent deployments, only the assets that have changed will be uploaded to S3, while unchanged assets will be copied over from the previous deployment.
 
-### Referencing Relative Asset Paths Via JavaScript
+### Referencing Assets From JavaScript
 
-#### Via Blade Defined JavaScript Variable
+If you are referencing your project's public assets in your JavaScript code, you may generate URLs to these assets using Vapor's NPM package. This package includes a `Vapor.asset` helper that will behave like Laravel's `asset` helper but on the client. To get started, install the `laravel-vapor` NPM package:
 
-If you are referencing your project's public assets using a relative domain path in your JavaScript code, you may use the `ASSET_URL` variable that Vapor injects into your environment to convert your relative paths to absolute paths. To accomplish this, you can assign the value to a global-scope JavaScript variable in your top-level Blade file:
-
-```php
-<head>
-    <script>
-        window.asset_url = "{{ env('ASSET_URL') }}"
-    </script>
-</head>
+```bash
+npm install --save-dev laravel-vapor
 ```
 
-Once the variable has been defined, you may reference the `asset_url` variable in your paths. For convenience, you may write a helper method, such as a Vue mixin, that generates asset paths for you:
-
-```javascript
-Vue.mixin({
-    methods: {
-        asset: function (path) {
-            return window.asset_url + path
-        },
-    },
-});
-
-// Within your Vue components...
-<img :src="asset('img/global/logo.svg')"/>
-```
-
-#### Via Webpack
-
-Or, if you are using Webpack, you may find it convenient to create your own `asset` helper which references the **`__webpack_public_path__`** global variable to correctly build asset URLs. For example, if your application is using Vue, you may consider writing the following mixin:
+Next, within your application's `app.js` file, initialize the global Vapor JavaScript object:
 
 ```js
+window.Vapor = require('laravel-vapor');
+```
+
+Finally, you may call the `Vapor.asset` helper in your JavaScript code:
+
+```js
+$('#container').prepend($('<img>', { src: Vapor.asset('avatar.png') }))
+```
+
+Or, if you are using Vue, you may find it convenient to add the following mixin to your Vue application:
+
+```
 Vue.mixin({
     methods: {
-        asset: function (path) {
-            return __webpack_public_path__ + path
-        },
+        asset: window.Vapor.asset
     },
 });
 
@@ -133,7 +120,7 @@ Vue.mixin({
 
 ### Code Splitting / Dynamic Imports
 
-If you are taking advantage of dynamic imports and code splitting in your project, you will need to let Webpack know where the child chunks will be loaded from for each deployment. To accomplish this, you can take advantage of the `ASSET_URL` variable that Laravel Vapor injects into your environment during your build step:
+If you are taking advantage of JavaScript dynamic imports and code splitting in your project, you will need to let Webpack know where the child chunks will be loaded from for each deployment. To accomplish this, you can take advantage of the `ASSET_URL` variable that Laravel Vapor injects into your environment during your build step:
 
 ```javascript
 const mix = require("laravel-mix");

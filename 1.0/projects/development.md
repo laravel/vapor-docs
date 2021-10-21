@@ -75,9 +75,9 @@ basicConstraints = CA:FALSE
 subjectKeyIdentifier = hash
 ```
 
-## Limitations On "After Response" Features
+## "After Response" Jobs
 
-If you plan to use Laravel features that are supposed to run after the response has been sent to the browser, be aware these work slightly differently when using Vapor. Because of serverless limitations, those run after the response gets handled by the framework, but before the response gets sent to the browser.
+In typical Laravel applications, you may dispatch jobs that will be executed after the HTTP response is sent to the browser:
 
 Route::get('/', function () {
     dispatch(function () {
@@ -88,4 +88,4 @@ Route::get('/', function () {
 });
 ```
 
-On the example above, the email gets sent after the "home" view gets handled, but before the view content gets actually rendered on the client's browser.
+However, we recommend that you always dispatch jobs to your queue workers when using Vapor. Vapor is not able to execute a job after sending a response to the browser; therefore, attempting to do so will cause your application to appear slower to the end user.

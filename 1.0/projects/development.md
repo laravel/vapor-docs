@@ -74,3 +74,18 @@ authorityKeyIdentifier = keyid:always,issuer:always
 basicConstraints = CA:FALSE
 subjectKeyIdentifier = hash
 ```
+
+## Limitations On "After Response" Features
+
+If you plan to use Laravel features that are supposed to run after the response has been sent to the browser, be aware these work slightly differently when using Vapor. Because of serverless limitations, those run after the response gets handled by the framework, but before the response gets sent to the browser.
+
+Route::get('/', function () {
+    dispatch(function () {
+        Mail::to('taylor@example.com')->send(new WelcomeMessage);
+    })->afterResponse();
+
+    return view('home');
+});
+```
+
+On the example above, the email gets sent after the "home" view gets handled, but before the view content gets actually rendered on the client's browser.

@@ -79,6 +79,7 @@ subjectKeyIdentifier = hash
 
 In typical Laravel applications, you may dispatch jobs that will be executed after the HTTP response is sent to the browser:
 
+```php
 Route::get('/', function () {
     dispatch(function () {
         Mail::to('taylor@example.com')->send(new WelcomeMessage);

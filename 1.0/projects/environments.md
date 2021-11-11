@@ -496,7 +496,7 @@ The `runtime` configuration option allows you to specify the runtime a given env
 
 ### Native Runtimes
 
-The currently supported native runtimes are `php-7.3`, `php-7.4`, `php-7.4:al2`, `php-8.0`, and `php-8.0:al2`. The runtimes that are suffixed with `al2` use Amazon Linux 2 while those without the suffix use Amazon Linux 1:
+The currently supported native runtimes are `php-7.3`, `php-7.4`, `php-7.4:al2`, `php-8.0`, `php-8.0:al2`, and `php-8.1:al2`. The runtimes that are suffixed with `al2` use Amazon Linux 2 while those without the suffix use Amazon Linux 1:
 
 ```yaml
 id: 2
@@ -510,7 +510,7 @@ environments:
 
 :::warning Amazon Linux 2
 
-Using [Amazon Linux 2](https://aws.amazon.com/amazon-linux-2/) (`php-7.4:al2` or `php-8.0:al2`) is **highly recommended**, as Amazon Linux 1 is no longer maintained as of December 31, 2020.
+Using [Amazon Linux 2](https://aws.amazon.com/amazon-linux-2/) (`php-7.4:al2`, `php-8.0:al2`, `php-8.1:al2`) is **highly recommended**, as Amazon Linux 1 is no longer maintained as of December 31, 2020.
 :::
 
 The following limitations apply to Vapor native runtimes:

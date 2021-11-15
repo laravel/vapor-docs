@@ -139,6 +139,12 @@ Due to AWS Lambda limitations, your environment variables may only be 4kb in tot
 vapor secret production
 ```
 
+In addition, you may provide a `--name` or a `--value` option to specify the name or the value that should be assigned to the secret:
+
+```bash
+vapor secret production --name="my-key" --value="my-value"
+```
+
 Behind the scenes, your secrets are stored as a `SecureString` in [AWS Systems Manager (SSM) > Parameter Store](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html).
 
 :::tip Secrets & Deployments

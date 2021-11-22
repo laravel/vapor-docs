@@ -24,7 +24,7 @@ When creating Vapor databases, you may choose from two different types of databa
 
 #### Fixed Size Databases
 
-Fixed sized databases are RDS MySQL 5.7 / RDS MySQL 8 / Postgres 10 / Postgres 11 databases that have a fixed amount of RAM and disk space. These databases may be scaled up or down after creation, but not without incurring downtime.
+Fixed sized databases are RDS MySQL 5.7 / RDS MySQL 8 / Postgres 10 / Postgres 11 / Postgres 13 databases that have a fixed amount of RAM and disk space. These databases may be scaled up or down after creation, but not without incurring downtime.
 
 In addition, these databases may be publicly accessible (with a long, random password automatically assigned by Vapor) or private. Private databases may not typically be accessed from the public Internet. To access them from your local machine, you will need to create a Vapor jumpbox.
 

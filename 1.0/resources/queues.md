@@ -93,7 +93,7 @@ environments:
 
 ## Queue Database Connections
 
-By default, database connections do not persist between queue jobs, ensuring that the database does not get overwhelmed with active connections. Yet, if your database accepts a large number of connections, and you want to reduce the overhead involved in creating a database connection on each job, you may use the `queue-database-session-persist` option in your environment's `vapor.yml` configuration file:
+By default, database connections do not persist between queued jobs, ensuring that the database does not get overwhelmed with active connections. However, if your database can handle a large number of connections and you want to reduce the overhead involved in creating a database connection on each job, you may define the `queue-database-session-persist` option in your environment's `vapor.yml` configuration file to instruct Vapor to reuse the same database connection across jobs:
 
 ```yaml
 id: 2

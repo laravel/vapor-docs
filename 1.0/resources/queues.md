@@ -91,6 +91,20 @@ environments:
             - 'composer install --no-dev'
 ```
 
+## Queue Database Connections
+
+By default, database connections do not persist between queue jobs, ensuring that the database does not get overwhelmed with active connections. Yet, if your database accepts a large number of connections, and you want to reduce the overhead involved in creating a database connection on each job, you may use the `queue-database-session-persist` option in your environment's `vapor.yml` configuration file:
+
+```yaml
+id: 2
+name: vapor-laravel-app
+environments:
+    production:
+        queue-database-session-persist: true
+        build:
+            - 'composer install --no-dev'
+```
+
 ## Monitoring Jobs
 
 If you have installed the [Vapor UI dashboard package](./../introduction.html#installing-the-vapor-ui-dashboard), you may access the `/vapor-ui/jobs/metrics` URI to monitor queue jobs.

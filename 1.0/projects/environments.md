@@ -609,7 +609,7 @@ In addition, if your project uses a database, you may use the `octane-database-s
 ```
 
 - The `octane-database-session-persist` option indicates that database connections should persist between requests. The main purpose of this option is to reduce the overhead involved on creating a database connection on each request.
-- The `octane-database-session-ttl` option allows specifying the time (in seconds) the Lambda container should stay connected to the database when the Lambda container is not being used.
+- The `octane-database-session-ttl` option allows specifying the time (in seconds) the Lambda container should stay connected to the database when the Lambda container is not being used. This option is only available for MySQL fixed size databases.
 
 **We recommended that you specify an `octane-database-session-ttl` value**; otherwise, the Lambda container will stay connected to your database until the Lambda container gets destroyed. This may take several minutes and may result in your database becoming overwhelmed with active connections.
 

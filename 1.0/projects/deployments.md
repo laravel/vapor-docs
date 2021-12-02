@@ -293,6 +293,8 @@ jobs:
           coverage: none
       - name: Require Vapor CLI
         run: composer global require laravel/vapor-cli
+      - name: Install Project Dependencies
+        run: composer install --no-interaction --prefer-dist --optimize-autoloader
       - name: Deploy Environment
         run: vapor deploy
         env:

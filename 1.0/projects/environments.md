@@ -509,7 +509,7 @@ id: 2
 name: vapor-laravel-app
 environments:
     production:
-        runtime: 'php-8.0:al2'
+        runtime: 'php-8.1:al2'
         build:
             - 'composer install --no-dev'
 ```
@@ -529,7 +529,7 @@ The following limitations apply to Vapor native runtimes:
 Docker based runtimes allow you to package and deploy applications up to 10GB in size and allow you to install additional PHP extensions or libraries by updating the environment's corresponding `.Dockerfile`. For every new Docker based environment, Vapor adds a `.Dockerfile` file that uses one of Vapor's base images as a starting point for building your image. All of Vapor's Docker images are based on Alpine Linux:
 
 ```docker
-FROM laravelphp/vapor:php80
+FROM laravelphp/vapor:php81
 
 COPY . /var/task
 ```
@@ -555,11 +555,12 @@ Vapor will build, tag, and publish your environment's image during your deployme
 
 - `laravelphp/vapor:php74`
 - `laravelphp/vapor:php80`
+- `laravelphp/vapor:php81`
 
 Of course, you are free to modify your environment's `Dockerfile` to install additional dependencies or PHP extensions. Here are a few examples:
 
 ```docker
-FROM laravelphp/vapor:php80
+FROM laravelphp/vapor:php81
 
 # Add the `ffmpeg` library...
 RUN apk --update add ffmpeg
@@ -595,7 +596,7 @@ name: my-application
 environments:
     staging:
         memory: 1024
-        runtime: 'php-8.0:al2'
+        runtime: 'php-8.1:al2'
         octane: true
 ```
 

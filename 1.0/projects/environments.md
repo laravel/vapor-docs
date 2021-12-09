@@ -584,10 +584,12 @@ COPY . /var/task
 
 When using Docker, is common to use `ARG` instructions in `.Dockerfile` files to define build-time variables.
 
-```
+```docker
 ARG VERSION=php81
 
 FROM laravelphp/vapor:${VERSION}
+
+COPY . /var/task
 ``` 
 
 You may set Docker build-time variables via the `docker-build-args` configuration option within your `vapor.yml` file:

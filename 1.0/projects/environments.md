@@ -606,7 +606,7 @@ environments:
             - 'composer install --no-dev'
 ```
 
-Alternatively, you may provide one or multiple `--build-arg` options to specify the values of the build-time variables:
+Alternatively, you may provide one or multiple `--build-arg` options to the `deploy` Vapor CLI command to specify the values of the build-time variables:
 
 ```bash
 vapor deploy --build-arg VERSION=php74 --build-arg KEY=value

@@ -580,9 +580,9 @@ COPY ./php.ini /usr/local/etc/php/conf.d/overrides.ini
 COPY . /var/task
 ```
 
-#### Set build-time variables
+#### Docker Build Arguments
 
-When using Docker, is common to use `ARG` instructions in `.Dockerfile` files to define build-time variables.
+When using Docker, is common to use `ARG` instructions in `.Dockerfile` files to define build-time variables:
 
 ```docker
 ARG VERSION=php81
@@ -592,7 +592,7 @@ FROM laravelphp/vapor:${VERSION}
 COPY . /var/task
 ``` 
 
-You may set Docker build-time variables via the `docker-build-args` configuration option within your `vapor.yml` file:
+You may set Docker build arguments via the `docker-build-args` configuration option within your application's `vapor.yml` file:
 
 ```yaml
 id: 2
@@ -606,7 +606,7 @@ environments:
             - 'composer install --no-dev'
 ```
 
-Alternatively, you may provide one or multiple `--build-arg` options to the `deploy` Vapor CLI command to specify the values of the build-time variables:
+Alternatively, you may provide one or multiple `--build-arg` options to the `deploy` Vapor CLI command to specify the values of the build arguments:
 
 ```bash
 vapor deploy --build-arg VERSION=php74 --build-arg KEY=value

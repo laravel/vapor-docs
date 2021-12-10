@@ -580,6 +580,38 @@ COPY ./php.ini /usr/local/etc/php/conf.d/overrides.ini
 COPY . /var/task
 ```
 
+#### Docker Build Arguments
+
+When using Docker, is common to use `ARG` instructions in `.Dockerfile` files to define build-time variables:
+
+```docker
+ARG VERSION=php81
+
+FROM laravelphp/vapor:${VERSION}
+
+COPY . /var/task
+``` 
+
+You may set Docker build arguments via the `docker-build-args` configuration option within your application's `vapor.yml` file:
+
+```yaml
+id: 2
+name: vapor-laravel-app
+environments:
+    production:
+        runtime: docker
+        docker-build-args:
+            VERSION: php81
+        build:
+            - 'composer install --no-dev'
+```
+
+Alternatively, you may provide one or multiple `--build-arg` options to the `deploy` Vapor CLI command to specify the values of the build arguments:
+
+```bash
+vapor deploy --build-arg VERSION=php74 --build-arg KEY=value
+```
+
 ## Octane
 
 By default, when Lambda receives HTTP requests, Vapor sends those requests synchronously to PHP-FPM using the FastCGI Protocol. This means every incoming request spawns a PHP-FPM worker and boots your application. This approach ensures Vapor behaves exactly like a traditional web server.

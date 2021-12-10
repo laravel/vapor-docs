@@ -25,7 +25,7 @@ Before creating a project via the Vapor CLI, ensure your current team is the tea
 vapor team:switch
 ```
 
-You may view your current team list of projects via the Vapor UI or the `vapor project:list` CLI command:
+You may view your current team's project list via the Vapor UI or the `vapor project:list` CLI command:
 
 ```bash
 vapor project:list

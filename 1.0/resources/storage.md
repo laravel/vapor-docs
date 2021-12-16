@@ -37,7 +37,7 @@ Due to AWS Lambda limitations, file uploads made directly to your application ba
 
 Now, to ensure the end-user won't receive an `HTTP 413 Payload Too Large` response, you may validate the file upload size using JavaScript before initiating the upload to your application's backend.
 
-If your application needs to receive uploads of larger files, bigger than 4.5 MB, these files will need to be streamed directly to S3 from your application's frontend (Browser).
+If your application needs to receive file uploads bigger than 4.5 MB, these files will need to be streamed directly to S3 from your application's frontend (Browser).
 
 To assist you, the Vapor NPM Package makes it easy to perform file uploads from your application's frontend.
 

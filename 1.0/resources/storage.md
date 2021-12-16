@@ -33,9 +33,13 @@ Once mounted, you can store and retrieve files to the `/mnt/local` disk path. Th
 
 ## File Uploads
 
+Due to AWS Lambda limitations, file uploads made directly to your application backend can only be up to roughly 4.5MB in size. This is a hard limit imposed by AWS, and updating the `php.ini` configuration file or any other configuration will not raise this limit. Therefore, to ensure your application's users won't receive an `HTTP 413 Payload Too Large` response, you may validate the file upload size using JavaScript before initiating the file upload to your application's backend.
+
+If your application needs to receive file uploads larger than AWS allows, those files must be streamed directly to S3 from your application's frontend (Browser). To assist you, we've written an NPM package that makes it easy to perform file uploads directly from your application's frontend.
+
 ### Installing The Vapor NPM Package
 
-If your application accepts file uploads from end-users, these files should be streamed directly to S3 from your application's frontend. To assist you, Vapor's NPM package includes a `Vapor.store` helper which will take care of generating a pre-signed storage URL for the file and uploading the file to S3. To get started, install the `laravel-vapor` NPM package:
+To get started, install the `laravel-vapor` NPM package:
 
 ```bash
 npm install --save-dev laravel-vapor

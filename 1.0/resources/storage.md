@@ -33,7 +33,7 @@ Once mounted, you can store and retrieve files to the `/mnt/local` disk path. Th
 
 ## File Uploads
 
-Due to AWS Lambda limitations, file uploads made directly to your application backend can be up to 4.5 MB in size. This is a hard limit imposed by AWS, and changing the  `php.ini`, or any other configuration, won't affect this.
+Due to AWS Lambda limitations, file uploads made directly to your application backend can be up to 4.5 MB in size. This is a hard limit imposed by AWS, and updating the `php.ini` configuration file, or any other configuration, won't affect this.
 
 Now, to ensure the end-user won't receive an `HTTP 413 Payload Too Large` response, you may validate the file upload size using JavaScript before initiating the upload to your application's backend.
 

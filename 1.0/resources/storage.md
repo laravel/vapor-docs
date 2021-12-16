@@ -35,7 +35,9 @@ Once mounted, you can store and retrieve files to the `/mnt/local` disk path. Th
 
 Due to AWS Lambda limitations, file uploads made directly to your application backend can be up to 4.5 MB in size. This is a hard limit imposed by AWS, and changing the  `php.ini`, or any other configuration, won't affect this.
 
-As a workaround, if your application accepts file uploads from end-users, these files may be streamed directly to S3 from your application's frontend (Browser).
+Now, to ensure the end-user won't receive an `HTTP 413 Payload Too Large` response, you may validate the file upload size using JavaScript before initiating the upload to your application's backend.
+
+If your application needs to receive uploads of larger files, bigger than 4.5 MB, these files will need to be streamed directly to S3 from your application's frontend (Browser).
 
 To assist you, the Vapor NPM Package makes it easy to perform file uploads from your application's frontend.
 

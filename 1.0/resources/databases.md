@@ -173,7 +173,7 @@ Once you are satisfied with the database restoration, you may delete the old dat
 
 ## Upgrading Databases
 
-You may upgrade a Vapor managed MySQL database via the Vapor UI or the `database:upgrade` CLI command. Upgrading Postgres databases is not supported. When upgrading a database, a new database is created with the same configuration and credentials as the original database:
+You may upgrade a Vapor managed MySQL database via the Vapor UI or the `database:upgrade` CLI command. When upgrading a database, a new database is created with the same configuration and credentials as the original database:
 
 ```bash
 vapor database:upgrade current-database-name new-database-name

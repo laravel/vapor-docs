@@ -526,7 +526,7 @@ The following limitations apply to Vapor native runtimes:
 
 ### Docker Runtimes
 
-Docker based runtimes allow you to package and deploy applications up to 10GB in size and allow you to install additional PHP extensions or libraries by updating the environment's corresponding `.Dockerfile`. For every new Docker based environment, Vapor adds a `.Dockerfile` file that uses one of Vapor's base images as a starting point for building your image. All of Vapor's Docker images are based on Alpine Linux:
+Docker based runtimes allow you to package and deploy applications up to 10GB in size and allow you to install additional PHP extensions or libraries by updating the environment's corresponding `.Dockerfile`. For every new Docker based environment, Vapor creates a `.Dockerfile` file within your application that uses one of Vapor's base images as a starting point for building your image. All of Vapor's Docker images are based on Alpine Linux:
 
 ```docker
 FROM laravelphp/vapor:php81

@@ -1,5 +1,5 @@
 body
-  background-color #eee
+  background-color #eef1f4
   font-family "Nunito"
 
 /* Headings
@@ -16,12 +16,12 @@ h2
 
 /* Page
 -----------------------------------------------------------------------------*/
-@media (min-width 720px)
-  .page
-    padding-left 17.75rem
+@media (min-width 768px)
+  // .page
+  //   padding-left 13.75rem
 
   .page-edit
-    display none
+    // display none
 
   .page-nav
     padding 0
@@ -29,6 +29,15 @@ h2
   .page-nav > .inner
     padding 0
     border-top none
+
+@media (min-width 1024px)
+  .page
+    font-size: 1rem
+    padding-left 20rem
+
+@media (min-width 1536px)
+  .page
+    padding-left: 0
 
 /* Navbar
 -----------------------------------------------------------------------------*/
@@ -38,22 +47,23 @@ h2
   box-shadow 0 2px 4px 0 rgba(0, 0, 0, .05)
 
 .navbar .logo
-  width 165.37px
+  max-width 60%
 
 .nav-link, .repo-link
   font-weight 800
 
 /* Sidebar
 -----------------------------------------------------------------------------*/
+/*
 #app
   .sidebar
-    width 17.75rem
+    width 14rem
     border-right none
     background-color transparent
     background-image linear-gradient(0deg, #7e8ea1 0%, #3c4655 100%)
 
   .sidebar-heading
-    padding 0 1.7rem
+    padding 0 1.4rem
     margin-bottom: 0.5rem
 
   .sidebar-group:not(.first)
@@ -95,11 +105,11 @@ h2
   @media (max-width 719px)
     .nav-links a.nav-link, .nav-links a.repo-link
       color #fff
-
+*/
 /* Sidebar ul, li, a, div spacing
 -----------------------------------------------------------------------------*/
 .sidebar-links
-  > li
+  > li:last-child
     margin 0
     margin-bottom: 2rem
 
@@ -107,6 +117,7 @@ h2
 -----------------------------------------------------------------------------*/
 .icon.outbound
   display none
+  color inherit !important
 
 /* Content
 -----------------------------------------------------------------------------*/
@@ -127,15 +138,15 @@ h5 .header-anchor:hover,
 h6 .header-anchor:hover
   text-decoration none !important
 
-.content:not(.custom)
+.theme-default-content:not(.custom)
   padding 4rem 2.5rem 1rem
 
-.content img {
+.theme-default-content img {
   border-radius: 6px
   box-shadow: 0 2px 4px 0 rgba(0,0,0,0.05)
 }
 
-.content img {
+.theme-default-content img {
   zoom: 50%;
 }
 
@@ -169,7 +180,7 @@ h6 .header-anchor:hover
 
 /* Prev/Next Links
 -----------------------------------------------------------------------------*/
-@require './override'
+// @require './override'
 
 $tipColor = #A48CD3
 
@@ -224,11 +235,11 @@ div[class*="language-"]
   -moz-osx-font-smoothing subpixel-antialiased
   box-shadow 0 2px 4px 0 rgba(0, 0, 0, .05)
 
-.content pre, .content pre[class*="language-"]
+.theme-default-content pre, .theme-default-content pre[class*="language-"]
   line-height 1.7
 
-.content pre code, .content pre[class*="language-"] code
-  color #666
+.theme-default-content pre code, .theme-default-content pre[class*="language-"] code
+  color #666 !important
 
 div[class~="language-php"]:before
   content "php"
@@ -250,3 +261,14 @@ div[class*="language-"]:before
 
 .token.comment, .token.block-comment, .token.prolog, .token.doctype, .token.cdata
   color #bbb
+
+/* Code Blocks
+-----------------------------------------------------------------------------*/
+.algolia-docsearch-suggestion--category-header
+  background-color #3c4655 !important
+
+  .algolia-docsearch-suggestion--highlight
+    color white !important
+    font-weight bold
+    background none !important
+    box-shadow none !important

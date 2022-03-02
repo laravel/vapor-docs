@@ -18,6 +18,8 @@ module.exports = {
     // logo: '/assets/img/logo.svg',
     displayAllHeaders: true,
     sidebarDepth: 1,
+    searchPlaceholder: 'Press / to search',
+
 
     nav: [
       { text: 'Home', link: 'https://vapor.laravel.com' }

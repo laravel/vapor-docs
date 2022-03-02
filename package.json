@@ -6,5 +6,8 @@
     "scripts": {
         "docs:build": "vuepress build",
         "docs:dev": "vuepress dev"
+    },
+    "engines": {
+        "node": ">=10"
     }
 }

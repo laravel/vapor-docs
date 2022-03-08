@@ -4,7 +4,7 @@
 
 ## Introduction
 
-As you may be aware, DNS records are used to point domain names to servers. Vapor utilizes DNS records to point your domain names to your serverless applications. Like many other deployment platforms, Vapor provides its own interface for managing all of the DNS records for your domains. This management interface is built on top of AWS Route 53.
+As you may be aware, DNS records are used to point domain names to servers. Vapor utilizes DNS records to point your domain names to your serverless applications. Like many other deployment platforms, Vapor provides its own interface for managing all the DNS records for your domains. This management interface is built on top of AWS Route 53.
 
 ## Creating DNS Zones
 

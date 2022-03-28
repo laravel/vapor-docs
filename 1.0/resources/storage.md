@@ -142,3 +142,21 @@ When developing locally, `Vapor.store` will upload to the bucket specified by th
    }
 ]
 ```
+
+## Temporary Storage
+
+Vapor - via AWS Lambda - provides a file system for your application code to use at `/tmp`. By default, this space has a fixed size of 512 MB, and the information on it is preserved for the lifetime of each request, CLI command, or queue job.
+
+You may increase or decrease the configured temporary storage size using the `tmp-storage`, `cli-tmp-storage`, and `queue-tmp-storage` options in your environment's `vapor.yml` configuration and a value between 512 MB and 10,240 MB:
+
+```yaml
+id: 2
+name: vapor-laravel-app
+environments:
+    production:
+        tmp-storage: 1024
+        cli-tmp-storage: 512
+        queue-tmp-storage: 10240
+        build:
+            - 'composer install --no-dev'
+```

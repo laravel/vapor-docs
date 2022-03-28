@@ -145,9 +145,7 @@ When developing locally, `Vapor.store` will upload to the bucket specified by th
 
 ## Temporary Storage
 
-Your application may store temporary files within the `/tmp` directory. By default, this directory has a fixed size of 512 MB, and the information on it is preserved for the lifetime of each request, CLI command, or queue job.
-
-You may increase or decrease the configured temporary storage size using the `tmp-storage`, `cli-tmp-storage`, and `queue-tmp-storage` options in your environment's `vapor.yml` configuration. These configuration options accepts values between 512 MB and 10,240 MB:
+Your application may store temporary files within the `/tmp` directory. By default, this directory has a fixed size of 512 MB, and the information on it is preserved for the lifetime of each request, CLI command, or queue job. You may increase or decrease the configured temporary storage size using the `tmp-storage`, `cli-tmp-storage`, and `queue-tmp-storage` options in your environment's `vapor.yml` configuration. These configuration options accepts values between 512 MB and 10,240 MB:
 
 ```yaml
 id: 2

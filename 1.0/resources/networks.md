@@ -14,10 +14,10 @@ Typically, you do not need to manually add a `network` directive to your `vapor.
 id: 3
 name: vapor-app
 environments:
-    production:
-        network: my-network
-        build:
-            - 'composer install --no-dev'
+  production:
+    network: my-network
+    build:
+      - "composer install --no-dev"
 ```
 
 ## Jumpboxes
@@ -41,11 +41,11 @@ For practical examples of using jumpboxes to make your serverless life easier, c
 
 ### What Are They?
 
-If your application interacts with a private database or a cache cluster, your network will require a NAT Gateway. It sounds complicated, but don't worry, Vapor takes care of the heavy lifting. In summary, when a serverless application needs to interact with one of these resources, AWS requires us to place that application within that region's network. By default, this network has no access to the outside Internet, meaning any outgoing API calls from your application will fail. Not good.
+If your application interacts with a private database, a public database with a proxy or a cache cluster, your network will require a NAT Gateway. It sounds complicated, but don't worry, Vapor takes care of the heavy lifting. In summary, when a serverless application needs to interact with one of these resources, AWS requires us to place that application within that region's network. By default, this network has no access to the outside Internet, meaning any outgoing API calls from your application will fail. Not good.
 
 ### Managing NAT Gateways
 
-Anytime you deploy an application that lists a private database or cache cluster as an attached resource within its `vapor.yml` file, Vapor will automatically ensure that the network associated with that database / cache contains a NAT Gateway. If it doesn't, Vapor will automatically begin provisioning one. Unfortunately, AWS bills for NAT Gateways by the hour, resulting in a monthly fee of about $32 / month.
+Anytime you deploy an application that lists a private database, a public database with a proxy or cache cluster as an attached resource within its `vapor.yml` file, Vapor will automatically ensure that the network associated with that database / cache contains a NAT Gateway. If it doesn't, Vapor will automatically begin provisioning one. Unfortunately, AWS bills for NAT Gateways by the hour, resulting in a monthly fee of about $32 / month.
 
 To totally avoid using NAT Gateways, you can use publicly accessible RDS databases (Vapor automatically assigns a long, random password) and a [DynamoDB cache table](./caches.md#dynamodb-caches), which Vapor automatically creates for each of your projects.
 
@@ -73,12 +73,11 @@ To attach a load balancer to an environment, add a `balancer` key to the environ
 id: 3
 name: vapor-app
 environments:
-    production:
-        balancer: my-balancer
-        build:
-            - 'composer install --no-dev'
+  production:
+    balancer: my-balancer
+    build:
+      - "composer install --no-dev"
 ```
-
 
 :::tip Load Balancer Certificates
 

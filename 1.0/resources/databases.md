@@ -58,12 +58,12 @@ To attach a database to an environment, add a `database` key to the environment'
 id: 3
 name: vapor-app
 environments:
-    production:
-        database: my-application-db
-        build:
-            - 'composer install --no-dev'
-        deploy:
-            - 'php artisan migrate --force'
+  production:
+    database: my-application-db
+    build:
+      - "composer install --no-dev"
+    deploy:
+      - "php artisan migrate --force"
 ```
 
 ### Connecting To Private Databases Locally
@@ -100,13 +100,13 @@ Next, you may instruct an environment to use the proxy associated with the datab
 id: 3
 name: vapor-app
 environments:
-    production:
-        database: my-application-db
-        database-proxy: true
-        build:
-            - 'composer install --no-dev'
-        deploy:
-            - 'php artisan migrate --force'
+  production:
+    database: my-application-db
+    database-proxy: true
+    build:
+      - "composer install --no-dev"
+    deploy:
+      - "php artisan migrate --force"
 ```
 
 You can delete the proxy at any time using the Vapor UI or the `database:delete-proxy` CLI command. Before deleting a proxy, make sure none of your applications are using the associated proxy:
@@ -119,6 +119,8 @@ vapor database:delete-proxy my-application-db
 
 Before considering the usage of database proxies in Vapor, please consult Amazon's [list of limitations](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/rds-proxy.html#rds-proxy.limitations).
 :::
+
+_**Note:** When a proxy is added to a public database, Vapor will place any application that uses them in a network with a [NAT Gateway](./networks.md#nat-gateways)._
 
 ## Database Users
 
@@ -134,13 +136,13 @@ You may instruct an environment to connect to a database as a given user using t
 id: 3
 name: vapor-app
 environments:
-    production:
-        database: my-application-db
-        database-user: user-2
-        build:
-            - 'composer install --no-dev'
-        deploy:
-            - 'php artisan migrate --force'
+  production:
+    database: my-application-db
+    database-user: user-2
+    build:
+      - "composer install --no-dev"
+    deploy:
+      - "php artisan migrate --force"
 ```
 
 :::tip Database Password Rotation
@@ -170,7 +172,6 @@ When restoring a database, a new database is created with the same configuration
 
 Once you are satisfied with the database restoration, you may delete the old database.
 
-
 ## Upgrading Databases
 
 You may upgrade a Vapor managed MySQL database via the Vapor UI or the `database:upgrade` CLI command. When upgrading a database, a new database is created with the same configuration and credentials as the original database:
@@ -181,7 +182,7 @@ vapor database:upgrade current-database-name new-database-name
 
 Keep in mind that major version upgrades can contain database changes that are not backward-compatible with existing applications. For that reason, we recommend that you thoroughly test the new upgraded database version before attaching it to a production environment. The original database will not be affected by this operation at any point.
 
-Upgrading a database can take several hours for large databases. Therefore, if you plan to attach the new database to a production environment, you may want to place any affected environments in maintenance mode first. Once the newly upgraded database is available, you may start using it by attaching it to an environment. 
+Upgrading a database can take several hours for large databases. Therefore, if you plan to attach the new database to a production environment, you may want to place any affected environments in maintenance mode first. Once the newly upgraded database is available, you may start using it by attaching it to an environment.
 
 Of course, once you are satisfied with the database upgrade, you may delete the original database.
 

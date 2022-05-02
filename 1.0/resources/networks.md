@@ -14,10 +14,10 @@ Typically, you do not need to manually add a `network` directive to your `vapor.
 id: 3
 name: vapor-app
 environments:
-    production:
-        network: my-network
-        build:
-            - 'composer install --no-dev'
+  production:
+    network: my-network
+    build:
+      - "composer install --no-dev"
 ```
 
 ## Jumpboxes
@@ -73,12 +73,11 @@ To attach a load balancer to an environment, add a `balancer` key to the environ
 id: 3
 name: vapor-app
 environments:
-    production:
-        balancer: my-balancer
-        build:
-            - 'composer install --no-dev'
+  production:
+    balancer: my-balancer
+    build:
+      - "composer install --no-dev"
 ```
-
 
 :::tip Load Balancer Certificates
 

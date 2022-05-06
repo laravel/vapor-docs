@@ -35,7 +35,7 @@ Vapor will place any application that uses a private database in a network with 
 
 #### Serverless Databases
 
-Serverless databases are auto-scaling Aurora MySQL 5.7 / Postgres 10 databases which do not have a fixed amount of RAM or disk space. Instead, these databases automatically scale based on the needs of your application. At their smallest scale, they are allocated 1GB of RAM.
+Serverless databases are auto-scaling Aurora MySQL 5.7 / MySQL 8.0 / Postgres 10 databases which do not have a fixed amount of RAM or disk space. Instead, these databases automatically scale based on the needs of your application. At their smallest scale, they are allocated 1GB of RAM.
 
 :::warning Serverless Databases
 

@@ -71,8 +71,8 @@ Here is the full list of environment variables injected by Vapor on your environ
 | `FILESYSTEM_DRIVER`     | S3                                                         |
 | `FILESYSTEM_CLOUD`      | S3                                                         |
 | `LOG_CHANNEL`           | Stderr                                                     |
-| `MAIL_DRIVER`           | SES                                                        |
-| `MAIL_MAILER`           | SES                                                        |
+| `MAIL_DRIVER`           | LOG, but SES for environments with the name `production`   |
+| `MAIL_MAILER`           | LOG, but SES for environments with the name `production`   |
 | `MAIL_FROM_ADDRESS`     | `hello@example.com` or `hello@custom-domain.com` if exists |
 | `MAIL_FROM_NAME`        | `your_project_name`                                        |
 | `MIX_URL`               | CloudFront                                                 |
@@ -465,7 +465,7 @@ Due to Vapor limitations, log messages from scheduled tasks will not appear in A
 
 Laravel provides a clean, simple email API. And, by default, Vapor will automatically configure your environment to use **[Amazon SES](https://aws.amazon.com/ses/)** as the default mail driver by injecting the proper Laravel environment variables during deployment. Of course, you may change the default mail driver by defining a different value for the `MAIL_MAILER` environment variable.
 
-If you plan to use Amazon SES as your application's mail service, you should [attach a domain](#custom-domains) to your environment. Once attached and deployed, Vapor will automatically update the domain's DNS records so Amazon SES can validate the domain and configure DKIM. These DNS records are necessary to protect your reputation as a sender.
+If you plan to use Amazon SES as your application's mail service, you should first ensure the `MAIL_MAILER` environment variable is set, and it contains the value `ses`. Next, you should [attach a domain](#custom-domains) to your environment. Once attached and deployed, Vapor will automatically update the domain's DNS records so Amazon SES can validate the domain and configure DKIM. These DNS records are necessary to protect your reputation as a sender.
 
 :::warning Self-Managed Domains
 

@@ -46,6 +46,31 @@ Environments may be opened in your default browser using the Vapor CLI's `open` 
 vapor open my-environment
 ```
 
+## Default Environment
+
+When executing a Vapor CLI command, Vapor CLI uses the `staging` environment by default:
+
+```bash
+vapor open // Opens the `staging` environment in your default browser...
+
+vapor open production // Opens the `production` environment in your default browser...
+```
+
+However, within your application's `vapor.yml` file, you may define a `default-environment` option to change the default environment for your project:
+
+```yaml
+id: 2
+name: vapor-laravel-app
+default-environment: production
+environments:
+    production:
+        build:
+            - 'composer install --no-dev'
+    my-environment:
+        build:
+            - 'composer install --no-dev'
+```
+
 ## Environment Variables
 
 Each environment contains a set of environment variables that provide crucial information to your application during execution, just like the variables present in your application's local `.env` file.

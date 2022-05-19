@@ -48,14 +48,15 @@ vapor open my-environment
 
 ## Default Environment
 
-Keep in mind, when executing a Vapor CLI command, Vapor CLI uses the `staging` environment by default:
+When executing a Vapor CLI command, Vapor CLI uses the `staging` environment by default:
 
 ```bash
-vapor open // opens the `staging` environment in your default browser 
-vapor open production // opens the `production` environment in your default browser 
+vapor open // Opens the `staging` environment in your default browser...
+
+vapor open production // Opens the `production` environment in your default browser...
 ```
 
-You may provide a `default-environment` option to specify the default environment your project:
+However, within your application's `vapor.yml` file, you may define a `default-environment` option to change the default environment for your project:
 
 ```yaml
 id: 2

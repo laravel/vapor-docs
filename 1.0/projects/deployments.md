@@ -121,6 +121,8 @@ Vue.mixin({
 :::warning Vapor with Laravel Vite
 
 If you are using Laravel Vite with your project, you only need to utilise the helper when you are referencing assets you don't want bundled, such as those that already live in your public directory.
+
+If you want to use the helper with your Vite project, you will also need to specify the base URL for assets in your application's entry point like so: `Vapor.withBaseAssetUrl(import.meta.env.VITE_VAPOR_ASSET_URL)`
 :::
 
 

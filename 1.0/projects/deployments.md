@@ -168,7 +168,7 @@ if (mix.inProduction()) {
 
 ### Hot Module Replacement With Mix
 
-If you are using code splitting and "hot module replacement" with Laravel mix during local development, you will need to use the `mix` helper locally and the `asset` helper when deploying to Vapor:
+If you are using code splitting and "hot module replacement" with Laravel Mix during local development, you will need to use the `mix` helper locally and the `asset` helper when deploying to Vapor:
 
 ```php
 @if (app()->environment('local'))

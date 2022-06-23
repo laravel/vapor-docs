@@ -448,7 +448,7 @@ Behind the scenes, Vapor's managed firewall uses **[Amazon WAF](https://aws.amaz
 
 ## Timeout
 
-By default, Vapor will limit web request execution time to 10 seconds. If you would like to change the timeout value, you may add a `timeout` value (in seconds) to the environment's configuration. Note that AWS does not allow Lambda executions to process for more than 15 minutes:
+By default, Vapor will limit web request execution time to 10 seconds. If you would like to change the timeout value, you may add a `timeout` value (in seconds) to the environment's configuration. API Gateway has a maximum timeout of 30 seconds. Should you require a longer request duration, you may utilise a [load balancer](./../resources/networks.html#load-balancers). Note that AWS does not allow Lambda executions to process for more than 15 minutes:
 
 ```yaml
 id: 2

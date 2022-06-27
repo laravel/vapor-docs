@@ -296,7 +296,7 @@ jobs:
       - name: Install Project Dependencies
         run: composer install --no-interaction --prefer-dist --optimize-autoloader
       - name: Deploy Environment
-        run: vapor deploy
+        run: vapor deploy ${{ ENVIRONMENT_NAME_HERE }}
         env:
           VAPOR_API_TOKEN: ${{ secrets.VAPOR_API_TOKEN }}
 ```

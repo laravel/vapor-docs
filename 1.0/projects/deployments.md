@@ -118,9 +118,16 @@ Vue.mixin({
 <img :src="asset('img/global/logo.svg')"/>
 ```
 
-### Code Splitting / Dynamic Imports
+:::warning Vapor With Laravel Vite
 
-If you are taking advantage of JavaScript dynamic imports and code splitting in your project, you will need to let Webpack know where the child chunks will be loaded from for each deployment. To accomplish this, you can take advantage of the `ASSET_URL` variable that Laravel Vapor injects into your environment during your build step:
+If you are using Laravel Vite with your project, you only need to utilize the `asset` helper when you are referencing assets you don't want bundled, such as those that already live in your public directory.
+
+If you want to use the `asset` helper with your Vite project, you will also need to specify the base URL for assets in your application's entry point, for example in your `resources/js/app.js`, like so: `Vapor.withBaseAssetUrl(import.meta.env.VITE_VAPOR_ASSET_URL)`
+:::
+
+### Code Splitting / Dynamic Imports With Mix
+
+If you are taking advantage of JavaScript dynamic imports and code splitting in your project via Laravel Mix, you will need to let Webpack know where the child chunks will be loaded from for each deployment. To accomplish this, you can take advantage of the `ASSET_URL` variable that Laravel Vapor injects into your environment during your build step:
 
 ```javascript
 const mix = require("laravel-mix");
@@ -158,9 +165,9 @@ if (mix.inProduction()) {
 }
 ```
 
-### Hot Module Replacement
+### Hot Module Replacement With Mix
 
-If you are using code splitting and "hot module replacement" during local development, you will need to use the `mix` helper locally and the `asset` helper when deploying to Vapor:
+If you are using code splitting and "hot module replacement" with Laravel Mix during local development, you will need to use the `mix` helper locally and the `asset` helper when deploying to Vapor:
 
 ```php
 @if (app()->environment('local'))

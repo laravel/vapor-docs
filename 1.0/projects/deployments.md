@@ -125,7 +125,6 @@ If you are using Laravel Vite with your project, you only need to utilize the `a
 If you want to use the `asset` helper with your Vite project, you will also need to specify the base URL for assets in your application's entry point, for example in your `resources/js/app.js`, like so: `Vapor.withBaseAssetUrl(import.meta.env.VITE_VAPOR_ASSET_URL)`
 :::
 
-
 ### Code Splitting / Dynamic Imports With Mix
 
 If you are taking advantage of JavaScript dynamic imports and code splitting in your project via Laravel Mix, you will need to let Webpack know where the child chunks will be loaded from for each deployment. To accomplish this, you can take advantage of the `ASSET_URL` variable that Laravel Vapor injects into your environment during your build step:

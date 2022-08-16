@@ -73,9 +73,9 @@ You can review the logs associated with the failing hook using the `hook:log` co
 vapor hook:log {DEPLOYMENT_HOOK_ID}
 ```
 
-:::warning Database Migrations
+:::warning Squashed Database Migrations
 
-[Native Vapor runtimes](https://docs.vapor.build/1.0/projects/environments.html#runtime) do not support [squashed migrations](https://laravel.com/docs/migrations#squashing-migrations). Should you wish to utilise this feature of Laravel, you may take advantage of Vapor's [Docker based deployments](https://docs.vapor.build/1.0/projects/environments.html#docker-runtimes)
+[Native Vapor runtimes](https://docs.vapor.build/1.0/projects/environments.html#runtime) do not support [squashed migrations](https://laravel.com/docs/migrations#squashing-migrations). If you wish to utilize this feature of Laravel, you may take advantage of Vapor's [Docker based deployments](https://docs.vapor.build/1.0/projects/environments.html#docker-runtimes)
 :::
 
 ## Assets

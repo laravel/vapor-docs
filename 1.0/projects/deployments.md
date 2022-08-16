@@ -73,6 +73,11 @@ You can review the logs associated with the failing hook using the `hook:log` co
 vapor hook:log {DEPLOYMENT_HOOK_ID}
 ```
 
+:::warning Squashed Database Migrations
+
+[Native Vapor runtimes](https://docs.vapor.build/1.0/projects/environments.html#runtime) do not support [squashed migrations](https://laravel.com/docs/migrations#squashing-migrations). If you wish to utilize this feature of Laravel, you may take advantage of Vapor's [Docker based deployments](https://docs.vapor.build/1.0/projects/environments.html#docker-runtimes)
+:::
+
 ## Assets
 
 During deployment, Vapor will automatically extract all of the assets in your Laravel project's `public` directory and upload them to S3. In addition, Vapor will create a AWS CloudFront (CDN) distribution to distribute these assets efficiently around the world.

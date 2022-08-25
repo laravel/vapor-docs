@@ -82,7 +82,7 @@ composer require laravel/vapor-core --update-with-dependencies
 
 ## Installing The Vapor UI Dashboard
 
-In addition, you may want to install the `laravel/vapor-ui` [package](https://github.com/laravel/vapor-ui). This package provides a beautiful dashboard through your application that allows you to monitor your application's logs and failed queue jobs. The Vapor UI dashboard package can be installed in your project using Composer:
+In addition, you may want to install the `laravel/vapor-ui` [package](https://github.com/laravel/vapor-ui). This package provides a beautiful dashboard through your application that allows you to monitor your application's logs and failed queue jobs, at the `/vapor-ui` URI. The Vapor UI dashboard package can be installed in your project using Composer:
 
 ```bash
 composer require laravel/vapor-ui
@@ -93,6 +93,8 @@ After installing Vapor UI, you may publish its assets using the `vapor-ui:instal
 ```bash
 php artisan vapor-ui:install
 ```
+
+Note that this dashboard is intended to be visualized on an AWS runtime. Therefore, you must do a: `vapor deploy`, and visit the dashboard via your vanity URL. The `/vapor-ui` URL will return a 404 if used on your local environment.
 
 ### Dashboard Authorization
 

@@ -168,6 +168,17 @@ Once the configuration file has been published, you may edit Vapor UI's middlewa
 ],
 ```
 
+## Sandbox Accounts
+
+When registering with Vapor, you will automatically be enrolled on a free sandbox account, which allows you to experience the power of Vapor without the upfront commitment of subscribing to a paid plan.
+
+A sandbox account allows you to provision services such as networks, databases, and caches. You may add a single project which, once deployed, will be accessible via an [AWS Lambda function URL](https://docs.aws.amazon.com/lambda/latest/dg/lambda-urls.html). Should you wish to take your project into production, simply upgrade your account and redeploy. In doing so, you will be automatically assigned a vanity domain and be afforded the opportunity to attach a custom domain.
+
+:::warning Sandbox Limitations
+
+When interacting with your project in a sandbox account, it will not be possible to utilize API Gateway versions, load balancers, firewalls or custom domains. To do so requires a paid subscription.
+:::
+
 ## Teams
 
 When you create your Vapor account, a "Personal" team is automatically created for you. You can rename this team in your team settings. All projects, databases, caches, and other Vapor resources belong to a team. You are free to create as many teams as you wish via the Vapor UI or the `team` CLI command. There is no additional charge for creating teams, and they serve as a great way to organize your projects by client or topic.

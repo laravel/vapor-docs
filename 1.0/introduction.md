@@ -170,13 +170,11 @@ Once the configuration file has been published, you may edit Vapor UI's middlewa
 
 ## Sandbox Accounts
 
-When registering with Vapor, you will automatically be enrolled on a free sandbox account, which allows you to experience the power of Vapor without the upfront commitment of subscribing to a paid plan.
-
-A sandbox account allows you to provision services such as networks, databases, and caches. You may add a single project which, once deployed, will be accessible via an [AWS Lambda function URL](https://docs.aws.amazon.com/lambda/latest/dg/lambda-urls.html). Should you wish to take your project into production, simply upgrade your account and redeploy. In doing so, you will be automatically assigned a vanity domain and be afforded the opportunity to attach a custom domain.
+After creating a Vapor account, your account will be on our free "sandbox" plan, which allows you to experience the power of Vapor without the upfront commitment of subscribing to a paid plan. A sandbox account allows you to provision services such as networks, databases, and caches. You may add a single project which, once deployed, will be accessible via an [AWS Lambda function URL](https://docs.aws.amazon.com/lambda/latest/dg/lambda-urls.html).
 
 :::warning Sandbox Limitations
 
-When interacting with your project in a sandbox account, it will not be possible to utilize API Gateway versions, load balancers, firewalls or custom domains. To do so requires a paid subscription.
+Sandbox projects may not utilize API Gateway versions, load balancers, firewalls, or custom domains. To utilize these features, you will need to choose a subscription plan.
 :::
 
 ## Teams

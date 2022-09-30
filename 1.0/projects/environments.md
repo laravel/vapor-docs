@@ -279,23 +279,17 @@ You may customize the maintenance mode splash screen for your application by pla
 
 ### Bypassing Maintenance Mode
 
-You may find it useful to be able to access your site on it's custom domain, rather than the vanity domain, whilst in maintenance mode. To do this, you can add a secret when moving your application into maintenance mode, using the `down` command with a secret:
+You may find it useful to be able to access your site on its custom domain rather than the vanity domain while in maintenance mode. To accomplish this, you may provide a secret when invoking the `down` command:
 
 ```bash
-vapor down --secret=[Secret Key]
+vapor down --secret="example-secret"
 ```
 
-You will then be able to access your site using the secret key like so:
+You may then access your application using the secret key as the URL path:
 
 ```
-https://example.com/[Secret Key]
+https://example.com/example-secret
 ```
-
-To use this feature, you need to ensure that your application is using the following versions or above of these packages:
-
-- `laravel/framework` v8.0+
-- `laravel/vapor-core` v2.9.3+
-- `laravel/vapor-cli` v1.9.4+
 
 ## Commands
 

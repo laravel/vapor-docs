@@ -277,6 +277,20 @@ When an environment is in maintenance mode, the environment's custom domain will
 
 You may customize the maintenance mode splash screen for your application by placing a `503.html` file in your application's root directory. In addition, you may also place a `503.json` file in your application's root directory for requests asking for JSON responses.
 
+### Bypassing Maintenance Mode
+
+You may find it useful to be able to access your site on its custom domain rather than the vanity domain while in maintenance mode. To accomplish this, you may provide a secret when invoking the `down` command:
+
+```bash
+vapor down --secret="example-secret"
+```
+
+You may then access your application using the secret key as the URL path:
+
+```
+https://example.com/example-secret
+```
+
 ## Commands
 
 Commands allow you to execute an arbitrary Artisan command against an environment. You may issue a command via the Vapor UI or using the `command` CLI command. The `command` command will prompt you for the Artisan command you would like to run:

@@ -194,9 +194,9 @@ vapor secret:passport production
 
 Vapor provides built-in support for Laravel's [encrypted environment files](https://laravel.com/docs/9.x/configuration#encrypting-environment-files). If Vapor discovers an encrypted environment file while booting your application, it will automatically attempt to decrypt it and inject the resulting variables into the runtime.
 
-To leverage this feature, you must first ensure an encrypted environment file is present at the root of your application during deployment. For example, deploying the `production` environment requires a file called `.env.production.encrypted`.
+To leverage this feature, you must first ensure an encrypted environment file is present at the root of your application during deployment. For example, deploying the `production` environment requires a file called `.env.production.encrypted` to be present at the root of your application.
 
-Additionally, you should ensure the decryption key is available in the runtime by adding it to an environment variable called `LARAVEL_ENV_ENCRYPTION_KEY` via the Vapor UI or [CLI](#environment-variables).
+Additionally, you should ensure the decryption key is available in the runtime by defining it as the `LARAVEL_ENV_ENCRYPTION_KEY` environment variable via the Vapor UI or [CLI](#environment-variables).
 
 :::warning Version Requirements
 

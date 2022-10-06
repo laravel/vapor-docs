@@ -190,6 +190,19 @@ Storing Laravel Passport keys is a common use-case for secrets. You may easily a
 vapor secret:passport production
 ```
 
+## Encrypted Environment Files
+
+Vapor provides built-in support for Laravel's [encrypted environment files](https://laravel.com/docs/9.x/configuration#encrypting-environment-files). If Vapor discovers an encrypted environment file while booting your application, it will automatically attempt to decrypt it and inject the resulting variables into the runtime.
+
+To leverage this feature, you must first ensure an encrypted environment file is present at the root of your application during deployment. For example, deploying the `production` environment requires a file called `.env.production.encrypted`.
+
+Additionally, you should ensure the decryption key is available in the runtime by adding it to an environment variable called `LARAVEL_ENV_ENCRYPTION_KEY` via the Vapor UI or [CLI](#environment-variables).
+
+:::warning Version Requirements
+
+Utilizing encrypted environment files requires your application to be runnning Laravel >= v9.32 and Vapor Core >= v2.24.
+:::
+
 ## Vanity URLs
 
 Each environment is assigned a unique "vanity URL" which you may use to access the application immediately after it is deployed. When serving these URLs, Vapor automatically adds "no-index" headers to the response so they are not indexed by search engines.

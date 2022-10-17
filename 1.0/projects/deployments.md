@@ -92,11 +92,9 @@ On subsequent deployments, only the assets that have changed will be uploaded to
 
 ### Custom Asset Domains
 
-Should you wish to use your own domain when serving your assets, you may do so by attaching a custom asset domain to your project.
+If you would like to use your own domain to serve your assets, you may do so by attaching a custom asset domain to your project. First, you should [ensure a DNS zone exists](./../domains/dns.html#creating-dns-zones) for the domain and that a [certificate is issued](./../domains/certificates.html#creating-certificates) for the domain in the `us-east-1` region.
 
-To do so, you'll first need to [ensure a DNS zone exists](./../domains/dns.html#creating-dns-zones) for the domain and a [certificate is issued](./../domains/certificates.html#creating-certificates) for it in the `us-east-1` region.
-
-Finally, set the `asset-domain` option of your `vapor.yml` file to your chosen domain.
+Next, set the `asset-domain` option of your `vapor.yml` file to your chosen domain:
 
 ```yml
 id: 3
@@ -107,7 +105,7 @@ environments:
         ...
 ```
 
-During the subsequent deployment of any environment associated with your project, Vapor will add the custom domain provided as an alias to the CloudFront distribution. Vapor will inject the relevant environment variables for the [asset helper](https://docs.vapor.build/1.0/projects/deployments.html#assets) and Vite asset compilation to ensure your assets are served from your custom asset domain.
+During a subsequent deployment of any environment associated with your project, Vapor will add the custom domain as an alias to your CloudFront distribution. Vapor will also inject the relevant environment variables for the [asset helper](https://docs.vapor.build/1.0/projects/deployments.html#assets) and Vite asset compilation process to ensure your assets are served from your custom asset domain.
 
 ### Referencing Assets From JavaScript
 

@@ -90,6 +90,23 @@ Because all of your assets will be served via S3 / CloudFront, you should always
 
 On subsequent deployments, only the assets that have changed will be uploaded to S3, while unchanged assets will be copied over from the previous deployment.
 
+### Custom Asset Domains
+
+If you would like to use your own domain to serve your assets, you may do so by attaching a custom asset domain to your project. First, you should [ensure a DNS zone exists](./../domains/dns.html#creating-dns-zones) for the domain and that a [certificate is issued](./../domains/certificates.html#creating-certificates) for the domain in the `us-east-1` region.
+
+Next, set the `asset-domain` option of your `vapor.yml` file to your chosen domain:
+
+```yml
+id: 3
+name: vapor-app
+asset-domain: assets.laravel.rocks
+environments:
+    production:
+        ...
+```
+
+During a subsequent deployment of any environment associated with your project, Vapor will add the custom domain as an alias to your CloudFront distribution. Vapor will also inject the relevant environment variables for the [asset helper](https://docs.vapor.build/1.0/projects/deployments.html#assets) and Vite asset compilation process to ensure your assets are served from your custom asset domain.
+
 ### Referencing Assets From JavaScript
 
 If you are referencing your project's public assets in your JavaScript code, you may generate URLs to these assets using Vapor's NPM package. This package includes a `Vapor.asset` helper that will behave like Laravel's `asset` helper but on the client. To get started, install the `laravel-vapor` NPM package:

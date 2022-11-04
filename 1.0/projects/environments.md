@@ -130,7 +130,7 @@ After updating an environment's variables, the new variables will not be utilize
 
 :::warning Environment Variable Limits
 
-Due to AWS Lambda limitations, your environment variables may only be 4kb in total. You should use "secrets" to store very large environment variables.
+Due to AWS Lambda limitations, your environment variables may only be 4kb in total. You should use encrypted environment files in place of or in addition to environment variables if you exceed this limit.
 :::
 
 ### Reserved Environment Variables
@@ -156,35 +156,9 @@ The following environment variables are reserved and may not be added to your en
 
 In addition, environment variables should not contain `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, or `AWS_SESSION_TOKEN` in their names. For example: `MY_SERVICE_AWS_SECRET_ACCESS_KEY`.
 
-## Secrets
-
-Due to AWS Lambda limitations, your environment variables may only be 4kb in total. However, "secrets" may be much larger, making them a perfect way to store large environment variables such as Laravel Passport keys. You may create secrets via the Vapor UI or the `secret` CLI command:
-
-```bash
-vapor secret production
-```
-
-In addition, you may provide a `--name` or a `--value` option to specify the name or the value that should be assigned to the secret:
-
-```bash
-vapor secret production --name="my-key" --value="my-value"
-```
-
-Behind the scenes, your secrets are stored as a `SecureString` in [AWS Systems Manager (SSM) > Parameter Store](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html).
-
-:::tip Secrets & Deployments
-
-After updating an environment's secrets, the new secrets will not be utilized until the application is deployed again using the `vapor deploy` CLI command. In addition, when rolling back to a previous deployment, Vapor will use the secrets as they existed at the time the deployment you're rolling back to was originally deployed.
-:::
-
-:::warning Secret Limits
-
-Due to AWS Parameter Store limitations, an individual secret may not exceed 4096 characters.
-:::
-
 ### Passport Keys
 
-Storing Laravel Passport keys is a common use-case for secrets. You may easily add your project's Passport keys as secrets using the `secret:passport` CLI command:
+You may easily add your project's Passport keys as secrets using the `secret:passport` CLI command:
 
 ```bash
 vapor secret:passport production

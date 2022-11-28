@@ -156,14 +156,6 @@ The following environment variables are reserved and may not be added to your en
 
 In addition, environment variables should not contain `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, or `AWS_SESSION_TOKEN` in their names. For example: `MY_SERVICE_AWS_SECRET_ACCESS_KEY`.
 
-### Passport Keys
-
-You may easily add your project's Passport keys as secrets using the `secret:passport` CLI command:
-
-```bash
-vapor secret:passport production
-```
-
 ## Encrypted Environment Files
 
 Vapor provides built-in support for Laravel's [encrypted environment files](https://laravel.com/docs/9.x/configuration#encrypting-environment-files). If Vapor discovers an encrypted environment file while booting your application, it will automatically attempt to decrypt it and inject the resulting variables into the runtime.
@@ -176,6 +168,22 @@ Additionally, you should ensure the decryption key is available in the runtime b
 
 Utilizing encrypted environment files requires your application to be runnning Laravel >= v9.32 and Vapor Core >= v2.24.
 :::
+
+### Passport Keys
+
+You may easily add your project's Passport keys to your encrypted environment file using the `env:passport` CLI command:
+
+```bash
+vapor env:passport production
+```
+
+Running the above command will append the contents of your local Passport keys to your `.env.production` file. When the command completes, you should re-encrypt the file and redeploy your project in order for the changes to take effect.
+
+The command will add the keys to the correct enviornment file. For example, running the following command will result in the keys being appended to your `.env.staging` file.
+
+```bash
+vapor env:passport staging
+```
 
 ## Vanity URLs
 

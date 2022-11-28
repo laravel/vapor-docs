@@ -177,13 +177,7 @@ You may easily add your project's Passport keys to your encrypted environment fi
 vapor env:passport production
 ```
 
-Running the above command will append the contents of your local Passport keys to your `.env.production` file. When the command completes, you should re-encrypt the file and redeploy your project in order for the changes to take effect.
-
-The command will add the keys to the correct enviornment file. For example, running the following command will result in the keys being appended to your `.env.staging` file.
-
-```bash
-vapor env:passport staging
-```
+The `env:passport` command will append the contents of your local Passport keys to your `.env.production` file. When the command completes, you should re-encrypt the environment file using Laravel's `env:encrypt` command and redeploy your project in order for the changes to take effect.
 
 ## Vanity URLs
 

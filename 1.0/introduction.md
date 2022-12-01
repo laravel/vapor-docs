@@ -222,6 +222,18 @@ On the permissions management screen, you may grant full administrator access to
 
 Once the user is created, AWS will display the access key ID and secret access key for the user. These credentials may then be provided to Vapor so that AWS resources may be managed on your behalf. Your linked AWS accounts may be managed via the "Team Settings" screen of the Vapor UI.
 
+#### Defining Your AWS Budget
+
+When linking your AWS account to Vapor, it is important to stay informed about your AWS costs. This can be done directly in the AWS Console using the AWS Budgets service. In addition, you can use Vapor's managed budgets to define your monthly AWS budget in USD, while also configuring multiple alarms directly on the "Team Settings > AWS Accounts" screen of the Vapor UI. At this time, up to five alarms can be configured:
+
+- Actual cost > 85%
+- Actual cost > 100%
+- Actual cost > 200%
+- Actual cost > 500%
+- Forecasted cost > 100%
+
+Each alarm can be triggered once per monthly billing period. When an alarm is triggered, the team owner will receive an email, allowing them to act quickly and avoid unexpected charges.
+
 ## Notification Methods
 
 ### Slack

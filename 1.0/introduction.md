@@ -224,7 +224,7 @@ Once the user is created, AWS will display the access key ID and secret access k
 
 #### Defining Your AWS Budget
 
-When linking your AWS account to Vapor, it is important to stay informed about your AWS costs. This can be done directly in the AWS Console using the AWS Budgets service. In addition, you can use Vapor's Managed Budgets to define your monthly AWS budget in USD and configure multiple alarms directly on the "Team Settings > AWS Accounts" screen of the Vapor UI. At this time, up to five alarms can be configured:
+When linking your AWS account to Vapor, it is important to stay informed about your AWS costs. This can be done directly in the AWS Console using the AWS Budgets service. In addition, you can use Vapor's managed budgets to define your monthly AWS budget in USD, while also configuring multiple alarms directly on the "Team Settings > AWS Accounts" screen of the Vapor UI. At this time, up to five alarms can be configured:
 
 - Actual cost > 85%
 - Actual cost > 100%

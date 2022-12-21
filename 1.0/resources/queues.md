@@ -117,3 +117,13 @@ If you have installed the [Vapor UI dashboard package](./../introduction.html#in
 Within the Vapor UI dashboard, you can monitor (in real-time) the number of processed jobs, failed jobs, and pending jobs for your Vapor application. In addition, it includes charts providing job statistics over the last 24 hours, allowing you to understand better the trends of your queue.
 
 Furthermore, you may access the `/vapor-ui/jobs/failed` to view the list of failed jobs, their details, job IDs, connections, queues, failures times, and other information about the jobs. From this screen, you may choose to retry or delete the failed job.
+
+## Failed Jobs
+Vapor automatically keeps track of failed jobs using your environment's configured cache driver. This ensures the correct number of failed attempts is accessible by your application even in the event a queued job does not complete due to exceeding the maximum execution time enforced by Lambda (15 minutes) or because an unhandled exception causes the container processing your job to fail.
+
+:::danger High Volume Queues
+
+Applications processing a large volume of queued jobs may notice an increase in AWS charges when using the DynamoDB cache driver - instead, we recommend utilizing a Redis cache. Alternatively you may turn off the failed job cache by setting `queue-cache-job-attempts: false` in your project's vapor.yml file.
+:::
+
+

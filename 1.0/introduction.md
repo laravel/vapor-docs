@@ -220,9 +220,7 @@ Since Vapor manages many types of resources across more than a dozen AWS service
 
 On the permissions management screen, you may grant full administrator access to the IAM user by selecting the "Attach existing policies directly" option and "AdministratorAccess" policy. Once the policy has been attached, you may click "Next".
 
-If you would prefer not to provide full administrator access to Vapor you may, instead, create a custom policy. To do so, select "Policies" from the IAM service within the AWS console followed by "Create policy". Choose the JSON option and add the required permissions. Below is an example template you may use which provides permissions for all of the services required by Vapor.
-
-You may now attach this policy to the IAM user.
+Or, if you would prefer to not provide administrator access to Vapor, you may instead create a custom permission policy with the specific permissions needed by Vapor. To do so, select "Policies" from the IAM service within the AWS console, followed by "Create policy". Choose the JSON option and provide the permission definition below. Once the policy has been defined, you may attach the policy to your new IAM user:
 
 ```json
 {
@@ -462,7 +460,7 @@ You may now attach this policy to the IAM user.
 
 :::warning Changes To Required Permissions
 
-It's probable this list of permissions will change overtime as we add new features to Vapor. This may result in unexpected errors if your policy is not kept up to date.
+It's probable this list of permissions will change as we add new features to Vapor, which may result in unexpected errors if your policy is not kept up to date.
 :::
 
 Once the user is created, AWS will display the access key ID and secret access key for the user. These credentials may then be provided to Vapor so that AWS resources may be managed on your behalf. Your linked AWS accounts may be managed via the "Team Settings" screen of the Vapor UI.

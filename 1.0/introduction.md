@@ -26,7 +26,7 @@ Vapor abstracts the complexity of managing Laravel applications on AWS Lambda, a
 
 ### Video Series
 
-We've created a a comprehensive and free video series on Vapor. With 2 hours of content, our team will help you launch your Laravel infrastructure on Vapor and fall in love with the scalable simplicity of serverless.
+We've created a comprehensive and free video series on Vapor. With 2 hours of content, our team will help you launch your Laravel infrastructure on Vapor and fall in love with the scalable simplicity of serverless.
 
 [![YouTube](./img/youtube-header.png)](https://www.youtube.com/watch?v=4WvRChmRhDo&list=PLcjapmjyX17gqhjUz8mgTaWzSv1FPgePD)
 

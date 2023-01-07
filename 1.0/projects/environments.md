@@ -650,7 +650,7 @@ vapor deploy --build-arg VERSION=php74 --build-arg KEY=value
 
 By default, when Lambda receives HTTP requests, Vapor sends those requests synchronously to PHP-FPM using the FastCGI Protocol. This means every incoming request spawns a PHP-FPM worker and boots your application. This approach ensures Vapor behaves exactly like a traditional web server.
 
-If you wish to reduce the overhead involved in using PPM-FPM, you may opt-in to **Laravel [Octane](https://laravel.com/docs/8.x/octane)** support on Vapor. Octane can increase your application's performance by booting your application once, keeping it in memory, and then feeding that same application instance requests as they are received.
+If you wish to reduce the overhead involved in using PHP-FPM, you may opt-in to **Laravel [Octane](https://laravel.com/docs/8.x/octane)** support on Vapor. Octane can increase your application's performance by booting your application once, keeping it in memory, and then feeding that same application instance requests as they are received.
 
 To get started, [install Laravel Octane](https://laravel.com/docs/8.x/octane#installation) in your project. After installing Octane, don't forget to review important [Octane documentation](https://laravel.com/docs/8.x/octane) topics such as [dependency injection](https://laravel.com/docs/8.x/octane#dependency-injection-and-octane) and [managing memory leaks](https://laravel.com/docs/8.x/octane#managing-memory-leaks).
 

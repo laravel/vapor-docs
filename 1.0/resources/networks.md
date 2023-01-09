@@ -82,7 +82,7 @@ environments:
 
 By default, Vapor creates all SSL certificates in the `us-east-1` region, regardless of the region of your project. When your application is using API Gateway, AWS will automatically replicate your certificate to all regions behind the scenes.
 
-However, when using an Application Load Balancer to route traffic to your application, you will need to create a certificate in the region that the project is actually deployed to. If you are creating a certificate in the Vapor UI, you can do this by checking the "For Load Balancer" checkbox when creating the certificate.
+However, when using an Application Load Balancer to route traffic to your application, you will need to create a certificate in the region that the project is actually deployed to.
 :::
 
 ### Deleting Load Balancers

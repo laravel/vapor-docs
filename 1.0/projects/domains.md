@@ -22,7 +22,7 @@ Here are some options you can consider:
 
 ## Add a domain
 
-Once you purchase a domain, you may add it to Vapor using the Vapor UI's domain screen or using the `domain` CLI command:
+Once you purchase a domain, you may add it to Vapor through the Vapor UI's domain screen or by using the domain CLI command. Note that, even if you plan to use a sub-domain for your environment, you should still use the root domain here to ensure that all the necessary configurations, such as SSL Certificates, are in place:
 
 ```bash
 vapor domain example.com

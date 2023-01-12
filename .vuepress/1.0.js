@@ -12,6 +12,7 @@ module.exports = [
       'environments',
       'deployments',
       'development',
+      'domains',
       'troubleshooting',
     ]),
   },
@@ -26,15 +27,7 @@ module.exports = [
       'caches',
       'logs',
     ]),
-  },
-  {
-    title: 'Domains',
-    collapsable: false,
-    children: prefix('domains', [
-      'dns',
-      'certificates',
-    ]),
-  },
+  }
 ]
 
 function prefix(prefix, children) {

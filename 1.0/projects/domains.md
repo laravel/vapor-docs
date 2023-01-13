@@ -4,31 +4,21 @@
 
 ## Introduction
 
-With Vapor, each environment is provided with a unique vanity domain that you can use to access the environment after it is deployed. However, it's important to keep in mind that vanity domains are intended for development purposes only and Vapor automatically adds "no-index" headers to the responses to prevent them from being indexed by search engines.
+When using Vapor, each environment is provided a unique vanity domain that you can use to access the environment after it is deployed. However, it's important to keep in mind that vanity domains are intended for development purposes only and Vapor automatically adds "no-index" headers to responses from these URLs to prevent them from being indexed by search engines.
 
 In addition, these vanity domains will continue to function even when an application is in maintenance mode, allowing you to test your environment before disabling maintenance mode and restoring general access.
 
 While vanity domains are useful during the development process, it's not recommended to use them for a production environment or share them with the public. Instead, it's a best practice to use your own custom domain.
 
-## Buying a domain
+## Adding Domains
 
-If you do not own a domain, purchasing one through the Vapor platform is not possible. So, you must obtain the domain through an external provider.
-
-Here are some options you can consider:
-- Amazon Route 53
-- CloudFlare
-- Hover
-- Namecheap
-
-## Add a domain
-
-Once you purchase a domain, you may add it to Vapor through the Vapor UI's domain screen or by using the domain CLI command. Note that, even if you plan to use a sub-domain for your environment, you should still use the root domain here to ensure that all the necessary configurations, such as SSL Certificates, are in place:
+You may add a domain that you own to Vapor through Vapor's domain screen or by using the `domain` CLI command. When adding a domain to Vapor, always add the root domain, even if you plan to serve your application from a subdomain:
 
 ```bash
 vapor domain example.com
 ```
 
-You may visit the details of your Vapor domains at any time using the Vapor UI's domain screen or using the `domain:list` CLI command:
+Of course, you can review the details of your Vapor domains from the Vapor UI or using the `domain:list` CLI command:
 
 ```bash
 vapor domain:list
@@ -36,15 +26,13 @@ vapor domain:list
 
 ## Managing DNS Records
 
-At some point, you will need to request a certificate for this domain or attaching it with an existing Vapor environment. Both of these actions will require the creation of DNS records. If you choose to have Vapor manage your DNS records, it will automatically handle them for you.
+When you add a domain to Vapor, you will be provided with nameservers that you should provide to your domain registrar's nameserver configuration screen. This will designate Vapor as the entity managing the DNS records for the domain. This also allows Vapor to automatically add and remove DNS records to the domain as needed.
 
-When you add a domain to Vapor, it will provide you with the "nameservers". You can then update the nameservers at your domain registrar (the external provider where you bought the domain) to the ones given to you by Vapor. This will designate Vapor as the entity managing the DNS records for the domain.
-
-**If you prefer to manage your DNS records on your own**, keep in mind that actions such as requesting a certificate or attaching the domain to an environment will require you to **create DNS records manually** through your external provider.
+**If you prefer to manage your DNS records on your own**, requesting a certificate or attaching the domain to an environment will require you to **manually create DNS records** via your domain registrar.
 
 ### Custom DNS Records
 
-If you have chosen to use Vapor to handle your DNS records, you can add, update, or remove them as needed. Vapor provides two ways for you to manage your DNS records: through the Vapor UI's domain detail screen or via the Vapor CLI. To create a DNS record using the Vapor CLI, you can use the record command:
+If you have chosen to allow Vapor to manage your DNS records, you can add, update, or DNS records at any time as needed. Vapor provides two ways for you to manage your DNS records: through the Vapor UI's domain detail screen or via the Vapor CLI. To create a DNS record using the Vapor CLI, you can use the `record` command:
 
 ```bash
 vapor record example.com A www 192.168.1.1
@@ -61,19 +49,19 @@ vapor record example.com MX foo "10 example.com,20 example2.com"
 The `record` command functions as an "UPSERT" operation. If an existing record exists with the given type and name, its value will be updated to the given value. If no record exists with the given type or name, the record will be created.
 :::
 
-To delete a record through the Vapor CLI, you can use the `record:delete` command:
+To delete a record using the Vapor CLI, you can use the `record:delete` command:
 
 ```bash
 vapor record:delete example.com A www
 ```
 
-## Requesting an SSL Certificate
+## Requesting SSL Certificates
 
 Before attaching a domain to an existing Vapor environment, you must have a valid SSL certificate. Vapor offers free, automatically renewing SSL certificates for your Vapor environment through AWS Certificate Manager.
 
-Typically, users choose the "us-east-1" region for their certificate, which is the required certificate region for all environments using API Gateway 1.0. However, environments using API Gateway 2.0 or Load Balancers require a certificate in the same region as the project.
+Typically, users choose the "us-east-1" region for their certificate, which is the required certificate region for all environments using API Gateway 1.0. However, environments using API Gateway 2.0 or Application Load Balancers require a certificate in the same region as the project.
 
-You can create a certificate either through the Vapor UI's domain screen or by using the `cert` CLI command:
+You can create a certificate through the Vapor UI's domain screen or by using the `cert` CLI command:
 
 ```bash
 vapor cert example.com
@@ -83,7 +71,7 @@ At this point, no further action is required and your certificate will be valida
 
 :::warning Self-Managed Domains
 
-If you self-manage your domain's DNS records, Vapor will not be able to automatically update them. In this case, you can obtain the domain's certificate CNAME record from the Vapor UI's domain detail screen or by running the vapor `record:list example.com` command. Then, you can update your DNS records at the external provider accordingly.
+If you self-manage your domain's DNS records, Vapor will not be able to automatically update them. In this case, you can obtain the domain's certificate CNAME record from the Vapor UI's domain detail screen or by running the vapor `record:list example.com` command. Then, you can update your DNS records at the external domain registrar accordingly.
 
 Please note that some DNS providers will automatically append the domain name to the CNAME name. In these instances, you can remove the domain name from the CNAME name.
 :::
@@ -100,9 +88,9 @@ If you want to delete an old certificate that is not attached to an environment,
 vapor cert:delete example.com
 ```
 
-## Attaching a Domain to an Environment
+## Attaching Domains To Environments
 
-Once you have a valid certificate, you can attach your domain to your environment by using the "domain" configuration option in your vapor.yml file. When attaching a domain to an environment, you don't need to include the "www" sub-domain:
+Once your domain has a valid SSL certificate, you can attach your domain to your environment using the `domain` configuration option in your application's `vapor.yml` file. When attaching a domain to an environment, you don't need to include the "www" subdomain:
 
 ```yaml
 id: 2
@@ -114,16 +102,16 @@ environments:
             - 'composer install --no-dev'
 ```
 
-During deployment, Vapor will configure the environment to handle requests on this domain. Keep in mind that, due to the nature of AWS CloudFront, custom domains often take 30-45 minutes to become fully active. So, do not worry if your custom domain is not immediately accessible after deployment.
+During deployment, Vapor will automatically configure the environment to handle requests on this domain. However, due to the nature of AWS CloudFront, custom domains often take 30-45 minutes to become fully active. So, do not worry if your custom domain is not immediately accessible after deployment.
 
 :::warning Self-Managed Domains
 
-If you self-manage your domain's DNS records, Vapor will not be able to automatically update them. In this case, you can obtain the domain's environment CNAME records from the Vapor UI's domain detail screen or by running the vapor `record:list example.com` command. Then, you can update your DNS records at the external provider accordingly.
+If you self-manage your domain's DNS records, Vapor will not be able to automatically update them. In this case, you can obtain the domain's environment CNAME records from the Vapor UI's domain detail screen or by running the vapor `record:list example.com` command. Then, you can update your DNS records at the external domain registrar accordingly.
 :::
 
 ### Multiple Domains
 
-Vapor allows you to attach multiple domains to a single project. Before doing so, ensure you have a valid certificate for each of the domains:
+Vapor allows you to attach multiple domains to a single project. Before doing so, ensure you have a valid certificate for each of the domains. Then, update your application's `vapor.yml` file to include each domain:
 
 ```yaml
 id: 2
@@ -139,7 +127,7 @@ environments:
 
 ### Wildcard Subdomains
 
-You may attach a domain that supports wildcard subdomains to a Vapor environment if you have a valid certificate for the domain. To attach a wildcard domain to your environment, specify a `*` as the subdomain:
+You may indicate that a domain should support wildcard subdomains as long as you have a valid certificate for the primary domain. To attach a wildcard domain to an environment, specify `*` as the subdomain:
 
 ```yaml
 id: 2

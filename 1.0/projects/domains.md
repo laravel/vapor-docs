@@ -69,7 +69,7 @@ vapor record:delete example.com A www
 
 ## Requesting an SSL Certificate
 
-Before associating a domain to an existing Vapor environment, you must have a valid SSL certificate. Vapor offers free, automatically renewing SSL certificates for your Vapor environment through AWS Certificate Manager.
+Before attaching a domain to an existing Vapor environment, you must have a valid SSL certificate. Vapor offers free, automatically renewing SSL certificates for your Vapor environment through AWS Certificate Manager.
 
 Typically, users choose the "us-east-1" region for their certificate, which is the required certificate region for all environments using API Gateway 1.0. However, environments using API Gateway 2.0 or Load Balancers require a certificate in the same region as the project.
 

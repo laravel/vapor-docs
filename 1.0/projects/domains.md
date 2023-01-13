@@ -36,11 +36,11 @@ vapor domain:list
 
 ## Managing DNS Records
 
-At some point, you will need to request a certificate for this domain or linking it with an existing Vapor environment. Both of these actions will require the creation of DNS records. If you choose to have Vapor manage your DNS records, it will automatically handle them for you.
+At some point, you will need to request a certificate for this domain or attaching it with an existing Vapor environment. Both of these actions will require the creation of DNS records. If you choose to have Vapor manage your DNS records, it will automatically handle them for you.
 
 When you add a domain to Vapor, it will provide you with the "nameservers". You can then update the nameservers at your domain registrar (the external provider where you bought the domain) to the ones given to you by Vapor. This will designate Vapor as the entity managing the DNS records for the domain.
 
-**If you prefer to manage your DNS records on your own**, keep in mind that actions such as requesting a certificate or linking the domain to an environment will require you to **create DNS records manually** through your external provider.
+**If you prefer to manage your DNS records on your own**, keep in mind that actions such as requesting a certificate or attaching the domain to an environment will require you to **create DNS records manually** through your external provider.
 
 ### Custom DNS Records
 
@@ -94,15 +94,15 @@ You can view the validation status of your certificates on the Vapor UI or by us
 vapor cert:list example.com
 ```
 
-If you want to delete an old certificate that is not linked to an environment, you can do so through the Vapor UI's domain detail screen or by using the `cert:delete` CLI command. After running the command, Vapor will prompt you to select the specific certificate you want to delete for the given domain:
+If you want to delete an old certificate that is not attached to an environment, you can do so through the Vapor UI's domain detail screen or by using the `cert:delete` CLI command. After running the command, Vapor will prompt you to select the specific certificate you want to delete for the given domain:
 
 ```bash
 vapor cert:delete example.com
 ```
 
-## Linking a Domain to an Environment
+## Attaching a Domain to an Environment
 
-Once you have a valid certificate, you can link your domain to your environment by using the "domain" configuration option in your vapor.yml file. When linking a domain to an environment, you don't need to include the "www" sub-domain:
+Once you have a valid certificate, you can attach your domain to your environment by using the "domain" configuration option in your vapor.yml file. When attaching a domain to an environment, you don't need to include the "www" sub-domain:
 
 ```yaml
 id: 2

@@ -86,13 +86,13 @@ vapor database:shell my-application-db
 
 ## Existing Databases
 
-If you wish to use a database that was not created by Vapor, you have two options:
+If you wish to use an RDS database that was not created by Vapor, you have two options:
 
-1. Exporting and importing the contents of your existing database into a new database created on Vapor. **This is the recommended method** as it allows you to use your existing data with in a database and network managed by Vapor.
+1. Exporting and importing the contents of your existing database into a new database created by Vapor. We recommend this approach as it allows you to use your existing data within a database and network managed by Vapor.
 
 2. Connecting your existing database to a Vapor environment.
 
-To connect your existing database, you will need to ensure that it is either public or private. If your existing database is public, make sure your Vapor project is created in the same region. If it's private, you will need to connect your Vapor environment to the VPC your existing database belongs to. You can find instructions on how to do this in our documentation about connecting to [Custom VPCs](./../projects/environments.html#custom-vpcs).
+If your existing database is publicly accessible, make sure your Vapor project is created in the same region as the database. If the existing database is private, you will need to connect your Vapor environment to the VPC your existing database belongs to. You can find instructions on how to do this in our documentation about connecting to [Custom VPCs](./../projects/environments.html#custom-vpcs).
 
 After connecting your existing database, you will need to configure the appropriate environment variables:
 

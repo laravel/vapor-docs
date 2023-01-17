@@ -84,6 +84,38 @@ After provisioning a jumpbox, you may use the `database:shell` command to quickl
 vapor database:shell my-application-db
 ```
 
+## Existing Databases
+
+If you wish to use an RDS database that was not created by Vapor, you have two options:
+
+1. Exporting and importing the contents of your existing database into a new database created by Vapor. We recommend this approach as it allows you to use your existing data within a database and network managed by Vapor.
+
+2. Connecting your existing database to a Vapor environment.
+
+If your existing database is publicly accessible, make sure your Vapor project is created in the same region as the database. If the existing database is private, you will need to connect your Vapor environment to the VPC your existing database belongs to. You can find instructions on how to do this in our documentation about connecting to [Custom VPCs](./../projects/environments.html#custom-vpcs).
+
+After connecting your existing database, you will need to configure the appropriate environment variables:
+
+```env
+DB_HOST=
+DB_PORT=
+DB_DATABASE=
+DB_USERNAME=
+DB_PASSWORD=
+```
+
+When working with an AWS RDS MySQL Fixed Size databases, an additional environment variable specifying the SSL certificate authority is required:
+
+```env
+MYSQL_ATTR_SSL_CA=/var/task/rds-combined-ca-bundle.pem
+```
+
+If your database is hosted by [PlanetScale](https://planetscale.com/), the SSL certificate authority is as follows:
+
+```env
+MYSQL_ATTR_SSL_CA=/opt/lib/curl/cert.pem
+```
+
 ## Database Proxies
 
 Even though your serverless Laravel applications running on Vapor can handle extreme amounts of web traffic, traditional relational databases such as MySQL can become overwhelmed and crash due to connection limit restrictions. To solve this, you may use an RDS proxy to efficiently manage your database connections and allow many more connections than would typically be possible.

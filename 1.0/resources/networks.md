@@ -22,18 +22,11 @@ environments:
 
 ## Custom IP Range
 
-By default, Vapor provisions new networks with an IP address range which is more than sufficient for most projects. However, if you need more control over how your network is configured - such as if you plan to configure your Vapor environment to communicate with pre-existing resources on AWS - you may set your own custom IP range.
+By default, Vapor provisions new networks with an IP address range which is more than sufficient for most projects. However, if you need more control over how your network is configured - such as when you plan to configure your Vapor environment to communicate with pre-existing resources on AWS - you may set your own custom IP range.
 
-:::warning UI Only
+When creating the network within the Vapor UI, select "Configure Custom IP Range" to show the Custom IP Range interface.
 
-Setting up custom IP ranges is only supported in the Vapor UI and is unavailable on the CLI.
-:::
-
-When creating the network, select "Configure Custom IP Range" to show the Custom IP Range interface.
-
-You must enter an IP range in valid CIDR notation for the overall VPC, along with the public and private subnets. The total number of ranges required for private subnets varies between two and four depending on the number of availability zones available for the selected region.  
-
-IP ranges provided for public and private subnets must fall in the range provided for the overall VPC without overlapping each other.  
+You must enter an IP range in valid CIDR notation for the overall VPC, along with the public and private subnets. The total number of ranges required for private subnets varies between two and four depending on the number of availability zones for the selected region. IP ranges provided for public and private subnets must fall in the range provided for the overall VPC without overlapping each other.  
 
 ## Jumpboxes
 

@@ -405,6 +405,7 @@ Or, if you would prefer to not provide administrator access to Vapor, you may in
                 "rds:RegisterDBProxyTargets",
                 "rds:RestoreDBInstanceToPointInTime",
                 "route53:ChangeResourceRecordSets",
+                "route53:CreateHostedZone",
                 "route53:GetHostedZone",
                 "route53:ListHostedZonesByName",
                 "route53:ListResourceRecordSets",

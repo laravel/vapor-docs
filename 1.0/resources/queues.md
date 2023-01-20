@@ -68,6 +68,41 @@ environments:
 
 When using multiple custom queues, the `queue-concurrency` option defines the total maximum concurrency of all queues. For example, if you were to define two custom queues and a `queue-concurrency` of 100 the total maximum concurrency will still be 100.
 
+### Individual Queue Concurrency
+
+In addition to setting the overall queue concurrency, you may also set the maximum concurrency of each queue. Doing so can be helpful if you wish to prevent your queues from consuming all available resources.
+
+```yaml
+id: 2
+name: vapor-laravel-app
+environments:
+    production:
+        queues:
+            - emails: 10
+            - invoices: 10
+```
+
+In the example above, the concurrency of the `emails` and `invoices` queue is  10, meaning if the queue Lambda function is invoked ten times, it will not pick up any more jobs from the queue until resources are released, and capacity becomes available. This behavior differs from when the total invocations reach the queue function's overall capacity, where throttling occurs instead.
+
+You may also set the maximum concurrency on some queues but not others. In the example below, the `emails` queue is not allowed more than ten concurrent invocations, whereas it's possible to invoke the `invoices` queue until the overall capacity is reached. 
+
+```yaml
+id: 2
+name: vapor-laravel-app
+environments:
+    production:
+        queues:
+            - emails: 10
+            - invoices
+```
+
+:::warning Valid Concurrency
+
+It is not possible to set the maximum concurrency of an individual queue higher than the value of the overall currency set by either the `queue-concurrency` option or the general account concurrency limit.
+
+In addition, the concurrency value must be between 2 and 1,000.
+:::
+
 ## Queue Visibility Timeout
 
 By default, if your queued job is not deleted or released within one minute of beginning to process, SQS will retry the job. To configure this "visibility timeout", you may define the `queue-timeout` option in the environment's `vapor.yml` configuration. For example, we may set this timeout to five minutes:

@@ -70,7 +70,7 @@ When using multiple custom queues, the `queue-concurrency` option defines the to
 
 ### Individual Queue Concurrency
 
-In addition to setting the overall queue concurrency, you may also set the maximum concurrency of each queue. Doing so can be helpful if you wish to prevent your queues from consuming all available resources.
+In addition to setting the overall queue concurrency, you may also set the maximum concurrency of each queue. Doing so can be helpful if you wish to prevent certain queues from consuming all available resources:
 
 ```yaml
 id: 2
@@ -82,9 +82,9 @@ environments:
             - invoices: 10
 ```
 
-In the example above, the concurrency of the `emails` and `invoices` queue is  10, meaning if the queue Lambda function is invoked ten times, it will not pick up any more jobs from the queue until resources are released, and capacity becomes available. This behavior differs from when the total invocations reach the queue function's overall capacity, where throttling occurs instead.
+In the example above, the concurrency of the `emails` and `invoices` queue is 10, meaning if the queue Lambda function is processing ten jobs concurrently, it will not pick up any more jobs from the queue until jobs are finished and capacity becomes available. This behavior differs from when the total invocations reach the queue function's overall capacity, where throttling occurs instead.
 
-You may also set the maximum concurrency on some queues but not others. In the example below, the `emails` queue is not allowed more than ten concurrent invocations, whereas it's possible to invoke the `invoices` queue until the overall capacity is reached. 
+You may also set the maximum concurrency on some queues but not others. In the example below, the `emails` queue is not allowed more than ten concurrent invocations, whereas it's possible to invoke the `invoices` queue until the overall capacity is reached:
 
 ```yaml
 id: 2
@@ -98,9 +98,7 @@ environments:
 
 :::warning Valid Concurrency
 
-It is not possible to set the maximum concurrency of an individual queue higher than the value of the overall currency set by either the `queue-concurrency` option or the general account concurrency limit.
-
-In addition, the concurrency value must be between 2 and 1,000.
+It is not possible to set the maximum concurrency of an individual queue higher than the value of the overall currency set by either the `queue-concurrency` option or the general AWS account concurrency limit. In addition, the concurrency value must be an integer between 2 and 1,000.
 :::
 
 ## Queue Visibility Timeout

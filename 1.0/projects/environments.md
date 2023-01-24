@@ -283,29 +283,6 @@ environments:
             - 'composer install --no-dev'
 ```
 
-## Provisioned Concurrency
-
-By default, when an environment is deployed, the first request it receives may encounter "cold starts". These requests typically incur a penalty of a few seconds while AWS loads a serverless container to serve the request. Once a request has been served by that container, it is typically kept warm to serve further requests with no delay.
-
-To mitigate this issue, Amazon supports "provisioned concurrency". When using this feature, the requested number of execution environments / containers will be provisioned and kept "warm" for you automatically, allowing them to immediately serve any incoming requests. To enable this feature, you may add a `capacity` configuration option to the environment in your `vapor.yml` file:
-
-```yaml
-id: 2
-name: vapor-laravel-app
-environments:
-    production:
-        capacity: 5
-        build:
-            - 'composer install --no-dev'
-```
-
-For more information on this feature and its pricing, please consult the [AWS documentation](https://aws.amazon.com/blogs/aws/new-provisioned-concurrency-for-lambda-functions/).
-
-:::warning Warming
-
-When using this feature, any `warm` values in your `vapor.yml` file will be ignored.
-:::
-
 ## Prewarming
 
 By default, when an environment is deployed, the first request it receives may encounter "cold starts". These requests typically incur a penalty of a few seconds while AWS loads a serverless container to serve the request. Once a request has been served by that container, it is typically kept warm to serve further requests with no delay.

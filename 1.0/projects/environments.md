@@ -535,13 +535,13 @@ COPY . /var/task
 
 #### Customizing Core `php.ini` Directives
 
-To customize core `php.ini` directives on a native runtimes based deployment, create a `php.ini` file in the **root** directory of your project with the desired directives. For example, to change the `upload_max_filesize`, add the following line to your `php.ini` file:
+To customize core `php.ini` directives on our native runtimes, create a `php.ini` file in the **root** directory of your project with the desired directives. For example, to change the `upload_max_filesize` directive, add the following line to your `php.ini` file:
 
 ```ini
 upload_max_filesize = 4M
 ```
 
-In your Dockerfile, include a new `COPY` command that copies the local `php.ini` file into the Docker image:
+Next, in your Dockerfile, include a new `COPY` command that copies the local `php.ini` file into the Docker image:
 
 ```docker
 FROM laravelphp/vapor:php81
@@ -551,7 +551,7 @@ COPY ./php.ini /usr/local/etc/php/conf.d/overrides.ini
 COPY . /var/task
 ```
 
-Then, after deploying, the new directive will take effect in your Vapor environment.
+After deploying, the new directive will take effect in your Vapor environment.
 
 #### Docker Build Arguments
 

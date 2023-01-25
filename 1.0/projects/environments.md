@@ -470,6 +470,16 @@ The following limitations apply to Vapor native runtimes:
 - The application size, including the runtime itself, must not exceed 250MB.
 - Additional PHP extensions or libraries (such as `imagick`) can not be installed.
 
+#### Customizing Core `php.ini` Directives
+
+To customize core `php.ini` directives on our native runtimes, create a `php.ini` file in the `php/conf.d` directory of your project with the desired directives. For example, to change the `upload_max_filesize`, add the following line to your application's `php.ini` file:
+
+```ini
+upload_max_filesize = 4M
+```
+
+After deploying, the new directive will take effect in your Vapor environment.
+
 ### Docker Runtimes
 
 Docker based runtimes allow you to package and deploy applications up to 10GB in size and allow you to install additional PHP extensions or libraries by updating the environment's corresponding `.Dockerfile`. For every new Docker based environment, Vapor creates a `.Dockerfile` file within your application that uses one of Vapor's base images as a starting point for building your image. All of Vapor's Docker images are based on Alpine Linux:
@@ -519,13 +529,29 @@ RUN apk --update add mysql-client
 RUN apk --update add gmp gmp-dev
 RUN docker-php-ext-install gmp
 
-# Update the `php.ini` file...
-# Requires a `php.ini` file at the root of your project...
-COPY ./php.ini /usr/local/etc/php/conf.d/overrides.ini
-
 # Place application in Lambda application directory...
 COPY . /var/task
 ```
+
+#### Customizing Core `php.ini` Directives
+
+To customize core `php.ini` directives on our native runtimes, create a `php.ini` file in the **root** directory of your project with the desired directives. For example, to change the `upload_max_filesize` directive, add the following line to your `php.ini` file:
+
+```ini
+upload_max_filesize = 4M
+```
+
+Next, in your Dockerfile, include a new `COPY` command that copies the local `php.ini` file into the Docker image:
+
+```docker
+FROM laravelphp/vapor:php81
+
+COPY ./php.ini /usr/local/etc/php/conf.d/overrides.ini
+
+COPY . /var/task
+```
+
+After deploying, the new directive will take effect in your Vapor environment.
 
 #### Docker Build Arguments
 

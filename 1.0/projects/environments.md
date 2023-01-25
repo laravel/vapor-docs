@@ -470,15 +470,15 @@ The following limitations apply to Vapor native runtimes:
 - The application size, including the runtime itself, must not exceed 250MB.
 - Additional PHP extensions or libraries (such as `imagick`) can not be installed.
 
-#### Customize Core `php.ini` Directives
+#### Customizing Core `php.ini` Directives
 
-To customize core `php.ini` directives on a native runtimes based deployment, create a `php.ini` file in the `your-app/php/conf.d` directory of your project with the desired directives. For example, to change the `upload_max_filesize`, add the following line to your `php.ini` file:
+To customize core `php.ini` directives on our native runtimes, create a `php.ini` file in the `php/conf.d` directory of your project with the desired directives. For example, to change the `upload_max_filesize`, add the following line to your application's `php.ini` file:
 
 ```ini
 upload_max_filesize = 4M
 ```
 
-Then, after deploying, the new directive will take effect in your Vapor environment.
+After deploying, the new directive will take effect in your Vapor environment.
 
 ### Docker Runtimes
 

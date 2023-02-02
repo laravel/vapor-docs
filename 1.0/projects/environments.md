@@ -93,6 +93,7 @@ Here is the full list of environment variables injected by Vapor on your environ
 | `CACHE_DRIVER`          | DynamoDB, or cache (Redis) resource if exists              |
 | `DB_*`                  | Database (MySQL, Postgresql, etc) resource if exists       |
 | `DYNAMODB_CACHE_TABLE`  | `vapor_cache`                                              |
+| `FILESYSTEM_DISK`       | S3                                                         |
 | `FILESYSTEM_DRIVER`     | S3                                                         |
 | `FILESYSTEM_CLOUD`      | S3                                                         |
 | `LOG_CHANNEL`           | Stderr                                                     |

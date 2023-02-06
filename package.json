@@ -6,5 +6,8 @@
     "scripts": {
         "docs:build": "vuepress build",
         "docs:dev": "vuepress dev"
+    },
+    "devDependencies": {
+        "@vuepress/plugin-back-to-top": "^1.9.8"
     }
 }

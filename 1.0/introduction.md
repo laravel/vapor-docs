@@ -435,6 +435,7 @@ Or, if you would prefer to not provide administrator access to Vapor, you may in
                 "sns:CreateTopic",
                 "sns:GetTopicAttributes",
                 "sns:ListSubscriptionsByTopic",
+                "sns:SetTopicAttributes",
                 "sns:Subscribe",
                 "sns:TagResource",
                 "sqs:CreateQueue",

@@ -147,6 +147,32 @@ If you are using Laravel Vite with your project, you only need to utilize the `a
 If you want to use the `asset` helper with your Vite project, you will also need to specify the base URL for assets in your application's entry point, for example in your `resources/js/app.js`, like so: `Vapor.withBaseAssetUrl(import.meta.env.VITE_VAPOR_ASSET_URL)`
 :::
 
+### Asset Compilation
+
+If you are compiling assets as one of the build steps of your `vapor.yml` configuration file, you may need access to environment variables. An excellent example of this requirement is instantiating a frontend SDK such as Pusher.
+
+Build steps are executed in the environment where a deployment is initiated - typically, this will be your local machine or your CI pipeline. As such, you must ensure the required environment variables are available in this environment.
+
+To assist with this, Vapor will attempt to load variables first from `.env.[environment]` (e.g. `.env.staging`) and if that doesn't exist, `.env`. Whichever you decide to use, you should ensure the file contains all of the environment variables you need during the environment's build phase.
+
+In CI, you may not have access to the environment files as these are typically omitted from version control. In this scenario, your CI provider will provide a mechanism for injecting variables into the job. For instance, with GitHub Actions, you may end up with something like this:
+
+```yml
+- name: Deploy Environment
+        run: vapor deploy production
+        env:
+            VITE_PUSHER_APP_KEY: ${{ secrets.VITE_PUSHER_APP_KEY }}
+```
+
+:::warning Vapor With Laravel Vite
+
+When using Vite and running `npm run build`, it will automatically use a `.env.production` file when present, even if you are deploying a different environment. If you do maintain multiple environment files in your deployment environment, you may wish to set the Vite build mode explicitly:
+
+```shell
+npm run build -- --mode staging
+```
+:::
+
 ### Code Splitting / Dynamic Imports With Mix
 
 If you are taking advantage of JavaScript dynamic imports and code splitting in your project via Laravel Mix, you will need to let Webpack know where the child chunks will be loaded from for each deployment. To accomplish this, you can take advantage of the `ASSET_URL` variable that Laravel Vapor injects into your environment during your build step:

@@ -147,6 +147,32 @@ If you are using Laravel Vite with your project, you only need to utilize the `a
 If you want to use the `asset` helper with your Vite project, you will also need to specify the base URL for assets in your application's entry point, for example in your `resources/js/app.js`, like so: `Vapor.withBaseAssetUrl(import.meta.env.VITE_VAPOR_ASSET_URL)`
 :::
 
+### Asset Compilation
+
+If you are compiling your application's assets in one of the build steps listed in your `vapor.yml` configuration file, you may need your build script to be able to access your environment variables. An excellent example of this requirement is instantiating a frontend SDK such as Pusher.
+
+Build steps are executed in the environment where a deployment is initiated - typically, this will be your local machine or your CI pipeline. As such, you must ensure the required environment variables are available in that environment.
+
+To assist with this, Vapor will attempt to load variables first from `.env.[environment]` (e.g. `.env.staging`). If that file does not exist, Vapor will attempt to load variables from the `.env` file. You should ensure one of these file contains all of the environment variables needed by that environment's build script.
+
+When using CI platforms, you may not have access to the environment files as these are typically omitted from version control. In this scenario, your CI provider will typically provide a mechanism for injecting variables into the build pipeline. For instance, with GitHub Actions, your GitHub Action configuration might look like the following:
+
+```yml
+- name: Deploy Environment
+        run: vapor deploy production
+        env:
+            VITE_PUSHER_APP_KEY: ${{ secrets.VITE_PUSHER_APP_KEY }}
+```
+
+:::warning Vapor With Laravel Vite
+
+When using Vite and running `npm run build`, Vite will always use the `.env.production` file if it is present, even if you are deploying a different environment. If you maintain multiple environment files in your deployment environment, you should set the Vite build mode explicitly:
+
+```shell
+npm run build -- --mode staging
+```
+:::
+
 ### Code Splitting / Dynamic Imports With Mix
 
 If you are taking advantage of JavaScript dynamic imports and code splitting in your project via Laravel Mix, you will need to let Webpack know where the child chunks will be loaded from for each deployment. To accomplish this, you can take advantage of the `ASSET_URL` variable that Laravel Vapor injects into your environment during your build step:

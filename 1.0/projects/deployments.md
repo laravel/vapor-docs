@@ -149,13 +149,13 @@ If you want to use the `asset` helper with your Vite project, you will also need
 
 ### Asset Compilation
 
-If you are compiling assets as one of the build steps of your `vapor.yml` configuration file, you may need access to environment variables. An excellent example of this requirement is instantiating a frontend SDK such as Pusher.
+If you are compiling your application's assets in one of the build steps listed in your `vapor.yml` configuration file, you may need your build script to be able to access your environment variables. An excellent example of this requirement is instantiating a frontend SDK such as Pusher.
 
-Build steps are executed in the environment where a deployment is initiated - typically, this will be your local machine or your CI pipeline. As such, you must ensure the required environment variables are available in this environment.
+Build steps are executed in the environment where a deployment is initiated - typically, this will be your local machine or your CI pipeline. As such, you must ensure the required environment variables are available in that environment.
 
-To assist with this, Vapor will attempt to load variables first from `.env.[environment]` (e.g. `.env.staging`) and if that doesn't exist, `.env`. Whichever you decide to use, you should ensure the file contains all of the environment variables you need during the environment's build phase.
+To assist with this, Vapor will attempt to load variables first from `.env.[environment]` (e.g. `.env.staging`). If that file does not exist, Vapor will attempt to load variables from the `.env` file. You should ensure one of these file contains all of the environment variables needed by that environment's build script.
 
-In CI, you may not have access to the environment files as these are typically omitted from version control. In this scenario, your CI provider will provide a mechanism for injecting variables into the job. For instance, with GitHub Actions, you may end up with something like this:
+When using CI platforms, you may not have access to the environment files as these are typically omitted from version control. In this scenario, your CI provider will typically provide a mechanism for injecting variables into the build pipeline. For instance, with GitHub Actions, your GitHub Action configuration might look like the following:
 
 ```yml
 - name: Deploy Environment
@@ -166,7 +166,7 @@ In CI, you may not have access to the environment files as these are typically o
 
 :::warning Vapor With Laravel Vite
 
-When using Vite and running `npm run build`, it will automatically use a `.env.production` file when present, even if you are deploying a different environment. If you do maintain multiple environment files in your deployment environment, you may wish to set the Vite build mode explicitly:
+When using Vite and running `npm run build`, Vite will always use the `.env.production` file if it is present, even if you are deploying a different environment. If you maintain multiple environment files in your deployment environment, you should set the Vite build mode explicitly:
 
 ```shell
 npm run build -- --mode staging

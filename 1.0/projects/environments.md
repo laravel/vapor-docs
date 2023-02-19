@@ -503,6 +503,18 @@ environments:
             - 'composer install --no-dev'
 ```
 
+If you would like to rename the dockerfile or use a shared dockerfile across multiple environments, set the `dockerfile` option within your `vapor.yml` file:
+```yaml
+id: 2
+name: vapor-laravel-app
+environments:
+    production:
+        runtime: docker
+        dockerfile: vapor.Dockerfile
+        build:
+            - 'composer install --no-dev'
+```
+
 :::warning Migrating Existing Environments To A Docker Runtime
 
 When migrating an existing environment to a Docker runtime, please keep in mind that you won't be able to revert that environment to the default Vapor Lambda runtime later. For that reason, you may want to create an environment for testing the Docker runtime first.

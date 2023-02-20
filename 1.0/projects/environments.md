@@ -503,7 +503,8 @@ environments:
             - 'composer install --no-dev'
 ```
 
-If you would like to rename the dockerfile or use a shared dockerfile across multiple environments, set the `dockerfile` option within your `vapor.yml` file:
+If you would like to rename the Dockerfile or use a shared Dockerfile across multiple environments, you may define a `dockerfile` option within your `vapor.yml` file:
+
 ```yaml
 id: 2
 name: vapor-laravel-app

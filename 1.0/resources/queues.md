@@ -35,7 +35,7 @@ environments:
 
 :::danger Duplicate Queue Names
 
-When using custom queue names, it is important to ensure the names are unique between projects and environments. Vapor automatically configures a Lambda function for each environment to process jobs from the queue. When the queue is shared, there is no guarantee which environment will process jobs on that queue.
+When using custom queue names, it is important to ensure the names are unique between projects and environments. One easy way to accomplish this is by using the `SQS_SUFFIX` environment variable in each environment. This guarantees that custom queue names have a unique names in SQS.
 :::
 
 ### Disabling The Queue

@@ -35,7 +35,7 @@ environments:
 
 :::danger Duplicate Queue Names
 
-When using custom queue names, it is important to ensure the names are unique between projects and environments. You can easily accomplish this by using the `SQS_SUFFIX` environment variable in each environment.
+When using custom queue names, it is important to ensure the names are unique between projects and environments. You can easily accomplish this by using the `SQS_SUFFIX` environment variable in each environment. For example, setting the `SQS_SUFFIX` environment variable to `-production` for your production environment will ensure all Vapor created production queues are suffixed with `-production`.
 :::
 
 ### Disabling The Queue

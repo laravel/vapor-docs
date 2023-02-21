@@ -33,10 +33,29 @@ environments:
             - invoices
 ```
 
-:::danger Duplicate Queue Names
+### Ensuring Unique Queue Names Across Projects and Environments
 
-When using custom queue names, it is important to ensure the names are unique between projects and environments. You can easily accomplish this by using the `SQS_SUFFIX` environment variable in each environment. For example, setting the `SQS_SUFFIX` environment variable to `-production` for your production environment will ensure all Vapor created production queues are suffixed with `-production`.
-:::
+When using the same custom queue names, you will need to ensure that the names are unique between projects and environments. One way to achieve this is to use the `SQS_SUFFIX` environment variable in each environment and append it to the queue names in your `vapor.yml` file, as shown below:
+
+```yaml
+id: 2
+name: vapor-laravel-app
+environments:
+    production:
+        queues:
+            - emails-production
+            - invoices-production
+    staging:
+        queues:
+            - emails-staging
+            - invoices-staging
+```
+
+When dispatching queue jobs, specify the queue name without the `SQS_SUFFIX` value:
+
+```php
+SendInvoice::dispatch($invoice)->onQueue('invoices');
+```
 
 ### Disabling The Queue
 

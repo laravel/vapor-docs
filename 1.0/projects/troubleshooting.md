@@ -69,3 +69,13 @@ You can see if a request has timed out by searching for "Task timed out" message
 3. Alternatively, you can reach [AWS Support](https://console.aws.amazon.com/support/home?#/case/create?issueType=technical) - as they can deeply examine the internal logs of your infrastructure.
 
 If you don't see any "Task timed out" messages in your environment logs, this indicates the error is likely because the payload / response is exceeding the size allowed by AWS. Please consult AWS's [API Gateway](https://docs.aws.amazon.com/apigateway/latest/developerguide/limits.html) and [Load Balancers](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-limits.html) quotas.
+
+## Sandbox URL Returns 400 "message: null"
+
+Square brackets used in the query string of a Lambda function URL must be URL encoded. Failure to do so results in a 400 status code error being returned by the application. This is due to an AWS limitation in the mapping between the URL and Lambda functions. It is most common to encounter this issue when attempting to send arrays of data as part of the URL:
+
+```
+https://xyz.lambda-url.us-east-1.on.aws?items[]=1 ❌
+
+https://xyz.lambda-url.us-east-1.on.aws?items%5B%5D=1 ✅
+```

@@ -54,8 +54,8 @@ environments:
 Because it is cumbersome to include these suffixes when dispatching jobs to specific queues in Laravel, Laravel's `sqs` queue configuration includes a `suffix` option that references the `SQS_SUFFIX` environment variable by default. When this option and variable is defined, you may provide the queue names without their suffix when dispatching jobs and Laravel will automatically append the suffix to the queue name when interacting with SQS:
 
 ```php
-// Environment...
-SQS_SUFFIX="-production"
+// Environment should include...
+// SQS_SUFFIX="-production"
 
 // Configuration...
 'sqs' => [

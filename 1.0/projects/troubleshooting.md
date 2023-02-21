@@ -72,9 +72,7 @@ If you don't see any "Task timed out" messages in your environment logs, this in
 
 ## Sandbox URL Returns 400 "message: null"
 
-Square brackets used in the query string of a Lambda function URL must be URL encoded. Failure to do so results in a 400 status code error being returned due to an AWS limitation in the mapping between the URL and Lambda function. 
-
-It is most common to encounter this issue when attempting to send arrays of data as part of the URL:
+Square brackets used in the query string of a Lambda function URL must be URL encoded. Failure to do so results in a 400 status code error being returned by the application. This is due to an AWS limitation in the mapping between the URL and Lambda functions. It is most common to encounter this issue when attempting to send arrays of data as part of the URL:
 
 ```
 https://xyz.lambda-url.us-east-1.on.aws?items[]=1 ❌

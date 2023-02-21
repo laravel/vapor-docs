@@ -35,7 +35,7 @@ environments:
 
 ### Ensuring Unique Queue Names Across Projects and Environments
 
-When using the same custom queue names, you will need to ensure that the names are unique between projects and environments. One way to achieve this is to use the `SQS_SUFFIX` environment variable in each environment, with the values `-staging` and `-production`, and append it to the queue names in your `vapor.yml` file, as shown below:
+When using the same custom queue names, you will need to ensure that the names are unique between projects and environments. One way to achieve this is to use the `SQS_SUFFIX` environment variable in each environment. For instance, you can add suffix values such as `-staging` and `-production` to the `SQS_SUFFIX` environment variable, and append it to the queue names specified in your vapor.yml file. A sample configuration is shown below:
 
 ```yaml
 id: 2

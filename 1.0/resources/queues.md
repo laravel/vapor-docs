@@ -35,7 +35,7 @@ environments:
 
 :::danger Duplicate Queue Names
 
-When using custom queue names, it is important to ensure the names are unique between projects and environments. One easy way to accomplish this is by using the `SQS_SUFFIX` environment variable in each environment. This guarantees that custom queues have a unique name in SQS.
+When using custom queue names, it is important to ensure the names are unique between projects and environments. You can easily accomplish this by using the `SQS_SUFFIX` environment variable in each environment.
 :::
 
 ### Disabling The Queue

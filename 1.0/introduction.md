@@ -391,6 +391,7 @@ Or, if you would prefer to not provide administrator access to Vapor, you may in
                 "lambda:UpdateEventSourceMapping",
                 "lambda:UpdateFunctionCode",
                 "lambda:UpdateFunctionConfiguration",
+                "logs:FilterLogEvents",
                 "rds:AddTagsToResource",
                 "rds:CreateDBCluster",
                 "rds:CreateDBInstance",

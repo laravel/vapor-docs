@@ -176,6 +176,9 @@ environments:
 ```
 
 ## Monitoring Jobs
+You may monitor your queued jobs directly from the Vapor dashboard by navigating to the "Queues" tab of any environment. Here, you can see how your queues perform with access to the number of jobs processed, in flight and failed over time. You may refine the results by selecting a specific queue and period.
+
+If you have had job failures during the selected period, you may examine them further by clicking on the "View Failed Jobs" link. Doing so will present you with a list of failed jobs along with a snapshot of the failure. You may filter the results further by selecting the specific queue and period or providing a search term. Clicking on an entry presents the full payload and stack trace. From here, you may also retry or delete the job.
 
 If you have installed the [Vapor UI dashboard package](./../introduction.html#installing-the-vapor-ui-dashboard), you may access the `/vapor-ui/jobs/metrics` URI to monitor queue jobs.
 

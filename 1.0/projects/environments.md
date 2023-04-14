@@ -483,7 +483,7 @@ After deploying, the new directive will take effect in your Vapor environment.
 
 ### Docker Runtimes
 
-Docker based runtimes allow you to package and deploy applications up to 10GB in size and allow you to install additional PHP extensions or libraries by updating the environment's corresponding `.Dockerfile`. For every new Docker based environment, Vapor creates a `.Dockerfile` file within your application that uses one of Vapor's base images as a starting point for building your image. All of Vapor's Docker images are based on Alpine Linux.
+Docker based runtimes allow you to package and deploy applications up to 10GB in size and allow you to install additional PHP extensions or libraries by updating the environment's corresponding `.Dockerfile`. For every new Docker based environment, Vapor creates a `.Dockerfile` file within your application that uses one of Vapor's base images as a starting point for building your image. All of Vapor's Docker images are based on Alpine Linux:
 
 ```docker
 FROM laravelphp/vapor:php82
@@ -491,7 +491,7 @@ FROM laravelphp/vapor:php82
 COPY . /var/task
 ```
 
-Vapor also supports Arm architecture for Docker which provides the benefit of an increase in performance and cost saving. If you want to take advantage of Arm architecture, you should update your base image as follows:
+Vapor's Docker runtimes also support Arm architecture, which provides increased performance and cost savings. If you want to take advantage of Arm architecture, you should update your base image as follows:
 
 ```docker
 FROM laravelphp/vapor:php82-arm
@@ -499,7 +499,7 @@ FROM laravelphp/vapor:php82-arm
 COPY . /var/task
 ```
 
-If you would like to use a Docker image instead of the Vapor native runtimes, set the `runtime` configuration option to `docker` if using x86 architecture or `docker-arm` if using Arm architecture within your `vapor.yml` file:
+If you would like to use a Docker image instead of the Vapor native runtimes, you should set your `vapor.yml` configuration file's `runtime` option to `docker` (for x86 architecture) or `docker-arm` (for Arm architecture):
 
 ```yaml
 # x86

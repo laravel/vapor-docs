@@ -449,7 +449,7 @@ The `runtime` configuration option allows you to specify the runtime a given env
 
 ### Native Runtimes
 
-The currently supported native runtimes are `php-7.3`, `php-7.4`, `php-7.4:al2`, `php-8.0`, `php-8.0:al2`, `php-8.1:al2`, `php-8.2:al2` and `php-8.2:al2-arm`. The runtimes that are suffixed with `al2` use Amazon Linux 2 while those without the suffix use Amazon Linux 1. Runtimes without the `-arm` suffix run on x86 artchitecture whereas those suffixed with `-arm` run on Arm architecture. Arm provides a performance benefit and cost saving compared to its x86 equivalent:
+The currently supported native runtimes are `php-7.3`, `php-7.4`, `php-7.4:al2`, `php-8.0`, `php-8.0:al2`, `php-8.1:al2`, `php-8.2:al2`, and `php-8.2:al2-arm`. The runtimes that are suffixed with `al2` use Amazon Linux 2 while those without the suffix use Amazon Linux 1. Runtimes without the `-arm` suffix run on x86 artchitecture whereas those suffixed with `-arm` run on Arm architecture. Arm provides a performance benefit and cost saving compared to its x86 equivalent:
 
 ```yaml
 id: 2

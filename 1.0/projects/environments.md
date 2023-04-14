@@ -449,7 +449,7 @@ The `runtime` configuration option allows you to specify the runtime a given env
 
 ### Native Runtimes
 
-The currently supported native runtimes are `php-7.3`, `php-7.4`, `php-7.4:al2`, `php-8.0`, `php-8.0:al2`, `php-8.1:al2`, and `php-8.2:al2`. The runtimes that are suffixed with `al2` use Amazon Linux 2 while those without the suffix use Amazon Linux 1:
+The currently supported native runtimes are `php-7.3`, `php-7.4`, `php-7.4:al2`, `php-8.0`, `php-8.0:al2`, `php-8.1:al2`, `php-8.2:al2` and `php-8.2:al2-arm`. The runtimes that are suffixed with `al2` use Amazon Linux 2 while those without the suffix use Amazon Linux 1. Runtimes without the `-arm` suffix run on x86 artchitecture whereas those suffixed with `-arm` run on Arm architecture. Arm provides a performance benefit and cost saving compared to its x86 equivalent:
 
 ```yaml
 id: 2
@@ -463,7 +463,7 @@ environments:
 
 :::warning Amazon Linux 2
 
-Using [Amazon Linux 2](https://aws.amazon.com/amazon-linux-2/) (`php-7.4:al2`, `php-8.0:al2`, `php-8.1:al2`, `php-8.2:al2`) is **highly recommended**, as Amazon Linux 1 is no longer maintained as of December 31, 2020.
+Using [Amazon Linux 2](https://aws.amazon.com/amazon-linux-2/) (`php-7.4:al2`, `php-8.0:al2`, `php-8.1:al2`, `php-8.2:al2`, `php-8.2:al2-arm`) is **highly recommended**, as Amazon Linux 1 is no longer maintained as of December 31, 2020.
 :::
 
 The following limitations apply to Vapor native runtimes:
@@ -483,22 +483,40 @@ After deploying, the new directive will take effect in your Vapor environment.
 
 ### Docker Runtimes
 
-Docker based runtimes allow you to package and deploy applications up to 10GB in size and allow you to install additional PHP extensions or libraries by updating the environment's corresponding `.Dockerfile`. For every new Docker based environment, Vapor creates a `.Dockerfile` file within your application that uses one of Vapor's base images as a starting point for building your image. All of Vapor's Docker images are based on Alpine Linux:
+Docker based runtimes allow you to package and deploy applications up to 10GB in size and allow you to install additional PHP extensions or libraries by updating the environment's corresponding `.Dockerfile`. For every new Docker based environment, Vapor creates a `.Dockerfile` file within your application that uses one of Vapor's base images as a starting point for building your image. All of Vapor's Docker images are based on Alpine Linux.
 
 ```docker
-FROM laravelphp/vapor:php81
+FROM laravelphp/vapor:php82
 
 COPY . /var/task
 ```
 
-If you would like to use a Docker image instead of the Vapor native runtimes, set the `runtime` configuration option to `docker` within your `vapor.yml` file:
+Vapor also supports Arm architecture for Docker which provides the benefit of an increase in performance and cost saving. If you want to take advantage of Arm architecture, you should update your base image as follows:
+
+```docker
+FROM laravelphp/vapor:php82-arm
+
+COPY . /var/task
+```
+
+If you would like to use a Docker image instead of the Vapor native runtimes, set the `runtime` configuration option to `docker` if using x86 architecture or `docker-arm` if using Arm architecture within your `vapor.yml` file:
 
 ```yaml
+# x86
 id: 2
 name: vapor-laravel-app
 environments:
     production:
         runtime: docker
+        build:
+            - 'composer install --no-dev'
+
+# Arm
+id: 2
+name: vapor-laravel-app
+environments:
+    production:
+        runtime: docker-arm
         build:
             - 'composer install --no-dev'
 ```
@@ -527,6 +545,7 @@ Vapor will build, tag, and publish your environment's image during your deployme
 - `laravelphp/vapor:php80`
 - `laravelphp/vapor:php81`
 - `laravelphp/vapor:php82`
+- `laravelphp/vapor:php82-arm`
 
 Of course, you are free to modify your environment's `Dockerfile` to install additional dependencies or PHP extensions. Here are a few examples:
 

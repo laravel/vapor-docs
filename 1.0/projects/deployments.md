@@ -359,7 +359,8 @@ jobs:
 3. Finally, you can edit the `deploy.yml` file to fit your application's deployment needs, as it may require a different PHP version or a library like `npm`. Once you are done, commit and push the `deploy.yml` file to `master` so GitHub Actions can run the first deployment job.
 
 #### Docker Arm Runtime
-To deploy the `docker-arm` runtime from GitHub Actions, it is necessary to include an additional dependency in your workflow. Since actions run on the `x86_64` architecture, they are unable to natively compile `arm64` based images. In order to compile the `docker-arm` runtime, the `arm64` platform can be emulated using a tool called QEMU. To do so, add the following to your `deploy.yml` directly after the "Checkout Code" step:
+
+Since GitHub actions run on the `x86_64` architecture, they are unable to natively compile `arm64` based images. In order to compile the `docker-arm` runtime, the `arm64` platform can be emulated using QEMU. To get started, add the following to your `deploy.yml`, directly after the "Checkout Code" step:
 
 ```yml
 - name: Setup QEMU

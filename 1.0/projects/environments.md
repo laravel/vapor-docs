@@ -521,6 +521,11 @@ environments:
             - 'composer install --no-dev'
 ```
 
+:::warning Building Docker Arm Images
+
+To avoid errors when compiling an image for the `docker-arm` runtime, it is essential to ensure that the environment where the image is built is compatible with `arm64` based architecture. To avoid such issues, it may be necessary to emulate the `arm64` architecture using a tool such as QEMU. The [Docker documentation](https://docs.docker.com/build/building/multi-platform/#building-multi-platform-images) provides further guidance on this topic.
+:::
+
 If you would like to rename the Dockerfile or use a shared Dockerfile across multiple environments, you may define a `dockerfile` option within your `vapor.yml` file:
 
 ```yaml

@@ -358,6 +358,17 @@ jobs:
 
 3. Finally, you can edit the `deploy.yml` file to fit your application's deployment needs, as it may require a different PHP version or a library like `npm`. Once you are done, commit and push the `deploy.yml` file to `master` so GitHub Actions can run the first deployment job.
 
+#### Docker Arm Runtime
+
+Since GitHub actions run on the `x86_64` architecture, they are unable to natively compile `arm64` based images. In order to compile the `docker-arm` runtime, the `arm64` platform can be emulated using QEMU. To get started, add the following to your `deploy.yml`, directly after the "Checkout Code" step:
+
+```yml
+- name: Setup QEMU
+  uses: docker/setup-qemu-action@v2
+  with:
+    platforms: arm64
+```
+
 ### Example With Chipper CI
 
 If your application uses [Chipper CI](https://chipperci.com/) as its CI platform, the following guidelines will assist you in configuring Vapor deployments so that your application is automatically deployed when someone pushes a commit to the `master` branch:

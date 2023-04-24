@@ -426,6 +426,7 @@ Or, if you would prefer to not provide administrator access to Vapor, you may in
                 "s3:ListAllMyBuckets",
                 "s3:ListBucket",
                 "s3:PutBucketCORS",
+                "s3:PutBucketOwnershipControls",
                 "s3:PutBucketPublicAccessBlock",
                 "s3:PutLifecycleConfiguration",
                 "s3:PutObject",

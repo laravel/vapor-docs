@@ -488,7 +488,7 @@ Or, if you would prefer to not provide administrator access to Vapor, you may in
 It's probable this list of permissions will change as we add new features to Vapor, which may result in unexpected errors if your policy is not kept up to date.
 :::
 
-Once the user is created, you will need to generate a set of access credentials. To do so, click on your newly created user and then select the "Security credentials" tab. Now, in the "Access keys" panel, select "Create access key" followed by "Third-party service". Select the confirmation box and click "Next" followed by "Create access key". Your access key id and secret will now be displayed. These credentials may then be provided to Vapor so that AWS resources may be managed on your behalf. Your linked AWS accounts may be managed via the "Team Settings" screen of the Vapor UI.
+Once the user is created, you will need to generate a set of access credentials. To do so, click on your newly created user and then select the "Security credentials" tab. Now, in the "Access keys" panel, select "Create access key" followed by "Third-party service". Select the confirmation box and click "Next", followed by "Create access key". Your access key ID and secret will then be displayed. These credentials may then be provided to Vapor so that AWS resources may be managed on your behalf. Your linked AWS accounts may be managed via the "Team Settings" screen of the Vapor UI.
 
 #### Defining Your AWS Budget
 

@@ -221,7 +221,7 @@ Since Vapor manages many types of resources across more than a dozen AWS service
 
 On the permissions management screen, you may grant full administrator access to the IAM user by selecting the "Attach existing policies directly" option and "AdministratorAccess" policy. Once the policy has been attached, you may click "Next".
 
-Or, if you would prefer to not provide administrator access to Vapor, you may instead create a custom permission policy with the specific permissions needed by Vapor. To do so, select "Policies" from the IAM service within the AWS console, followed by "Create policy". Choose the JSON option and provide the permission definition below. Once the policy has been defined, you may attach the policy to your new IAM user:
+Or, if you would prefer to not provide administrator access to Vapor, you may instead create a custom permission policy with the specific permissions needed by Vapor. It is necessary to create two policies due to the policy size limit set by AWS. To do so, select "Policies" from the IAM service within the AWS console, followed by "Create policy". Choose the JSON option and provide the first permission definition below. Then, follow the same process to create another policy using the second definition listed below. Once the policies have been defined, you may attach them to your new IAM user:
 
 ```json
 {
@@ -453,7 +453,22 @@ Or, if you would prefer to not provide administrator access to Vapor, you may in
                 "ssm:DeleteParameter",
                 "ssm:DeleteParameters",
                 "ssm:PutParameter",
-                "ssm:UpdateServiceSetting",
+                "ssm:UpdateServiceSetting"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
+```
+
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VaporPolicy",
+            "Effect": "Allow",
+            "Action": [
                 "wafv2:AssociateWebACL",
                 "wafv2:CreateWebACL",
                 "wafv2:DeleteWebACL",

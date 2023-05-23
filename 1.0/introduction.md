@@ -210,7 +210,7 @@ In order to deploy projects or create other resources using Vapor, you will need
 
 To create the AWS access key and secret required by Vapor to manage resources on your AWS account, you will need to create a new IAM user within AWS. To create a new IAM user, navigate to the IAM service on your AWS dashboard. Once you are in the IAM dashboard, you may select "Users" from the left-side navigation panel.
 
-Next, click the "Add user" button and choose a user name. When selecting an "Access type", select "Programmatic access". This instructs AWS IAM to issue a access key ID and secret access key for the IAM user. Then, click "Next".
+Next, click the "Add users" button and choose a user name before clicking "Next".
 
 #### Permissions
 
@@ -221,7 +221,7 @@ Since Vapor manages many types of resources across more than a dozen AWS service
 
 On the permissions management screen, you may grant full administrator access to the IAM user by selecting the "Attach existing policies directly" option and "AdministratorAccess" policy. Once the policy has been attached, you may click "Next".
 
-Or, if you would prefer to not provide administrator access to Vapor, you may instead create a custom permission policy with the specific permissions needed by Vapor. To do so, select "Policies" from the IAM service within the AWS console, followed by "Create policy". Choose the JSON option and provide the permission definition below. Once the policy has been defined, you may attach the policy to your new IAM user:
+Or, if you would prefer to not provide administrator access to Vapor, you may instead create a custom permission policy with the specific permissions needed by Vapor. It is necessary to create two policies due to the policy size limit set by AWS. To do so, select "Create policy" from the "Permissions policies" panel. Choose the JSON option and provide the first permission definition below. Then, follow the same process to create another policy using the second definition listed below. Once the policies have been defined, you may attach them to your new IAM user:
 
 ```json
 {
@@ -453,7 +453,22 @@ Or, if you would prefer to not provide administrator access to Vapor, you may in
                 "ssm:DeleteParameter",
                 "ssm:DeleteParameters",
                 "ssm:PutParameter",
-                "ssm:UpdateServiceSetting",
+                "ssm:UpdateServiceSetting"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
+```
+
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VaporPolicy",
+            "Effect": "Allow",
+            "Action": [
                 "wafv2:AssociateWebACL",
                 "wafv2:CreateWebACL",
                 "wafv2:DeleteWebACL",
@@ -473,7 +488,7 @@ Or, if you would prefer to not provide administrator access to Vapor, you may in
 It's probable this list of permissions will change as we add new features to Vapor, which may result in unexpected errors if your policy is not kept up to date.
 :::
 
-Once the user is created, AWS will display the access key ID and secret access key for the user. These credentials may then be provided to Vapor so that AWS resources may be managed on your behalf. Your linked AWS accounts may be managed via the "Team Settings" screen of the Vapor UI.
+Once the user is created, you will need to generate a set of access credentials. To do so, click on your newly created user and then select the "Security credentials" tab. Now, in the "Access keys" panel, select "Create access key" followed by "Third-party service". Select the confirmation box and click "Next", followed by "Create access key". Your access key ID and secret will then be displayed. These credentials may then be provided to Vapor so that AWS resources may be managed on your behalf. Your linked AWS accounts may be managed via the "Team Settings" screen of the Vapor UI.
 
 #### Defining Your AWS Budget
 

@@ -138,3 +138,32 @@ environments:
         build:
             - 'composer install --no-dev'
 ```
+
+### Multi-level Subdomains
+
+Vapor provides support for multi-level subdomains - for example `v1.api.example.com`. To make use of this functionality, a certificate must be requested which explicitly includes the full multi-level subdomain.
+
+This can be requested from the Vapor CLI:
+
+```shell
+vapor cert v1.api.example.com
+```
+
+It's also possible to obtain a certificate for a multi-level subdomain from the [Vapor domains dashboard](https://vapor.laravel.com/app/domains) by setting it as either the "Domain Name" or any of the "Alternative Names" in the "Advanced Settings" when requesting a certificate.
+
+When the certificate has been issued, you may access your application from your multi-level subdomain by including it in the `domain` section of your `vapor.yml` configuration file and carrying out a full deployment from the Vapor CLI.
+
+```yaml
+id: 2
+name: vapor-laravel-app
+environments:
+    production:
+        domain: 'v1.api.example.com'
+        build:
+            - 'composer install --no-dev'
+```
+
+:::warning Wildcard Multi-level Subdomains
+
+Wildcard certificates provided by AWS Certificate Manager can only protect single level subdomains. As such, it is not possible to access your application via a multi-level subdomain when using only wildcard subdomains. The multi-level subdomain must be explicitly added to your vapor.yml file.
+:::

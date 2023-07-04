@@ -61,7 +61,7 @@ To totally avoid using NAT Gateways, you can use publicly accessible RDS databas
 
 By default, Vapor routes HTTP traffic to your serverless applications using AWS API Gateway. When using this service, AWS only bills you based on the amount of requests your application receives. However, at very high scale, API Gateway can become more expensive than your Lambda functions themselves.
 
-As an alternative to API Gateway, you may route traffic to your application using an Application Load Balancer, which provides large cost savings at scale. For example, if an application receives about 1 billion requests per month, using an Application Load Balancer will save about $4,000 on the application's monthly Amazon bill.
+As an alternative to API Gateway, you may route traffic to your application using an Application Load Balancer, which provides large cost savings at scale. For example, if an application receives about 1 billion requests per month, using an Application Load Balancer will save about $3,000 on the application's monthly Amazon bill when compared to an API Gateway REST API and about $1,000 when compared to an API Gateway HTTP API.
 
 ### Creating Load Balancers
 

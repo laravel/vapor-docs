@@ -167,7 +167,7 @@ Additionally, you should ensure the decryption key is available in the runtime b
 
 :::warning Version Requirements
 
-Utilizing encrypted environment files requires your application to be runnning Laravel >= v9.37 and Vapor Core >= v2.26.
+Utilizing encrypted environment files requires your application to be running Laravel >= v9.37 and Vapor Core >= v2.26.
 :::
 
 ### Passport Keys

@@ -391,6 +391,11 @@ Remember, you can use the [Vapor UI dashboard package](./../introduction.html#in
 
 Vapor automatically configures Laravel's task scheduler and instructs it to use the DynamoDB cache driver to avoid overlapping tasks, so no other configuration is required to begin leveraging Laravel's scheduled task feature.
 
+:::warning Running Background Tasks
+
+Due to the serverless nature of Vapor, you should avoid using the `runInBackground` method when scheduling jobs. Doing so may prevent other tasks from running in the event the Lambda container shuts down before the current task completes.
+:::
+
 If you would like to disable the scheduler, you may set an environment's `scheduler` option to `false`:
 
 ```yaml
@@ -407,6 +412,16 @@ environments:
 
 Due to Vapor limitations, log messages from scheduled tasks will not appear in AWS CloudWatch or Vapor UI. As a workaround, you should dispatch a queued job from your scheduled tasks and write log messages from your queued job.
 :::
+
+### Sub-Minute Scheduled Tasks
+
+Although Laravel's [sub-minute scheduled tasks](https://laravel.com/docs/scheduling#sub-minute-scheduled-tasks) can run on Vapor, there are a few caveats to consider.
+
+Due to AWS limitations, there is no guarantee the scheduler will be invoked at the very beginning of any given minute. Therefore, you may find that sub-minute tasks scheduled early in the `schedule:run` process do not run as expected and those which run later in the schedule may not start at the expected time.
+
+For example, when scheduling a command using `everyThirtySeconds` and assuming the scheduler is invoked by AWS at 12:00:10, you should expect your command to run at 12:00:10 and 12:00:40.
+
+In addition, the `runInBackground` option is not supported on Vapor; therefore, you may find some of your tasks are blocked from running if the previous task runs longer than expected.
 
 ## Mail
 

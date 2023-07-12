@@ -393,7 +393,7 @@ Vapor automatically configures Laravel's task scheduler and instructs it to use 
 
 :::warning Running Background Tasks
 
-Due to the serverless nature of Vapor, you should avoid using the `runInBackground` method when scheduling jobs. Doing so may prevent other tasks from running in the event the Lambda container shuts down before the task completes.
+Due to the serverless nature of Vapor, you should avoid using the `runInBackground` method when scheduling jobs. Doing so may prevent other tasks from running in the event the Lambda container shuts down before the current task completes.
 :::
 
 If you would like to disable the scheduler, you may set an environment's `scheduler` option to `false`:
@@ -417,11 +417,11 @@ Due to Vapor limitations, log messages from scheduled tasks will not appear in A
 
 Although Laravel's [Sub-Minute Scheduled Tasks](https://laravel.com/docs/scheduling#sub-minute-scheduled-tasks) can run on Vapor, there are a few considerations to take into account.
 
-Due to limitations with AWS, there is no guarantee the scheduler will be invoked at the very beginning of any given minute. As such you may find sub-minute tasks scheduled early in the `schedule:run` process do not run as expected and those which run later in the schedule may not start at the expected time.
+Due to limitations with AWS, there is no guarantee the scheduler will be invoked at the very beginning of any given minute. As such you may find sub-minute tasks for scheduled early in the `schedule:run` process do not run as expected and those which run later in the schedule may not start at the expected time.
 
 For example when scheduling a command using `everyThirtySeconds` and assuming the scheduler is invoked by AWS at 12:00:10, you should expect your command to run at 12:00:10 and 12:00:40.
 
-In addition, the `runInBackground` option is not supported on Vapor. As such, you may find some of your tasks are blocked from running in the event a previous task runs over the set interval.
+In addition, the `runInBackground` option is not supported on Vapor. As such, you may find some of your tasks are blocked from running if the previous task runs over the set interval.
 
 ## Mail
 

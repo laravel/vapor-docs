@@ -334,6 +334,7 @@ Or, if you would prefer to not provide administrator access to Vapor, you may in
                 "elasticache:ListTagsForResource",
                 "elasticache:ModifyReplicationGroupShardConfiguration",
                 "elasticloadbalancing:AddListenerCertificates",
+                "elasticloadbalancing:AddTags",
                 "elasticloadbalancing:CreateListener",
                 "elasticloadbalancing:CreateLoadBalancer",
                 "elasticloadbalancing:CreateRule",

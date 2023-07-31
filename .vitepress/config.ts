@@ -17,6 +17,7 @@ export default defineConfigWithTheme<ThemeConfig>({
         },
         nav: [
             { text: 'Laravel Vapor', link: 'https://vapor.laravel.com' },
+            { text: 'Video Tutorials', link: 'https://www.youtube.com/watch?v=4WvRChmRhDo&list=PLcjapmjyX17gqhjUz8mgTaWzSv1FPgePD' },
         ],
         sidebar: [
             {

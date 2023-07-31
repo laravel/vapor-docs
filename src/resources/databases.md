@@ -74,7 +74,7 @@ If you would like to connect to your private database from your local machine, y
 
 Once a jumpbox has been created, you may configure your database management tool to connect to your database through the jumpbox SSH connection:
 
-![Database GUI Connection Settings](/img/jumpbox-db-connection-settings.png)
+![Database GUI Connection Settings](img/jumpbox-db-connection-settings.png)
 
 #### Shell Command
 

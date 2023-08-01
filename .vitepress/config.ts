@@ -1,6 +1,6 @@
 import { defineConfigWithTheme } from "vitepress";
-import type { ThemeConfig } from 'pilgrim-theme'
-import config from 'pilgrim-theme/config'
+import type { ThemeConfig } from '@hempworks/pilgrim'
+import config from '@hempworks/pilgrim/config'
 
 export default defineConfigWithTheme<ThemeConfig>({
     extends: config,

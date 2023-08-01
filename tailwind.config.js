@@ -1,6 +1,5 @@
 const defaultTheme = require('tailwindcss/defaultTheme')
-const colors = require('tailwindcss/colors')
-import config from './node_modules/pilgrim-theme/tailwind.config.js'
+import tailwindConfig from '@hempworks/pilgrim/tailwind.config'
 
 const primary = {
 //   50: '#f2f9ff',
@@ -18,11 +17,11 @@ const primary = {
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   presets: [
-    require('./node_modules/pilgrim-theme/tailwind.config.js')
+    tailwindConfig,
   ],
   
   content: [
-    ...config.content,
+    ...tailwindConfig.content,
     // './.vitepress/theme/**/*.{vue,js,ts,jsx,tsx}',
   ],
 

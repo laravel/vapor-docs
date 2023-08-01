@@ -1,3 +1,3 @@
-import { Theme } from 'pilgrim-theme'
+import { Theme } from '@hempworks/pilgrim'
 
 export default Theme

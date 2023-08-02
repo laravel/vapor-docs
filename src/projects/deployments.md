@@ -27,15 +27,15 @@ You may define build hooks for an environment using the `build` key within your 
 id: 3
 name: vapor-app
 environments:
-    production:
-        memory: 1024
-        database: vapor-app
-        cache: vapor-cache
-        build:
-            - 'composer install --no-dev'
-            - 'php artisan event:cache'
-        deploy:
-            - 'php artisan migrate --force'
+  production:
+    memory: 1024
+    database: vapor-app
+    cache: vapor-cache
+    build:
+      - 'composer install --no-dev'
+      - 'php artisan event:cache'
+    deploy:
+      - 'php artisan migrate --force'
 ```
 
 ## Deploy Hooks
@@ -46,15 +46,15 @@ You may define deployment hooks for an environment using the `deploy` key within
 id: 3
 name: vapor-app
 environments:
-    production:
-        memory: 1024
-        database: vapor-app
-        cache: vapor-cache
-        build:
-            - 'composer install --no-dev'
-            - 'php artisan event:cache'
-        deploy:
-            - 'php artisan migrate --force'
+  production:
+    memory: 1024
+    database: vapor-app
+    cache: vapor-cache
+    build:
+      - 'composer install --no-dev'
+      - 'php artisan event:cache'
+    deploy:
+      - 'php artisan migrate --force'
 ```
 
 ### Reviewing Output / Logs
@@ -92,7 +92,7 @@ On subsequent deployments, only the assets that have changed will be uploaded to
 
 ### Custom Asset Domains
 
-If you would like to use your own domain to serve your assets, you may do so by attaching a custom asset domain to your project. First, you should [ensure a DNS zone exists](/domains/dns#creating-dns-zones) for the domain and that a [certificate is issued](/domains/certificates#creating-certificates) for the domain in the `us-east-1` region.
+If you would like to use your own domain to serve your assets, you may do so by attaching a custom asset domain to your project. First, you should [ensure a DNS zone exists](/projects/domains.html#adding-domains) for the domain and that a [certificate is issued](/projects/domains.html#requesting-ssl-certificates) for the domain in the `us-east-1` region.
 
 Next, set the `asset-domain` option of your `vapor.yml` file to your chosen domain:
 
@@ -101,8 +101,8 @@ id: 3
 name: vapor-app
 asset-domain: assets.laravel.rocks
 environments:
-    production:
-        ...
+  production:
+    ...
 ```
 
 During a subsequent deployment of any environment associated with your project, Vapor will add the custom domain as an alias to your CloudFront distribution. Vapor will also inject the relevant environment variables for the [asset helper](/projects/deployments#assets) and Vite asset compilation process to ensure your assets are served from your custom asset domain.
@@ -159,9 +159,9 @@ When using CI platforms, you may not have access to the environment files as the
 
 ```yml
 - name: Deploy Environment
-        run: vapor deploy production
-        env:
-            VITE_PUSHER_APP_KEY: ${{ secrets.VITE_PUSHER_APP_KEY }}
+    run: vapor deploy production
+    env:
+      VITE_PUSHER_APP_KEY: ${{ secrets.VITE_PUSHER_APP_KEY }}
 ```
 
 :::warning Vapor With Laravel Vite
@@ -192,8 +192,8 @@ const mix = require("laravel-mix");
  */
 
 mix
-  .js("resources/js/app.js", "public/js")
-  .sass("resources/sass/app.scss", "public/css");
+    .js("resources/js/app.js", "public/js")
+    .sass("resources/sass/app.scss", "public/css");
 
 if (mix.inProduction()) {
     const ASSET_URL = process.env.ASSET_URL + "/";

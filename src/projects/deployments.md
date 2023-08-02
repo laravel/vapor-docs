@@ -92,7 +92,7 @@ On subsequent deployments, only the assets that have changed will be uploaded to
 
 ### Custom Asset Domains
 
-If you would like to use your own domain to serve your assets, you may do so by attaching a custom asset domain to your project. First, you should [ensure a DNS zone exists](/domains/dns#creating-dns-zones) for the domain and that a [certificate is issued](/domains/certificates#creating-certificates) for the domain in the `us-east-1` region.
+If you would like to use your own domain to serve your assets, you may do so by attaching a custom asset domain to your project. First, you should [ensure a DNS zone exists](/projects/domains.html#adding-domains) for the domain and that a [certificate is issued](/projects/domains.html#requesting-ssl-certificates) for the domain in the `us-east-1` region.
 
 Next, set the `asset-domain` option of your `vapor.yml` file to your chosen domain:
 

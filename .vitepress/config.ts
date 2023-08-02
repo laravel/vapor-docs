@@ -13,7 +13,7 @@ export default defineConfigWithTheme<ThemeConfig>({
     themeConfig: {
         logo: {
             light: '/logo.svg',
-            dark: '/logo.svg',
+            dark: '/logo-dark.svg',
         },
         nav: [
             { text: 'Laravel Vapor', link: 'https://vapor.laravel.com' },

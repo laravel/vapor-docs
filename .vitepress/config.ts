@@ -10,6 +10,54 @@ export default defineConfigWithTheme<ThemeConfig>({
     cleanUrls: false,
     srcDir: 'src',
 
+    head: [
+        // ['link', {
+        //     rel: 'apple-touch-icon',
+        //     sizes: '180x180',
+        //     href: 'https://envoyer.io/img/favicons/apple-touch-icon.png',
+        // }],
+        ['link', {
+            rel: 'icon',
+            sizes: '16x16',
+            type: 'image/png',
+            href: 'https://docs.vapor.build/img/favicon-16px.png',
+        }],
+        ['link', {
+            rel: 'icon',
+            sizes: '32x32',
+            type: 'image/png',
+            href: 'https://docs.vapor.build/img/favicon-32px.png',
+        }],
+        // ['link', {
+        //     rel: 'mask-icon',
+        //     href: 'https://envoyer.io/img/favicons/safari-pinned-tab.svg',
+        // }],
+        ['meta', {
+            name: 'msapplication-TileColor',
+            content: '#4099DE',
+        }],
+        // ['meta', {
+        //     name: 'msapplication-TileImage',
+        //     content: 'envoyer.io/img/favicons/mstile-144x144.png',
+        // }],
+        ['meta', {
+            property: 'og:image',
+            content: 'https://docs.vapor.build/img/social-share.png',
+        }],
+        ['meta', {
+            property: 'twitter:card',
+            content: 'summary_large_image',
+        }],
+        ['meta', {
+            property: 'twitter:creator',
+            content: '@laravelphp',
+        }],
+        ['meta', {
+            property: 'twitter:image',
+            content: 'https://docs.vapor.build/img/social-share.png',
+        }],
+    ],
+
     themeConfig: {
         logo: {
             light: '/logo.svg',

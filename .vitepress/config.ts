@@ -7,7 +7,7 @@ export default defineConfigWithTheme<ThemeConfig>({
     title: 'Laravel Vapor',
     description: 'Laravel at Infinite Scale',
     base: '/',
-    cleanUrls: true,
+    cleanUrls: false,
     srcDir: 'src',
 
     themeConfig: {

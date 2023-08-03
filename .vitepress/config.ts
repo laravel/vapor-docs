@@ -11,38 +11,38 @@ export default defineConfigWithTheme<ThemeConfig>({
     srcDir: 'src',
 
     head: [
-        // ['link', {
-        //     rel: 'apple-touch-icon',
-        //     sizes: '180x180',
-        //     href: 'https://envoyer.io/favicons/apple-touch-icon.png',
-        // }],
+        ['link', {
+            rel: 'apple-touch-icon',
+            sizes: '180x180',
+            href: 'apple-touch-icon.png',
+        }],
         ['link', {
             rel: 'icon',
             sizes: '16x16',
             type: 'image/png',
-            href: 'https://docs.vapor.build/favicon-16px.png',
+            href: 'favicon-16px.png',
         }],
         ['link', {
             rel: 'icon',
             sizes: '32x32',
             type: 'image/png',
-            href: 'https://docs.vapor.build/favicon-32px.png',
+            href: 'favicon-32px.png',
         }],
-        // ['link', {
-        //     rel: 'mask-icon',
-        //     href: 'https://envoyer.io/favicons/safari-pinned-tab.svg',
-        // }],
+        ['link', {
+            rel: 'mask-icon',
+            href: 'safari-pinned-tab.svg',
+        }],
         ['meta', {
             name: 'msapplication-TileColor',
             content: '#4099DE',
         }],
-        // ['meta', {
-        //     name: 'msapplication-TileImage',
-        //     content: 'envoyer.io/favicons/mstile-144x144.png',
-        // }],
+        ['meta', {
+            name: 'msapplication-TileImage',
+            content: 'mstile-150x150.png',
+        }],
         ['meta', {
             property: 'og:image',
-            content: 'https://docs.vapor.build/social-share.png',
+            content: 'social-share.png',
         }],
         ['meta', {
             property: 'twitter:card',
@@ -54,7 +54,7 @@ export default defineConfigWithTheme<ThemeConfig>({
         }],
         ['meta', {
             property: 'twitter:image',
-            content: 'https://docs.vapor.build/social-share.png',
+            content: 'social-share.png',
         }],
     ],
 

@@ -96,7 +96,7 @@ If your existing database is publicly accessible, make sure your Vapor project i
 
 After connecting your existing database, you will need to configure the appropriate environment variables:
 
-```env
+```
 DB_HOST=
 DB_PORT=
 DB_DATABASE=
@@ -106,13 +106,13 @@ DB_PASSWORD=
 
 When working with an AWS RDS MySQL Fixed Size databases, an additional environment variable specifying the SSL certificate authority is required:
 
-```env
+```
 MYSQL_ATTR_SSL_CA=/var/task/rds-combined-ca-bundle.pem
 ```
 
 If your database is hosted by [PlanetScale](https://planetscale.com/), the SSL certificate authority is as follows:
 
-```env
+```
 MYSQL_ATTR_SSL_CA=/opt/lib/curl/cert.pem
 ```
 

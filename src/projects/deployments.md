@@ -169,7 +169,7 @@ When using CI platforms, you may not have access to the environment files as the
 When using Vite and running `npm run build`, Vite will always use the `.env.production` file if it is present, even if you are deploying a different environment. If you maintain multiple environment files in your deployment environment, you should set the Vite build mode explicitly:
 
 ```shell
-npm run build -- --mode staging
+npm run build --mode staging
 ```
 :::
 

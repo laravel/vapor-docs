@@ -403,6 +403,7 @@ Or, if you would prefer to not provide administrator access to Vapor, you may in
                 "rds:DeleteDBProxy",
                 "rds:DeleteDBSubnetGroup",
                 "rds:DescribeDBClusters",
+                "rds:DescribeDBEngineVersions",
                 "rds:DescribeDBInstances",
                 "rds:DescribeDBProxies",
                 "rds:DescribeDBSubnetGroups",

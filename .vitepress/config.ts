@@ -14,23 +14,23 @@ export default defineConfigWithTheme<ThemeConfig>({
         ['link', {
             rel: 'apple-touch-icon',
             sizes: '180x180',
-            href: 'apple-touch-icon.png',
+            href: '/apple-touch-icon.png',
         }],
         ['link', {
             rel: 'icon',
             sizes: '16x16',
             type: 'image/png',
-            href: 'favicon-16px.png',
+            href: '/favicon-16px.png',
         }],
         ['link', {
             rel: 'icon',
             sizes: '32x32',
             type: 'image/png',
-            href: 'favicon-32px.png',
+            href: '/favicon-32px.png',
         }],
         ['link', {
             rel: 'mask-icon',
-            href: 'safari-pinned-tab.svg',
+            href: '/safari-pinned-tab.svg',
         }],
         ['meta', {
             name: 'msapplication-TileColor',
@@ -38,11 +38,11 @@ export default defineConfigWithTheme<ThemeConfig>({
         }],
         ['meta', {
             name: 'msapplication-TileImage',
-            content: 'mstile-150x150.png',
+            content: '/mstile-150x150.png',
         }],
         ['meta', {
             property: 'og:image',
-            content: 'social-share.png',
+            content: '/social-share.png',
         }],
         ['meta', {
             property: 'twitter:card',
@@ -54,7 +54,7 @@ export default defineConfigWithTheme<ThemeConfig>({
         }],
         ['meta', {
             property: 'twitter:image',
-            content: 'social-share.png',
+            content: '/social-share.png',
         }],
     ],
 

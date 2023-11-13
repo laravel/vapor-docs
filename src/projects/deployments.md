@@ -319,7 +319,7 @@ Some CI platforms expose the Git commit information as environment variables dur
 vapor deploy production --commit="${CI_COMMIT_ID}" --message="${CI_MESSAGE}"
 ```
 
-The commit hash will be injected into your applications environemnt under the key `VAPOR_COMMIT_HASH`
+The commit hash will be injected into your application's environment variables as `VAPOR_COMMIT_HASH`.
 
 ### Example With GitHub Actions
 

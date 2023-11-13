@@ -319,6 +319,8 @@ Some CI platforms expose the Git commit information as environment variables dur
 vapor deploy production --commit="${CI_COMMIT_ID}" --message="${CI_MESSAGE}"
 ```
 
+The commit hash will be injected into your applications environemnt under the key `VAPOR_COMMIT_HASH`
+
 ### Example With GitHub Actions
 
 If your application uses [GitHub Actions](https://github.com/features/actions) as its CI platform, the following guidelines will assist you in configuring Vapor deployments so that your application is automatically deployed when someone pushes a commit to the `master` branch:

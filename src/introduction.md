@@ -408,6 +408,7 @@ Or, if you would prefer to not provide administrator access to Vapor, you may in
                 "rds:DescribeDBProxies",
                 "rds:DescribeDBSubnetGroups",
                 "rds:ListTagsForResource",
+                "rds:ModifyDBCluster",
                 "rds:ModifyDBInstance",
                 "rds:RegisterDBProxyTargets",
                 "rds:RestoreDBInstanceToPointInTime",

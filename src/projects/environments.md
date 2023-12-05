@@ -464,7 +464,7 @@ The `runtime` configuration option allows you to specify the runtime a given env
 
 ### Native Runtimes
 
-The currently supported native runtimes are `php-8.0:al2`, `php-8.1:al2`, `php-8.2:al2`, `php-8.2:al2-arm`, `php-8.3:al2`, and `php-8.3:al2-arm`. The runtimes that are suffixed with `al2` use Amazon Linux 2 while those without the suffix use Amazon Linux 1. Runtimes without the `-arm` suffix run on x86 artchitecture whereas those suffixed with `-arm` run on Arm architecture. Arm provides performance benefits and cost savings compared to its x86 equivalent:
+The currently supported native runtimes are `php-8.1:al2`, `php-8.2:al2`, `php-8.2:al2-arm`, `php-8.3:al2`, and `php-8.3:al2-arm`. The runtimes that are suffixed with `al2` use Amazon Linux 2 while those without the suffix use Amazon Linux 1. Runtimes without the `-arm` suffix run on x86 artchitecture whereas those suffixed with `-arm` run on Arm architecture. Arm provides performance benefits and cost savings compared to its x86 equivalent:
 
 ```yaml
 id: 2
@@ -478,7 +478,7 @@ environments:
 
 :::warning Amazon Linux 2
 
-Using [Amazon Linux 2](https://aws.amazon.com/amazon-linux-2/) (`php-8.0:al2`, `php-8.1:al2`, `php-8.2:al2`, `php-8.2:al2-arm`, `php-8.3:al2`, `php-8.3:al2-arm`) is **highly recommended**, as Amazon Linux 1 is no longer maintained as of December 31, 2020.
+Using [Amazon Linux 2](https://aws.amazon.com/amazon-linux-2/) (`php-8.1:al2`, `php-8.2:al2`, `php-8.2:al2-arm`, `php-8.3:al2`, `php-8.3:al2-arm`) is **highly recommended**, as Amazon Linux 1 is no longer maintained as of December 31, 2020.
 :::
 
 The following limitations apply to Vapor native runtimes:

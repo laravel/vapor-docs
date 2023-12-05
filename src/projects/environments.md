@@ -384,7 +384,7 @@ environments:
 
 :::tip Detecting Timeouts In Logs
 
-Remember, you can use the [Vapor UI dashboard package](/introduction#installing-the-vapor-ui-dashboard) to search for timeout occurrences.
+Remember, you can use the "Logs" panel of the [Vapor dashboard](https://vapor.laravel.com/app) to search for timeout occurrences.
 :::
 
 ## Scheduler

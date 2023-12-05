@@ -186,12 +186,6 @@ If you have had job failures during the selected period, you may examine them fu
 In order to view details of failed jobs in the Vapor dashboard, your application must be running Vapor Core >= v2.29.0.
 :::
 
-If you have installed the [Vapor UI dashboard package](/introduction#installing-the-vapor-ui-dashboard), you may access the `/vapor-ui/jobs/metrics` URI to monitor queue jobs.
-
-Within the Vapor UI dashboard, you can monitor (in real-time) the number of processed jobs, failed jobs, and pending jobs for your Vapor application. In addition, it includes charts providing job statistics over the last 24 hours, allowing you to understand better the trends of your queue.
-
-Furthermore, you may access the `/vapor-ui/jobs/failed` to view the list of failed jobs, their details, job IDs, connections, queues, failures times, and other information about the jobs. From this screen, you may choose to retry or delete the failed job.
-
 ## Failed Jobs
 
 Vapor automatically keeps track of failed job attempts using your environment's configured cache driver. This allows Vapor to ensure the correct number of failed attempts is accessible by your application, even if a queued job does not complete due to exceeding the maximum execution time enforced by Lambda (15 minutes) or fails due to an unhandled exception causing the entire container processing your job to fail.

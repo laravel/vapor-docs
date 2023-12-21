@@ -185,6 +185,7 @@ Or, if you would prefer to not provide administrator access to Vapor, you may in
                 "ec2:CreateSubnet",
                 "ec2:CreateTags",
                 "ec2:CreateVpc",
+                "ec2:CreateVpcEndpoint",
                 "ec2:DeleteInternetGateway",
                 "ec2:DeleteKeyPair",
                 "ec2:DeleteNatGateway",
@@ -239,12 +240,16 @@ Or, if you would prefer to not provide administrator access to Vapor, you may in
                 "elasticache:AddTagsToResource",
                 "elasticache:CreateCacheSubnetGroup",
                 "elasticache:CreateReplicationGroup",
+                "elasticache:CreateServerlessCache",
                 "elasticache:DeleteCacheSubnetGroup",
                 "elasticache:DeleteReplicationGroup",
+                "elasticache:DeleteServerlessCache"
                 "elasticache:DescribeCacheSubnetGroups",
                 "elasticache:DescribeReplicationGroups",
+                "elasticache:DescribeServerlessCaches",
                 "elasticache:ListTagsForResource",
                 "elasticache:ModifyReplicationGroupShardConfiguration",
+                "elasticache:ModifyServerlessCache",
                 "elasticloadbalancing:AddListenerCertificates",
                 "elasticloadbalancing:AddTags",
                 "elasticloadbalancing:CreateListener",
@@ -364,11 +369,7 @@ Or, if you would prefer to not provide administrator access to Vapor, you may in
                 "sqs:DeleteQueue",
                 "sqs:GetQueueAttributes",
                 "sqs:GetQueueUrl",
-                "sqs:SetQueueAttributes",
-                "ssm:DeleteParameter",
-                "ssm:DeleteParameters",
-                "ssm:PutParameter",
-                "ssm:UpdateServiceSetting"
+                "sqs:SetQueueAttributes"
             ],
             "Resource": "*"
         }
@@ -384,6 +385,10 @@ Or, if you would prefer to not provide administrator access to Vapor, you may in
             "Sid": "VaporPolicy",
             "Effect": "Allow",
             "Action": [
+                "ssm:DeleteParameter",
+                "ssm:DeleteParameters",
+                "ssm:PutParameter",
+                "ssm:UpdateServiceSetting",
                 "wafv2:AssociateWebACL",
                 "wafv2:CreateWebACL",
                 "wafv2:DeleteWebACL",

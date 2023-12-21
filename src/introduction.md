@@ -243,7 +243,7 @@ Or, if you would prefer to not provide administrator access to Vapor, you may in
                 "elasticache:CreateServerlessCache",
                 "elasticache:DeleteCacheSubnetGroup",
                 "elasticache:DeleteReplicationGroup",
-                "elasticache:DeleteServerlessCache"
+                "elasticache:DeleteServerlessCache",
                 "elasticache:DescribeCacheSubnetGroups",
                 "elasticache:DescribeReplicationGroups",
                 "elasticache:DescribeServerlessCaches",
@@ -364,12 +364,7 @@ Or, if you would prefer to not provide administrator access to Vapor, you may in
                 "sns:ListSubscriptionsByTopic",
                 "sns:SetTopicAttributes",
                 "sns:Subscribe",
-                "sns:TagResource",
-                "sqs:CreateQueue",
-                "sqs:DeleteQueue",
-                "sqs:GetQueueAttributes",
-                "sqs:GetQueueUrl",
-                "sqs:SetQueueAttributes"
+                "sns:TagResource"
             ],
             "Resource": "*"
         }
@@ -385,6 +380,11 @@ Or, if you would prefer to not provide administrator access to Vapor, you may in
             "Sid": "VaporPolicy",
             "Effect": "Allow",
             "Action": [
+                "sqs:CreateQueue",
+                "sqs:DeleteQueue",
+                "sqs:GetQueueAttributes",
+                "sqs:GetQueueUrl",
+                "sqs:SetQueueAttributes",
                 "ssm:DeleteParameter",
                 "ssm:DeleteParameters",
                 "ssm:PutParameter",

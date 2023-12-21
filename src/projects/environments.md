@@ -415,11 +415,20 @@ Due to Vapor limitations, log messages from scheduled tasks will not appear in A
 
 ### Sub-Minute Scheduled Tasks
 
-Although Laravel's [sub-minute scheduled tasks](https://laravel.com/docs/scheduling#sub-minute-scheduled-tasks) can run on Vapor, there are a few caveats to consider.
+Due to AWS limitations, there is no guarantee the scheduler will be invoked at the very beginning of any given minute. Therefore, you may find that, by default, sub-minute tasks scheduled early in the `schedule:run` process do not run as expected and those which run later in the schedule may not start at the expected time. For example, when scheduling a command using `everyThirtySeconds` and assuming the scheduler is invoked by AWS at 12:00:10, you should expect your command to run at 12:00:10 and 12:00:40.
 
-Due to AWS limitations, there is no guarantee the scheduler will be invoked at the very beginning of any given minute. Therefore, you may find that sub-minute tasks scheduled early in the `schedule:run` process do not run as expected and those which run later in the schedule may not start at the expected time.
+To work around these limitations for sub-minute tasks, you may enable Vapor's own scheduler engine by adding `scheduler: sub-minute` to your application's `vapor.yml` file:
 
-For example, when scheduling a command using `everyThirtySeconds` and assuming the scheduler is invoked by AWS at 12:00:10, you should expect your command to run at 12:00:10 and 12:00:40.
+```yml
+id: 2
+name: vapor-laravel-app
+environments:
+    production:
+        scheduler: sub-minute
+        cli-timeout: 120
+```
+
+When Vapor's sub-minute scheduler is enabled, Vapor runs its own scheduler command which waits until the beginning of every minute before calling `scedule:run`. Therefore, when enabling this option, you should also ensure your `cli-timeout` is >= 120 to allow enough time to both invoke Laravel's scheduler and allow it to complete all sub-minute tasks. You should also ensure `cli-concurrency` is >= 2 to allow for the possibility of overlapping invocations of Vapor's scheduler.
 
 In addition, the `runInBackground` option is not supported on Vapor; therefore, you may find some of your tasks are blocked from running if the previous task runs longer than expected.
 

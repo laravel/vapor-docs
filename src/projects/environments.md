@@ -159,7 +159,7 @@ In addition, environment variables should not contain `AWS_ACCESS_KEY_ID`, `AWS_
 
 ## Encrypted Environment Files
 
-Vapor provides built-in support for Laravel's [encrypted environment files](https://laravel.com/docs/9.x/configuration#encrypting-environment-files). If Vapor discovers an encrypted environment file while booting your application, it will automatically attempt to decrypt it and inject the resulting variables into the runtime.
+Vapor provides built-in support for Laravel's [encrypted environment files](https://laravel.com/docs/configuration#encrypting-environment-files). If Vapor discovers an encrypted environment file while booting your application, it will automatically attempt to decrypt it and inject the resulting variables into the runtime.
 
 To leverage this feature, you must first ensure an encrypted environment file is present at the root of your application during deployment. For example, deploying the `production` environment requires a file called `.env.production.encrypted` to be present at the root of your application.
 
@@ -653,9 +653,9 @@ vapor deploy --build-arg VERSION=php74 --build-arg KEY=value
 
 By default, when Lambda receives HTTP requests, Vapor sends those requests synchronously to PHP-FPM using the FastCGI Protocol. This means every incoming request spawns a PHP-FPM worker and boots your application. This approach ensures Vapor behaves exactly like a traditional web server.
 
-If you wish to reduce the overhead involved in using PHP-FPM, you may opt-in to **Laravel [Octane](https://laravel.com/docs/8.x/octane)** support on Vapor. Octane can increase your application's performance by booting your application once, keeping it in memory, and then feeding that same application instance requests as they are received.
+If you wish to reduce the overhead involved in using PHP-FPM, you may opt-in to **Laravel [Octane](https://laravel.com/docs/octane)** support on Vapor. Octane can increase your application's performance by booting your application once, keeping it in memory, and then feeding that same application instance requests as they are received.
 
-To get started, [install Laravel Octane](https://laravel.com/docs/8.x/octane#installation) in your project. After installing Octane, don't forget to review important [Octane documentation](https://laravel.com/docs/8.x/octane) topics such as [dependency injection](https://laravel.com/docs/8.x/octane#dependency-injection-and-octane) and [managing memory leaks](https://laravel.com/docs/8.x/octane#managing-memory-leaks).
+To get started, [install Laravel Octane](https://laravel.com/docs/octane#installation) in your project. After installing Octane, don't forget to review important [Octane documentation](https://laravel.com/docs/octane) topics such as [dependency injection](https://laravel.com/docs/octane#dependency-injection-and-octane) and [managing memory leaks](https://laravel.com/docs/octane#managing-memory-leaks).
 
 Finally, you may instruct Vapor to use Octane by setting the `octane` configuration option within your application's `vapor.yml` file:
 

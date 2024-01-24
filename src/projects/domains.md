@@ -167,3 +167,11 @@ environments:
 
 Wildcard certificates provided by AWS Certificate Manager can only protect single-level subdomains. As such, it is not possible to access your application via a multi-level subdomain when using only wildcard subdomains. The multi-level subdomain must be explicitly added to your `vapor.yml` file.
 :::
+
+## Removing Vanity Domains
+
+If you no longer need a vanity domain attached to your environment, you may remove it with the `vanity-domain:delete <environment>` commmand:
+
+```shell
+vapor vanity-domain:delete production
+```

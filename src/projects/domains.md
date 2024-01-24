@@ -170,7 +170,7 @@ Wildcard certificates provided by AWS Certificate Manager can only protect singl
 
 ## Removing Vanity Domains
 
-If you no longer need a vanity domain attached to your environment, you may remove it with the `vanity-domain:delete <environment>` commmand:
+If you no longer want a vanity domain to be attached to your environment, you may remove it using the `vanity-domain:delete <environment>` commmand:
 
 ```shell
 vapor vanity-domain:delete production

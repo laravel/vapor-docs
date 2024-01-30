@@ -131,7 +131,7 @@ After updating an environment's variables, the new variables will not be utilize
 
 :::warning Environment Variable Limits
 
-Due to AWS Lambda limitations, your environment variables may only be 4kb in total. You should use encrypted environment files in place of or in addition to environment variables if you exceed this limit.
+Due to AWS Lambda limitations, your environment variables may only be 4kb in total. Vapor ensures this by limiting them to a total of 2,000 characters. You should use encrypted environment files in place of or in addition to environment variables if you exceed this limit.
 :::
 
 ### Reserved Environment Variables

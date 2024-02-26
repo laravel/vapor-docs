@@ -10,6 +10,10 @@ export default defineConfigWithTheme<ThemeConfig>({
     cleanUrls: false,
     srcDir: 'src',
 
+    sitemap: {
+        hostname: 'https://docs.vapor.build',
+    },
+
     head: [
         ['link', {
             rel: 'apple-touch-icon',

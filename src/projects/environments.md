@@ -599,7 +599,7 @@ COPY . /var/task
 
 #### Customizing Core `php.ini` Directives
 
-To customize core `php.ini` directives on our native runtimes, create a `php.ini` file in the **root** directory of your project with the desired directives. For example, to change the `upload_max_filesize` directive, add the following line to your `php.ini` file:
+To customize core `php.ini` directives on our Docker runtimes, create a `php.ini` file in the **root** directory of your project with the desired directives. For example, to change the `upload_max_filesize` directive, add the following line to your `php.ini` file:
 
 ```ini
 upload_max_filesize = 4M
